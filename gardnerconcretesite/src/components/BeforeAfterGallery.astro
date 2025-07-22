@@ -1,0 +1,49 @@
+---
+---
+
+<section id="gallery" class="py-20 sm:py-32 bg-concrete-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl text-charcoal-black tracking-tighter">
+        See the Transformation
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-steel-gray font-lato">
+        Our work speaks for itself. Drag the slider to see the difference our expertise makes.
+      </p>
+    </div>
+
+    <div class="mt-16 max-w-4xl mx-auto">
+      <div class="relative before-after-slider rounded-lg overflow-hidden shadow-2xl">
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1574825244199-358444a70a4c?auto=format&fit=crop&w=1200&q=80"
+            alt="A crumbling concrete staircase before repair."
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="absolute inset-0 w-1/2 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1590224505923-372138a3b8bd?auto=format&fit=crop&w=1200&q=80"
+            alt="A newly repaired and pristine concrete staircase."
+            class="w-full h-full object-cover absolute top-0 left-0 max-w-none"
+            style="width: 200%;"
+          />
+        </div>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          aria-label="Before and after slider"
+          oninput="this.previousElementSibling.style.width = this.value + '%'"
+        />
+        <div class="absolute top-0 bottom-0 w-1 bg-construction-orange pointer-events-none" style="left: 50%; transform: translateX(-50%);">
+          <div class="absolute top-1/2 -translate-y-1/2 -left-4 bg-construction-orange text-concrete-white rounded-full h-8 w-8 flex items-center justify-center font-bold">
+            &#x2194;
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

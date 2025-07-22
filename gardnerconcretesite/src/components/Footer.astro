@@ -1,0 +1,29 @@
+---
+import { BUSINESS_NAME } from '../utils/constants';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-charcoal-black border-t border-steel-gray/20">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex justify-center mb-4">
+      <svg
+        class="h-8 w-8 text-construction-orange"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm4-4h10V3H7v2z"></path>
+      </svg>
+    </div>
+    <p class="text-base text-steel-gray font-lato">
+      © {currentYear} {BUSINESS_NAME}. All rights reserved.
+    </p>
+    <p class="mt-2 text-sm text-steel-gray/70 font-lato">
+      Built with conviction by your neighbors in South Minneapolis.
+    </p>
+  </div>
+</footer>

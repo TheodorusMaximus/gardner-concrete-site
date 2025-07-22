@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@wix/blog": "^1.0.453",
+    "@wix/sdk": "^1.15.24"
+  }
+}

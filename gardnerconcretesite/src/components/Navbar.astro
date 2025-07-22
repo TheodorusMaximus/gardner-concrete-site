@@ -1,0 +1,41 @@
+---
+import { BUSINESS_NAME } from '../utils/constants';
+---
+
+<header class="fixed top-0 left-0 w-full bg-charcoal-black/90 backdrop-blur-md z-50 border-b border-steel-gray/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <div class="flex items-center">
+        <a href="/" class="flex items-center">
+          <svg
+            class="h-10 w-10 text-construction-orange"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm4-4h10V3H7v2z"></path>
+          </svg>
+          <span class="ml-3 text-2xl font-montserrat font-extrabold text-concrete-white tracking-wider"
+            >{BUSINESS_NAME}</span
+          >
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-6">
+        <a href="/" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
+          >Home</a
+        >
+        <a
+          href="/schedule"
+          class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
+          >Schedule</a
+        >
+        <a href="/blog" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
+          >Blog</a
+        >
+      </nav>
+    </div>
+  </div>
+</header>

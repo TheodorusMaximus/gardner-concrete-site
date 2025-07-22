@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import ThreeColumnServices from "../components/ThreeColumnServices.astro";
+import NeighborhoodTrust from "../components/NeighborhoodTrust.astro";
+import BeforeAfterGallery from "../components/BeforeAfterGallery.astro";
+import "../styles/global.css";
+---
+
+<Layout>
+  <div class="min-h-screen flex flex-col">
+    <Navbar />
+
+    <main class="flex-grow">
+      <Hero />
+      <ThreeColumnServices />
+      <NeighborhoodTrust />
+      <BeforeAfterGallery />
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

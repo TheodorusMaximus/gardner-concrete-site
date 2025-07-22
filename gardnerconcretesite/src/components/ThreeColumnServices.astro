@@ -1,0 +1,51 @@
+---
+import Card from './ui/Card.astro';
+import Button from './ui/Button.astro';
+---
+
+<section
+  class="relative py-20 sm:py-32 bg-concrete-white"
+  style="background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');"
+>
+  <div class="absolute inset-0 bg-concrete-white/80"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl text-charcoal-black tracking-tighter">
+        Our Core Services
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-steel-gray font-lato">
+        We handle it all, from the ground down. Here's how we can help you build, repair, and beautify your home.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-8 md:grid-cols-3">
+      <Card class="flex flex-col">
+        <h3 class="font-poppins font-semibold text-2xl text-charcoal-black">Basement Waterproofing</h3>
+        <p class="mt-2 text-steel-gray flex-grow">
+          A dry basement is a healthy home. We'll find the source of the leak and fix it for good—guaranteed.
+        </p>
+        <div class="mt-4">
+          <Button href="/services/basement" variant="secondary" size="sm">Learn More</Button>
+        </div>
+      </Card>
+      <Card class="flex flex-col">
+        <h3 class="font-poppins font-semibold text-2xl text-charcoal-black">Foundation Repair</h3>
+        <p class="mt-2 text-steel-gray flex-grow">
+          Cracks, settling, or bowing walls? We stabilize and repair foundations to protect your biggest investment.
+        </p>
+        <div class="mt-4">
+          <Button href="/services/foundation" variant="secondary" size="sm">Learn More</Button>
+        </div>
+      </Card>
+      <Card class="flex flex-col">
+        <h3 class="font-poppins font-semibold text-2xl text-charcoal-black">Patios & Walkways</h3>
+        <p class="mt-2 text-steel-gray flex-grow">
+          From stunning new patios to repairing uneven walkways, we create outdoor spaces that are both beautiful and built to last.
+        </p>
+        <div class="mt-4">
+          <Button href="/services/patios" variant="secondary" size="sm">Learn More</Button>
+        </div>
+      </Card>
+    </div>
+  </div>
+</section> 
