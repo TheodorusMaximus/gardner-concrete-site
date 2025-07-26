@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getBlogPosts, getBlogPostBySlug } from "../../utils/blog-api";
+
+// Test the blog API
+const posts = await getBlogPosts();
+const testPost = await getBlogPostBySlug("foundation-repair-warning-signs-minneapolis");
+---
+
+<Layout title="Blog Test Page">
+  <div class="min-h-screen flex flex-col bg-concrete-white">
+    <Navbar />
+
+    <main class="flex-grow pt-20">
+      <div class="max-w-4xl mx-auto px-4 py-16">
+        <h1 class="text-3xl font-bold mb-8">Blog API Test</h1>
+        
+        <div class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">All Posts ({posts.length})</h2>
+          <ul class="space-y-2">
+            {posts.map(post => (
+              <li class="border p-4 rounded">
+                <strong>Slug:</strong> {post.slug}<br/>
+                <strong>Title:</strong> {post.title}<br/>
+                <strong>URL:</strong> <a href={`/blog/${post.slug}`} class="text-blue-600">/blog/{post.slug}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">Test Post Lookup</h2>
+          {testPost ? (
+            <div class="border p-4 rounded bg-green-50">
+              <p><strong>Found post:</strong> {testPost.title}</p>
+              <p><strong>Slug:</strong> {testPost.slug}</p>
+            </div>
+          ) : (
+            <div class="border p-4 rounded bg-red-50">
+              <p>Test post not found!</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout> 

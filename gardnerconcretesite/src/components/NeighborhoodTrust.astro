@@ -1,49 +1,191 @@
 ---
+import Card from './ui/Card.astro';
+
+const minneapolisNeighborhoods = [
+  { name: "South Minneapolis", zips: ["55404", "55405", "55406", "55407", "55408", "55409", "55410", "55417", "55419"] },
+  { name: "Southwest Minneapolis", zips: ["55416", "55424", "55436"] },
+  { name: "Downtown Minneapolis", zips: ["55401", "55402", "55403", "55415"] },
+  { name: "North Minneapolis", zips: ["55411", "55412", "55430"] },
+  { name: "Northeast Minneapolis", zips: ["55413", "55414", "55418", "55421"] }
+];
+
+const stPaulNeighborhoods = [
+  { name: "Highland Park", zips: ["55116"] },
+  { name: "Summit Hill", zips: ["55102", "55105"] },
+  { name: "Mac-Groveland", zips: ["55104", "55105"] },
+  { name: "St. Anthony Park", zips: ["55108", "55114"] }
+];
+
+const metroSuburbs = [
+  { name: "Edina", zips: ["55343", "55435", "55436", "55439"] },
+  { name: "Bloomington", zips: ["55420", "55425", "55431", "55437", "55438"] },
+  { name: "Plymouth", zips: ["55441", "55442", "55446", "55447"] },
+  { name: "Minnetonka", zips: ["55305", "55343", "55345", "55391"] },
+  { name: "St. Louis Park", zips: ["55416", "55426", "55427"] }
+];
+
+const localExpertise = [
+  {
+    icon: "🏠",
+    title: "Historic Home Specialists",
+    desc: "Expert in pre-1950s foundations common in Tangletown and Longfellow"
+  },
+  {
+    icon: "💧",
+    title: "Clay Soil Experts",
+    desc: "75+ years handling Minneapolis's expansive clay that causes settling"
+  },
+  {
+    icon: "❄️",
+    title: "Freeze-Thaw Masters",
+    desc: "Solutions built for Minnesota's extreme temperature swings"
+  },
+  {
+    icon: "🏛️",
+    title: "Code Compliant",
+    desc: "Licensed & familiar with Minneapolis and St. Paul building codes"
+  }
+];
 ---
 
-<section class="bg-charcoal-black text-concrete-white py-20 sm:py-32">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center">
-      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tighter">
-        Serving South Minneapolis Since 1949
+<section class="bg-charcoal-black text-concrete-white py-20 sm:py-32 relative overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0" style="background-image: url('https://www.transparenttextures.com/patterns/blueprint.png'); background-size: 512px;"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tighter mb-4">
+        Serving Minneapolis-St. Paul Since 1949
       </h2>
-      <p class="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-steel-gray font-lato">
-        We're your neighbors. We know the soil, the weather, and the foundations of our community.
+      <p class="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 font-lato">
+        Three generations of local expertise. We're not just contractors—we're your neighbors who understand the unique foundation and waterproofing challenges of Twin Cities homes.
       </p>
     </div>
 
-    <div class="mt-16">
-      <div class="text-center">
-        <h3 class="font-poppins font-semibold text-2xl text-bright-yellow uppercase tracking-widest">
-          Proudly Serving These Zip Codes
-        </h3>
-        <p class="mt-4 text-steel-gray grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 font-mono">
-          <span>55401</span>
-          <span>55402</span>
-          <span>55403</span>
-          <span>55404</span>
-          <span>55405</span>
-          <span>55406</span>
-          <span>55407</span>
-          <span>55408</span>
-          <span>55409</span>
-          <span>55410</span>
-          <span>55417</span>
-          <span>55419</span>
-        </p>
+    <!-- Local Expertise Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      {localExpertise.map((item) => (
+        <div class="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-6 hover:bg-white/10 transition-colors">
+          <div class="text-4xl mb-3">{item.icon}</div>
+          <h3 class="font-poppins font-semibold text-lg text-bright-yellow mb-2">{item.title}</h3>
+          <p class="text-sm text-gray-300">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Service Areas -->
+    <div class="mb-20">
+      <h3 class="font-poppins font-bold text-2xl text-center text-bright-yellow mb-12 uppercase tracking-wider">
+        Our Service Areas
+      </h3>
+      
+      <!-- Minneapolis Areas -->
+      <div class="mb-12">
+        <h4 class="font-poppins font-semibold text-xl mb-6 text-bright-yellow">Minneapolis Neighborhoods</h4>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {minneapolisNeighborhoods.map((area) => (
+            <div class="bg-white/5 backdrop-blur rounded-lg p-4 border border-bright-yellow/20">
+              <h5 class="font-semibold text-white mb-2">{area.name}</h5>
+              <div class="flex flex-wrap gap-2">
+                {area.zips.map((zip) => (
+                  <span class="text-xs bg-bright-yellow/20 px-2 py-1 rounded-full text-gray-300">{zip}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div class="mt-20 max-w-3xl mx-auto">
-        <blockquote class="text-center">
-          <p class="text-2xl font-poppins font-semibold text-concrete-white">
-            “They fixed a foundation crack that two other companies said was a lost cause. Honest, fair, and the work is rock solid. Can't recommend them enough.”
-          </p>
-          <footer class="mt-6">
-            <p class="text-base font-lato text-steel-gray">
-              - Sarah J., Longfellow, Minneapolis
-            </p>
-          </footer>
-        </blockquote>
+      <!-- St. Paul Areas -->
+      <div class="mb-12">
+        <h4 class="font-poppins font-semibold text-xl mb-6 text-bright-yellow">St. Paul Neighborhoods</h4>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {stPaulNeighborhoods.map((area) => (
+            <div class="bg-white/5 backdrop-blur rounded-lg p-4 border border-bright-yellow/20">
+              <h5 class="font-semibold text-white mb-2">{area.name}</h5>
+              <div class="flex flex-wrap gap-2">
+                {area.zips.map((zip) => (
+                  <span class="text-xs bg-bright-yellow/20 px-2 py-1 rounded-full text-gray-300">{zip}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Metro Suburbs -->
+      <div>
+        <h4 class="font-poppins font-semibold text-xl mb-6 text-bright-yellow">Metro Suburbs</h4>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          {metroSuburbs.map((area) => (
+            <div class="bg-white/5 backdrop-blur rounded-lg p-4 border border-bright-yellow/20">
+              <h5 class="font-semibold text-white mb-2">{area.name}</h5>
+              <div class="flex flex-wrap gap-2">
+                {area.zips.map((zip) => (
+                  <span class="text-xs bg-bright-yellow/20 px-2 py-1 rounded-full text-gray-300">{zip}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Local Matters -->
+    <div class="bg-gradient-to-br from-bright-yellow/20 to-bright-yellow/10 rounded-2xl p-8 md:p-12 mb-16">
+      <h3 class="font-poppins font-bold text-2xl text-center mb-8 text-bright-yellow">
+        Why Local Experience Matters
+      </h3>
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-5xl font-bold text-bright-yellow mb-2">1949</div>
+          <p class="text-gray-300">Established in Minneapolis</p>
+        </div>
+        <div>
+          <div class="text-5xl font-bold text-bright-yellow mb-2">10,000+</div>
+          <p class="text-gray-300">Twin Cities homes protected</p>
+        </div>
+        <div>
+          <div class="text-5xl font-bold text-bright-yellow mb-2">3rd</div>
+          <p class="text-gray-300">Generation family business</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Testimonial -->
+    <div class="max-w-4xl mx-auto">
+      <blockquote class="relative">
+        <div class="absolute -top-8 -left-4 text-6xl text-bright-yellow/30">"</div>
+        <p class="text-xl md:text-2xl font-poppins font-medium text-white text-center italic mb-6">
+          After the spring thaw revealed major foundation issues, Gardner Concrete came out the same day. They knew exactly what our 1920s Tangletown home needed—no guesswork, no upselling. Just honest expertise from people who've been fixing Minneapolis foundations for generations.
+        </p>
+        <footer class="text-center">
+          <div class="flex items-center justify-center gap-2 mb-2">
+            <div class="text-bright-yellow">⭐⭐⭐⭐⭐</div>
+          </div>
+          <cite class="not-italic">
+            <div class="font-semibold text-white">Michael & Jennifer Thompson</div>
+            <div class="text-gray-400">Tangletown, Minneapolis • Foundation Repair & Waterproofing</div>
+          </cite>
+        </footer>
+      </blockquote>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <p class="text-lg mb-6 text-gray-300">
+        Join thousands of Twin Cities homeowners who trust Gardner Concrete for lasting solutions.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/schedule" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg bg-bright-yellow text-charcoal-black hover:bg-bright-yellow/90 transition-colors shadow-lg">
+          🏠 Get Your Free Home Assessment
+        </a>
+        <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg bg-white/10 hover:bg-white/20 border border-white/30 transition-colors">
+          📞 Call (612) 825-8779
+        </a>
       </div>
     </div>
   </div>

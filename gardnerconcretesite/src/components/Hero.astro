@@ -1,13 +1,19 @@
 ---
 import Button from './ui/Button.astro';
+import { getFeaturedProjects } from '../utils/wix-api';
+
+// Fetch featured projects for the carousel
+const featuredProjects = await getFeaturedProjects();
 ---
 
 <section class="relative bg-charcoal-black text-concrete-white min-h-[600px] md:min-h-[700px] lg:min-h-[80vh] flex items-center">
   <div class="absolute inset-0">
-    <!-- Dark overlay with texture -->
-    <div class="absolute inset-0 bg-black/80 z-10"></div>
-    <!-- Concrete texture background -->
-    <div class="absolute inset-0 bg-cover bg-center opacity-15 z-5 concrete-texture"></div>
+    <!-- Dark overlay (lightened to reveal background image) -->
+    <div class="absolute inset-0 bg-black/0 z-10"></div>
+    <!-- Supplied background image -->
+    <div class="absolute inset-0 bg-cover bg-center z-5" style="background-image:url('https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/darkconcSM.jpg'); opacity:0.25;"></div>
+    <!-- Concrete texture overlay -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-10 z-5 concrete-texture"></div>
     <!-- Blueprint grid overlay -->
     <div class="absolute inset-0 opacity-10 z-5 blueprint-grid"></div>
     <!-- Mobile background image (hidden on desktop) -->
@@ -30,7 +36,7 @@ import Button from './ui/Button.astro';
           <a href="#inspection" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-lg font-semibold rounded-lg bg-primary hover:bg-primary/90 transition-colors shadow-lg">
             🛠️ Schedule My Free Inspection
           </a>
-          <a href="#gallery" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-lg font-semibold rounded-lg bg-white/10 hover:bg-white/20 border border-white/30 transition-colors">
+          <a href="/our-work" class="inline-flex items-center justify-center gap-2 px-6 py-3 text-lg font-semibold rounded-lg bg-white/10 hover:bg-white/20 border border-white/30 transition-colors">
             📷 See Our Work
           </a>
         </div>
@@ -39,7 +45,7 @@ import Button from './ui/Button.astro';
         <div class="flex flex-wrap gap-4">
           <div class="flex items-center px-4 py-2 bg-white/5 border border-primary/30 rounded-full text-gray-200">
             <span class="text-primary/80 mr-2">🏗️</span>
-            <span class="text-sm"><strong>75+ Years</strong> service</span>
+            <span class="text-sm"><strong>75+ years</strong> of service</span>
           </div>
           <div class="flex items-center px-4 py-2 bg-white/5 border border-primary/30 rounded-full text-gray-200">
             <span class="text-primary/80 mr-2">📜</span>
@@ -47,7 +53,7 @@ import Button from './ui/Button.astro';
           </div>
           <div class="flex items-center px-4 py-2 bg-white/5 border border-primary/30 rounded-full text-gray-200">
             <span class="text-primary/80 mr-2">⭐</span>
-            <span class="text-sm"><strong>4.8 Stars</strong> on Google</span>
+            <span class="text-sm"><strong>4.8 stars</strong> on Google</span>
           </div>
         </div>
       </div>
@@ -55,73 +61,48 @@ import Button from './ui/Button.astro';
       <!-- Right Column (1/3) - Construction Graphic -->
       <div class="md:w-1/3 relative">
         <!-- Project Showcase Carousel -->
-        <div class="relative h-full min-h-[400px] md:min-h-[550px] lg:min-h-[600px] rounded-lg overflow-hidden border-2 border-primary/30 shadow-lg shadow-primary/20">
+        <div class="relative h-full min-h-[400px] md:min-h-[550px] lg:min-h-[600px] rounded-lg overflow-hidden border-2 border-primary/30 shadow-lg shadow-primary/20 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='/our-work'">
           <!-- Carousel Container -->
           <div class="project-carousel absolute inset-0 w-full h-full">
-            <!-- Waterproofing Project -->
-            <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
-              <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/water%20evacation%20system.jpg')"></div>
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10 flex flex-col justify-end p-6">
-                <div class="bg-black/50 p-4 rounded-lg backdrop-blur-sm">
-                  <div class="flex items-center mb-2">
-                    <span class="text-primary text-sm font-bold uppercase tracking-wider">Waterproofing</span>
-                    <div class="ml-auto text-yellow-400 text-xs">⭐⭐⭐⭐⭐</div>
-                  </div>
-                  <p class="text-sm text-white italic mb-2">"Basement fixed in 2 days—no more water in 3 years!"</p>
-                  <div class="flex items-center">
-                    <span class="text-xs text-gray-300">– Jane M., South Minneapolis</span>
-                    <span class="ml-auto text-primary/80">1/3</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Foundation Repair Project -->
-            <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
-              <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=800&q=80')"></div>
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 flex flex-col justify-end p-6">
-                <div class="bg-black/50 p-4 rounded-lg backdrop-blur-sm">
-                  <div class="flex items-center mb-2">
-                    <span class="text-primary text-sm font-bold uppercase tracking-wider">Foundation Repair</span>
-                    <div class="ml-auto text-yellow-400 text-xs">⭐⭐⭐⭐⭐</div>
-                  </div>
-                  <p class="text-sm text-white italic mb-2">"They stabilized our sinking foundation and saved us thousands!"</p>
-                  <div class="flex items-center">
-                    <span class="text-xs text-gray-300">– Robert K., Edina</span>
-                    <span class="ml-auto text-primary/80">2/3</span>
+            {featuredProjects.map((project, index) => (
+              <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
+                <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${project.image}')`}></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-black/10 flex flex-col justify-end p-6">
+                  <div class="bg-black/50 p-4 rounded-lg backdrop-blur-sm">
+                    <div class="flex items-center mb-2">
+                      <span class="text-primary text-sm font-bold uppercase tracking-wider">
+                        {project.category === 'waterproofing' ? 'Waterproofing' : 
+                         project.category === 'foundation' ? 'Foundation Repair' : 
+                         project.category === 'hardscapes' ? 'Hardscapes' : project.category}
+                      </span>
+                      <div class="ml-auto text-yellow-400 text-xs">{'⭐'.repeat(project.rating || 5)}</div>
+                    </div>
+                    <p class="text-sm text-white italic mb-2">"{project.testimonialText}"</p>
+                    <div class="flex items-center">
+                      <span class="text-xs text-gray-300">– {project.customerName}, {project.customerLocation}</span>
+                      <span class="ml-auto text-primary/80">{index + 1}/{featuredProjects.length}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Hardscapes Project -->
-            <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out">
-              <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80')"></div>
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 flex flex-col justify-end p-6">
-                <div class="bg-black/50 p-4 rounded-lg backdrop-blur-sm">
-                  <div class="flex items-center mb-2">
-                    <span class="text-primary text-sm font-bold uppercase tracking-wider">Hardscapes</span>
-                    <div class="ml-auto text-yellow-400 text-xs">⭐⭐⭐⭐⭐</div>
-                  </div>
-                  <p class="text-sm text-white italic mb-2">"Our new patio and retaining wall completely transformed our backyard!"</p>
-                  <div class="flex items-center">
-                    <span class="text-xs text-gray-300">– Sarah L., Plymouth</span>
-                    <span class="ml-auto text-primary/80">3/3</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
           
           <!-- Navigation Dots -->
           <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
-            <button class="w-2 h-2 rounded-full bg-white/50 carousel-dot" data-index="0" aria-label="View waterproofing project"></button>
-            <button class="w-2 h-2 rounded-full bg-white/50 carousel-dot" data-index="1" aria-label="View foundation repair project"></button>
-            <button class="w-2 h-2 rounded-full bg-white/50 carousel-dot" data-index="2" aria-label="View hardscapes project"></button>
+            {featuredProjects.map((project, index) => (
+              <button 
+                class="w-2 h-2 rounded-full bg-white/50 carousel-dot" 
+                data-index={index} 
+                aria-label={`View ${project.category} project`}
+              ></button>
+            ))}
           </div>
         </div>
       </div>
     </div>
+
+
   </div>
 
 <style>
@@ -179,11 +160,11 @@ import Button from './ui/Button.astro';
     const dots = document.querySelectorAll('.carousel-dot');
     let currentIndex = 0;
     
-    // Auto-rotate every 5 seconds
+    // Auto-rotate every 7 seconds
     setInterval(() => {
       currentIndex = (currentIndex + 1) % items.length;
       updateCarousel();
-    }, 5000);
+    }, 7000);
     
     // Click handlers for dots
     dots.forEach((dot, index) => {

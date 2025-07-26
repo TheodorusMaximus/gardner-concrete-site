@@ -2,58 +2,305 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Card from "../components/ui/Card.astro";
 import "../styles/global.css";
 
 import { createClient, ApiKeyStrategy } from "@wix/sdk";
-import * as blogModule from "@wix/blog";
+import { posts } from "@wix/blog";
 
 const API_KEY = import.meta.env.WIX_API_KEY;
 const SITE_ID = "f34d08e6-ac9c-4e3c-b006-b77d3bf798e6";
 
-let posts = [];
+let blogPosts = [];
+let categories = ['Foundation Repair', 'Waterproofing', 'Hardscapes'];
 
 if (API_KEY) {
   try {
     const wixClient = createClient({
-      modules: { blog: blogModule },
+      modules: { posts },
       auth: ApiKeyStrategy({ apiKey: API_KEY, siteId: SITE_ID }),
     });
 
-    const { posts: fetched } = await wixClient.blog.posts.listPosts({ fieldsets: ["URL"] });
-    posts = fetched ?? [];
+    // Fetch posts from Wix Blog App
+    const result = await wixClient.posts.listPosts({
+      paging: { limit: 50 },
+      sort: 'PUBLISHED_DATE_DESC'
+    });
+    
+    blogPosts = result.posts ?? [];
+    console.log('Found Wix Blog posts:', blogPosts.length);
+    
+    // Log the structure of the first post for debugging
+    if (blogPosts.length > 0) {
+      console.log('First post structure:', Object.keys(blogPosts[0]));
+      console.log('Sample post data:', {
+        title: blogPosts[0].title,
+        slug: blogPosts[0].slug,
+        excerpt: blogPosts[0].excerpt,
+        firstPublishedDate: blogPosts[0].firstPublishedDate,
+        media: blogPosts[0].media
+      });
+    }
+    
   } catch (err) {
-    console.error("Wix SDK error", err);
+    console.error("Wix Blog SDK error", err);
   }
+}
+
+// If no posts from Wix Blog, show message to create posts
+if (blogPosts.length === 0) {
+  console.log("No blog posts found in Wix Blog App");
 }
 ---
 
 <Layout>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col bg-concrete-white">
     <Navbar />
 
-    <main class="flex-1 pt-24 pb-16 bg-white">
-      <div class="max-w-4xl mx-auto px-4">
-        <h1 class="text-4xl font-bold mb-6 text-primary text-center">Gardner Construction Blog</h1>
-        <p class="text-lg text-center text-muted-foreground mb-12">Insights, tips, and project spotlights about foundation repair, waterproofing, and outdoor concrete.</p>
-
-        <div class="space-y-8">
-          {posts.length === 0 && (
-            <p class="text-center text-muted-foreground">No blog posts found.</p>
-          )}
-          {posts.map((post) => (
-            <article class="border border-gray-100 rounded-lg p-6 hover:shadow-md transition-shadow" key={post.id}>
-              <h2 class="text-2xl font-semibold mb-2">
-                <a href={post.url?.base + post.url?.path} class="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                  {post.title}
-                </a>
-              </h2>
-              <p class="text-muted-foreground">{post.excerpt || ""}</p>
-            </article>
-          ))}
+    <main class="flex-grow pt-20">
+      <!-- Hero Section -->
+      <section class="relative bg-charcoal-black text-concrete-white py-20">
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 z-5" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1920&q=80')"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+          <div class="text-center">
+            <h1 class="font-montserrat font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tighter mb-6">
+              Gardner Concrete <span class="text-construction-orange">Expert</span> Blog
+            </h1>
+            <p class="font-lato text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-8">
+              Professional insights, maintenance tips, and expert advice for foundation repair, waterproofing, and concrete solutions in Minnesota.
+            </p>
+            
+            <!-- Category Filter -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+              <button class="category-filter active px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-category="all">
+                All Articles
+              </button>
+              {categories.map(category => (
+                <button class="category-filter px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-category={category.toLowerCase()}>
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Blog Posts Section -->
+      <section class="py-20 bg-concrete-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {blogPosts.length === 0 && (
+            <div class="text-center py-16">
+              <div class="max-w-2xl mx-auto">
+                <h2 class="text-2xl font-bold text-charcoal-black mb-4">Ready to Add Blog Content!</h2>
+                <p class="text-lg text-steel-gray mb-6">
+                  Your blog system is set up and ready. Create your first blog post using the Wix Blog CMS.
+                </p>
+                <div class="bg-gray-50 p-6 rounded-lg text-left">
+                  <h3 class="font-semibold text-charcoal-black mb-3">How to add blog posts:</h3>
+                  <ol class="list-decimal list-inside space-y-2 text-steel-gray">
+                    <li>Go to your <a href="https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77d3bf798e6" class="text-construction-orange hover:underline" target="_blank">Wix Dashboard</a></li>
+                    <li>Navigate to Blog → Posts</li>
+                    <li>Click "Create Post"</li>
+                    <li>Write your content and publish</li>
+                    <li>Your posts will automatically appear here!</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          <!-- Blog Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
+                        {blogPosts.map((post, index) => (
+              <article class="blog-card animate-fade-up opacity-0" data-category="general" style={`animation-delay: ${index * 100}ms`}>
+                <a href={`/blog/${post.slug}`} class="block h-full">
+                  <Card class="overflow-hidden h-full group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                      <img 
+                        src={post.media?.wixMedia?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80'} 
+                        alt={post.title || 'Blog post image'}
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    <div class="absolute top-4 left-4">
+                      <span class="px-3 py-1 rounded-full text-sm font-poppins font-semibold bg-construction-orange text-white">
+                        Blog Post
+                      </span>
+                    </div>
+                    {post.featured && (
+                      <div class="absolute top-4 right-4">
+                        <span class="bg-bright-yellow text-charcoal-black px-2 py-1 rounded-full text-xs font-poppins font-bold">
+                          FEATURED
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-sm text-steel-gray font-medium">
+                        {post.firstPublishedDate ? new Date(post.firstPublishedDate).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        }) : 'Recent'}
+                      </span>
+                      <span class="text-sm text-steel-gray">
+                        {post.minutesToRead || Math.ceil((post.excerpt?.length || 500) / 200)} min read
+                      </span>
+                    </div>
+                    
+                    <h2 class="font-poppins font-bold text-xl text-charcoal-black mb-3">
+                      {post.title || 'Untitled Post'}
+                    </h2>
+                    
+                    <p class="text-steel-gray mb-4 font-lato line-clamp-3">
+                      {post.excerpt || 'Click to read this blog post...'}
+                    </p>
+                    
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm text-steel-gray">
+                        By Gardner Concrete Team
+                      </span>
+                      <span class="inline-flex items-center text-construction-orange hover:text-construction-orange/80 font-poppins font-semibold text-sm transition-colors">
+                        Read More →
+                      </span>
+                    </div>
+                  </div>
+                </Card>
+              </a>
+            </article>
+            ))}
+          </div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-16">
+            <button class="px-8 py-3 bg-construction-orange text-white rounded-lg font-poppins font-semibold hover:bg-construction-orange/90 transition-colors">
+              Load More Articles
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Signup Section -->
+      <section class="py-20 bg-charcoal-black text-concrete-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="font-montserrat font-bold text-3xl md:text-4xl mb-6">
+            Stay Updated with <span class="text-construction-orange">Expert Tips</span>
+          </h2>
+          <p class="text-xl mb-8 opacity-90">
+            Get the latest concrete maintenance tips, seasonal advice, and exclusive offers delivered to your inbox.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <input 
+              type="email" 
+              placeholder="Enter your email address" 
+              class="flex-1 px-4 py-3 rounded-lg text-charcoal-black font-lato"
+            />
+            <button class="px-6 py-3 bg-construction-orange text-white rounded-lg font-poppins font-semibold hover:bg-construction-orange/90 transition-colors">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
 
     <Footer />
   </div>
-</Layout> 
+</Layout>
+
+<style>
+  .category-filter {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .category-filter:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .category-filter.active {
+    background: var(--color-construction-orange);
+    color: white;
+    border-color: var(--color-construction-orange);
+  }
+
+  .blog-card {
+    transition: all 0.3s ease;
+  }
+
+  .blog-card.hidden {
+    display: none;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animate blog cards on page load
+    const cards = document.querySelectorAll('.animate-fade-up');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.remove('opacity-0');
+        card.classList.add('opacity-100');
+      }, index * 100);
+    });
+
+    // Category filter functionality
+    const filterButtons = document.querySelectorAll('.category-filter');
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter blog posts
+        const filterValue = button.getAttribute('data-category');
+        
+        blogCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.classList.remove('hidden');
+            card.style.display = 'block';
+          } else {
+            card.classList.add('hidden');
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Newsletter subscription (placeholder functionality)
+    const subscribeButton = document.querySelector('button[class*="Subscribe"]');
+    if (subscribeButton) {
+      subscribeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const emailInput = document.querySelector('input[type="email"]');
+        if (emailInput && emailInput.value) {
+          alert('Thank you for subscribing! We\'ll send you the latest concrete maintenance tips.');
+          emailInput.value = '';
+        } else {
+          alert('Please enter a valid email address.');
+        }
+      });
+    }
+  });
+</script> 

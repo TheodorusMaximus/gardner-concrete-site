@@ -1,0 +1,257 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Card from "../components/ui/Card.astro";
+import Button from "../components/ui/Button.astro";
+import { getProjects, getCategoryBadgeColor, renderStarRating } from "../utils/wix-api";
+import "../styles/global.css";
+
+// Fetch projects from CMS
+const projects = await getProjects();
+---
+
+<Layout>
+  <div class="min-h-screen flex flex-col bg-concrete-white">
+    <Navbar />
+
+    <main class="flex-grow pt-20">
+      <!-- Hero Section -->
+      <section class="relative bg-charcoal-black text-concrete-white py-24">
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 z-5" style="background-image: url('https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/IMG_6380.jpg')"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+          <div class="text-center">
+            <h1 class="font-montserrat font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tighter mb-6">
+              Our <span class="text-construction-orange">Concrete</span> Results
+            </h1>
+            <p class="font-lato text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-8">
+              75+ years of protecting Minneapolis homes with waterproofing, foundation repair, and beautiful hardscapes that stand the test of time.
+            </p>
+            
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+              <button class="filter-btn active px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-filter="all">
+                All Projects
+              </button>
+              <button class="filter-btn px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-filter="waterproofing">
+                Waterproofing
+              </button>
+              <button class="filter-btn px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-filter="foundation">
+                Foundation Repair
+              </button>
+              <button class="filter-btn px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-filter="hardscapes">
+                Hardscapes
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Gallery Section -->
+      <section class="py-20 bg-concrete-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <!-- Project Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+            
+            {projects.map((project, index) => (
+              <div class="project-card animate-fade-up opacity-0" data-category={project.category} style={`animation-delay: ${index * 100}ms`}>
+                <Card class="overflow-hidden h-full group cursor-pointer hover:shadow-xl transition-all duration-300">
+                  <div class="relative h-64 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div class="absolute top-4 left-4">
+                      <span class={`px-3 py-1 rounded-full text-sm font-poppins font-semibold ${getCategoryBadgeColor(project.category)}`}>
+                        {project.category === 'waterproofing' ? 'Waterproofing' : 
+                         project.category === 'foundation' ? 'Foundation Repair' : 
+                         project.category === 'hardscapes' ? 'Hardscapes' : project.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="font-poppins font-bold text-xl text-charcoal-black mb-3">
+                      {project.title}
+                    </h3>
+                    <p class="text-steel-gray mb-4 font-lato">
+                      {project.description}
+                    </p>
+                    
+                    {project.testimonialText && project.customerName && (
+                      <!-- Testimonial Integration -->
+                      <div class={`bg-gray-50 p-4 rounded-lg border-l-4 mb-4 ${
+                        project.category === 'waterproofing' ? 'border-construction-orange' :
+                        project.category === 'foundation' ? 'border-steel-gray' :
+                        project.category === 'hardscapes' ? 'border-bright-yellow' : 'border-steel-gray'
+                      }`}>
+                        <div class="flex items-center mb-2">
+                          <div class="text-yellow-400 text-sm">{renderStarRating(project.rating)}</div>
+                          <span class="ml-2 text-xs text-steel-gray font-medium">
+                            {project.customerName}, {project.customerLocation}
+                          </span>
+                        </div>
+                        <p class="text-sm text-charcoal-black italic">
+                          "{project.testimonialText}"
+                        </p>
+                      </div>
+                    )}
+                    
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm text-steel-gray">📍 {project.customerLocation}</span>
+                      <span class="text-sm text-construction-orange font-medium">{project.year}</span>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            ))}
+
+          </div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-12">
+            <Button class="px-8 py-3 text-lg">
+              View More Projects
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust & Statistics Section -->
+      <section class="py-20 bg-charcoal-black text-concrete-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="font-montserrat font-bold text-3xl md:text-4xl mb-6">
+              Proven <span class="text-construction-orange">Results</span> You Can Trust
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+              Over seven decades of protecting Minneapolis-area homes with quality concrete solutions.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div class="animate-fade-up opacity-0">
+              <div class="text-4xl font-montserrat font-bold text-construction-orange mb-2">75+</div>
+              <div class="text-lg font-poppins">Years of Service</div>
+            </div>
+            <div class="animate-fade-up opacity-0 delay-100">
+              <div class="text-4xl font-montserrat font-bold text-construction-orange mb-2">2000+</div>
+              <div class="text-lg font-poppins">Projects Completed</div>
+            </div>
+            <div class="animate-fade-up opacity-0 delay-200">
+              <div class="text-4xl font-montserrat font-bold text-construction-orange mb-2">4.8★</div>
+              <div class="text-lg font-poppins">Google Rating</div>
+            </div>
+            <div class="animate-fade-up opacity-0 delay-300">
+              <div class="text-4xl font-montserrat font-bold text-construction-orange mb-2">100%</div>
+              <div class="text-lg font-poppins">Licensed & Insured</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="py-20 bg-construction-orange text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="font-montserrat font-bold text-3xl md:text-4xl mb-6">
+            Ready to Protect Your Home?
+          </h2>
+          <p class="text-xl mb-8 opacity-90">
+            Get your free inspection and discover how we can strengthen your foundation, waterproof your basement, or create beautiful hardscapes.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/schedule" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg bg-white text-construction-orange hover:bg-gray-100 transition-colors shadow-lg">
+              🛠️ Schedule Free Inspection
+            </a>
+            <a href="tel:555-555-5555" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-construction-orange transition-colors">
+              📞 Call (555) 555-5555
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .filter-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .filter-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .filter-btn.active {
+    background: var(--color-construction-orange);
+    color: white;
+    border-color: var(--color-construction-orange);
+  }
+
+  .project-card {
+    transition: all 0.3s ease;
+  }
+
+  .project-card.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animate project cards on page load
+    const cards = document.querySelectorAll('.animate-fade-up');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.remove('opacity-0');
+        card.classList.add('opacity-100');
+      }, index * 100);
+    });
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter projects
+        const filterValue = button.getAttribute('data-filter');
+        
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.classList.remove('hidden');
+            card.style.display = 'block';
+          } else {
+            card.classList.add('hidden');
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Animate statistics when they come into view
+    const stats = document.querySelectorAll('[class*="delay-"]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0');
+          entry.target.classList.add('opacity-100');
+        }
+      });
+    });
+
+    stats.forEach(stat => observer.observe(stat));
+  });
+</script> 

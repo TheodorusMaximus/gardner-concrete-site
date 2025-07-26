@@ -1,0 +1,1297 @@
+
+> wix-astro-scheduler@0.0.1 dev
+> wix dev
+
+⠋
+[2K[1A[2K[G⠋ Starting dev environment...
+[2K[1A[2K[G⠙ Starting dev environment...
+[2K[1A[2K[G⠹ Starting dev environment...
+[2K[1A[2K[G⠸ Starting dev environment...
+[2K[1A[2K[G⠼ Starting dev environment...
+[2K[1A[2K[G⠴ Starting dev environment...
+[2K[1A[2K[G⠦ Starting dev environment...
+[2K[1A[2K[G⠧ Starting dev environment...
+[2K[1A[2K[G⠇ Starting dev environment...
+[2K[1A[2K[G⠏ Starting dev environment...
+[2K[1A[2K[G⠋ Starting dev environment...
+[2K[1A[2K[G⠙ Starting dev environment...
+[2K[1A[2K[G⠹ Starting dev environment...
+[2K[1A[2K[G⠸ Starting dev environment...
+[2K[1A[2K[G[dotenv@17.2.0] injecting env (0) from .env (tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`)
+⠸ Starting dev environment...
+[2K[1A[2K[G[dotenv@17.2.0] injecting env (6) from .env.local (tip: ⚙️  write to custom object with { processEnv: myObject })
+⠸ Starting dev environment...
+[2K[1A[2K[G⠼ Starting dev environment...
+[2K[1A[2K[G[2m23:21:41[22m [34m[types][39m Generated [2m0ms[22m
+⠼ Starting dev environment...
+[2K[1A[2K[G[2m23:21:41[22m [34m[content][39m Syncing content
+⠼ Starting dev environment...
+[2K[1A[2K[G[2m23:21:41[22m [34m[content][39m Synced content
+⠼ Starting dev environment...
+[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[42m[1m astro [22m[49m [32mv5.11.2[39m [2mready in[22m 532 [2mms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m┃[22m Local    [36mhttp://localhost:4321/[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m┃[22m Network  [2muse --host to expose[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m23:21:41[22m [32mwatching for file changes...[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠋ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠙ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠹ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠸ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠼ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠴ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠦ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G23:21:41 [wix] App Manifest updated. Refresh existing browser tabs to view the latest changes.
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  ⠦ Preparing your dashboard...
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m23:21:45[22m [34m[200][39m / [2m193ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Requested slug: 5-warning-signs-your-foundation-needs-immediate-repair
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Fetching post by slug: 5-warning-signs-your-foundation-needs-immediate-repair
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Post response: [33mtrue[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m23:22:17[22m [34m[200][39m [34mHEAD[39m /blog/5-warning-signs-your-foundation-needs-immediate-repair [2m1148ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Requested slug: complete-guide-to-basement-waterproofing-in-minnesota
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Fetching post by slug: complete-guide-to-basement-waterproofing-in-minnesota
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Post response: [33mtrue[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m23:22:24[22m [34m[200][39m [34mHEAD[39m /blog/complete-guide-to-basement-waterproofing-in-minnesota [2m984ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Requested slug: stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Fetching post by slug: stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Post response: [33mtrue[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m23:22:30[22m [34m[200][39m [34mHEAD[39m /blog/stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home [2m1178ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m23:27:04[22m [34m[200][39m / [2m518ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Requested slug: stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Fetching post by slug: stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Post response: [33mtrue[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Requested slug: stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Fetching post by slug: stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:35:56[22m [34m[200][39m /blog/stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home [2m993ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Post response: [33mtrue[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:35:56[22m [34m[200][39m /blog/stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home [2m674ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:36:04[22m [34m[200][39m / [2m93ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:36:18[22m [34m[200][39m /our-work [2m96ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GFound Wix Blog posts: [33m5[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GFirst post structure: [
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'title'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'excerpt'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'firstPublishedDate'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'lastPublishedDate'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'slug'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'featured'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'pinned'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'categoryIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'memberId'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'hashtags'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'commentingEnabled'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'minutesToRead'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'tagIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'relatedPostIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'pricingPlanIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'language'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'preview'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'contentId'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'mostRecentContributorId'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'media'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'hasUnpublishedChanges'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'translations'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'customExcerpt'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'internalCategoryIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'internalRelatedPostIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'_id'[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G]
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GSample post data: {
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  title: [32m'Stamped Concrete vs Pavers: Which is Right for Your Minnesota Home?'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  slug: [32m'stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  excerpt: [32m'Comparing stamped concrete and pavers for Minnesota driveways, patios, and walkways. Cost, durability, and maintenance considerations.'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  firstPublishedDate: [32m'2025-07-23T04:08:06.185Z'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  media: { displayed: [33mtrue[39m, custom: [33mfalse[39m }
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G}
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:36:54[22m [34m[200][39m /blog [2m287ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Requested slug: complete-guide-to-basement-waterproofing-in-minnesota
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Fetching post by slug: complete-guide-to-basement-waterproofing-in-minnesota
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GDynamic route: Post response: [33mtrue[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:36:57[22m [34m[200][39m /blog/complete-guide-to-basement-waterproofing-in-minnesota [2m718ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:37:08[22m [34m[200][39m / [2m105ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:38:40[22m [34m[200][39m /our-work [2m107ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:45:58[22m [34m[200][39m /our-work [2m132ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:46:00[22m [34m[200][39m /schedule [2m65ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GFound Wix Blog posts: [33m5[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GFirst post structure: [
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'title'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'excerpt'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'firstPublishedDate'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'lastPublishedDate'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'slug'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'featured'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'pinned'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'categoryIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'memberId'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'hashtags'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'commentingEnabled'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'minutesToRead'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'tagIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'relatedPostIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'pricingPlanIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'language'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'preview'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'contentId'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'mostRecentContributorId'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'media'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'hasUnpublishedChanges'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'translations'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'customExcerpt'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'internalCategoryIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'internalRelatedPostIds'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  [32m'_id'[39m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G]
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GSample post data: {
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  title: [32m'Stamped Concrete vs Pavers: Which is Right for Your Minnesota Home?'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  slug: [32m'stamped-concrete-vs-pavers-which-is-right-for-your-minnesota-home'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  excerpt: [32m'Comparing stamped concrete and pavers for Minnesota driveways, patios, and walkways. Cost, durability, and maintenance considerations.'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  firstPublishedDate: [32m'2025-07-23T04:08:06.185Z'[39m,
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G  media: { displayed: [33mtrue[39m, custom: [33mfalse[39m }
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G}
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:46:01[22m [34m[200][39m /blog [2m779ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m08:46:07[22m [34m[200][39m / [2m91ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m09:42:59[22m [34m[200][39m / [2m455ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m09:42:59[22m [34m[200][39m / [2m60ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m12:05:33[22m [34m[200][39m / [2m791ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m15:05:47[22m [34m[200][39m / [2m911ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m13:04:26[22m [34m[200][39m /our-work [2m833ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2m13:04:29[22m [34m[200][39m / [2m55ms[22m
+────────────────────────────────────────────────────────────────────────────
+Development environment ready
+
+Open the preview on:
+
+  › Site (http://localhost:4321/)
+  › Dashboard (https://manage.wix.com/dashboard/f34d08e6-ac9c-4e3c-b006-b77
+    d3bf798e6?apps-override=3a94b6b1e686457d83b34f25a5d38de0)
+

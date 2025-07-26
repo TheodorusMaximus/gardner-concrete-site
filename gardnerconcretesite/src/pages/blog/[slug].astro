@@ -1,0 +1,376 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import { createClient, ApiKeyStrategy } from "@wix/sdk";
+import { posts } from "@wix/blog";
+import { members } from "@wix/members";
+import "../../styles/global.css";
+
+const API_KEY = import.meta.env.WIX_API_KEY;
+const SITE_ID = "f34d08e6-ac9c-4e3c-b006-b77d3bf798e6";
+
+const { slug } = Astro.params;
+
+console.log('Dynamic route: Requested slug:', slug);
+
+if (!slug || !API_KEY) {
+  console.log('Dynamic route: Missing slug or API_KEY, redirecting to 404');
+  return Astro.redirect('/404');
+}
+
+// Fetch the full blog post with rich content
+let post = null;
+let author = null;
+let relatedPosts = [];
+
+try {
+  const wixClient = createClient({
+    modules: { 
+      posts,
+      members 
+    },
+    auth: ApiKeyStrategy({ apiKey: API_KEY, siteId: SITE_ID }),
+  });
+
+  console.log('Dynamic route: Fetching post by slug:', slug);
+
+  // Get the full post with rich content
+  const postResponse = await wixClient.posts.getPostBySlug(slug, {
+    fieldsets: ['RICH_CONTENT']
+  });
+  
+  console.log('Dynamic route: Post response:', !!postResponse.post);
+  post = postResponse.post;
+
+  if (!post) {
+    console.log('Dynamic route: Post not found, redirecting to 404');
+    return Astro.redirect('/404');
+  }
+
+  // Get author information if memberId exists
+  if (post?.memberId) {
+    try {
+      const authorResponse = await wixClient.members.getMember(post.memberId);
+      author = authorResponse.member;
+    } catch (authorError) {
+      console.log('Could not fetch author information:', authorError);
+    }
+  }
+
+  // Get related posts (simple approach - get other recent posts)
+  const relatedResult = await wixClient.posts.listPosts({ 
+    paging: { limit: 4 }
+  });
+  
+  relatedPosts = relatedResult.posts?.filter(p => p.id !== post?.id).slice(0, 3) || [];
+
+} catch (error) {
+  console.error("Error fetching blog post:", error);
+  return Astro.redirect('/404');
+}
+
+// Set up variables for the template
+const authorName = author?.profile?.nickname || author?.loginEmail || 'Gardner Concrete Team';
+const coverImageUrl = post.media?.wixMedia?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80';
+const publishDate = post.firstPublishedDate ? new Date(post.firstPublishedDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : 'Recent';
+const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) / 200);
+---
+
+<Layout title={post.seoData?.tags?.find(tag => tag.type === 'title')?.children || post.title} description={post.seoData?.tags?.find(tag => tag.type === 'meta' && tag.props?.name === 'description')?.props?.content || post.excerpt}>
+  <div class="min-h-screen flex flex-col bg-concrete-white">
+    <Navbar />
+
+    <main class="flex-grow pt-20">
+      <!-- Hero Section -->
+      <section class="relative bg-charcoal-black text-concrete-white py-16">
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 z-5" style={`background-image: url('${coverImageUrl}')`}></div>
+        
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+          <div class="text-center">
+            <!-- Breadcrumb -->
+            <nav class="mb-6">
+              <ol class="flex items-center justify-center space-x-2 text-sm">
+                <li><a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                <li class="text-gray-400">/</li>
+                <li><a href="/blog" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                <li class="text-gray-400">/</li>
+                <li class="text-construction-orange">Blog Post</li>
+              </ol>
+            </nav>
+
+            <!-- Category Badge -->
+            <div class="mb-4">
+              <span class="inline-block px-4 py-2 rounded-full text-sm font-poppins font-semibold bg-construction-orange text-white">
+                Blog Post
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-6 leading-tight">
+              {post.title}
+            </h1>
+
+            <!-- Meta Information -->
+            <div class="flex flex-wrap items-center justify-center gap-6 text-gray-300 mb-6">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+                <span>By {authorName}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                </svg>
+                <span>{publishDate}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                <span>{readTime} min read</span>
+              </div>
+            </div>
+
+            <!-- Excerpt -->
+            {post.excerpt && (
+              <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                {post.excerpt}
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <!-- Article Content -->
+      <article class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Featured Image -->
+          <div class="mb-12">
+            <img 
+              src={coverImageUrl} 
+              alt={post.title}
+              class="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
+            />
+          </div>
+
+          <!-- Article Body -->
+          <div class="prose prose-lg max-w-none">
+            {post.richContent ? (
+              <!-- Rich Content Display -->
+              <div id="rich-content-container" class="text-steel-gray font-lato text-lg leading-relaxed">
+                <script type="module">
+                  import RichContentViewer from '/src/components/RichContentViewer.tsx';
+                  import { createRoot } from 'react-dom/client';
+                  import React from 'react';
+                  
+                  const container = document.getElementById('rich-content-container');
+                  if (container) {
+                    const root = createRoot(container);
+                    root.render(React.createElement(RichContentViewer, { 
+                      content: {post.richContent} 
+                    }));
+                  }
+                </script>
+              </div>
+            ) : (
+              <!-- Plain Content Display -->
+              <div class="text-steel-gray font-lato text-lg leading-relaxed">
+                {post.plainContent ? (
+                  post.plainContent.split('\n').map(paragraph => (
+                    paragraph.trim() && <p class="mb-6">{paragraph}</p>
+                  ))
+                ) : post.excerpt ? (
+                  <p class="mb-6">{post.excerpt}</p>
+                ) : (
+                  <p class="mb-6">Content not available.</p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <!-- Tags -->
+          {post.hashtags && post.hashtags.length > 0 && (
+            <div class="mt-12 pt-8 border-t border-gray-200">
+              <h3 class="font-poppins font-semibold text-lg mb-4 text-charcoal-black">Tags:</h3>
+              <div class="flex flex-wrap gap-2">
+                {post.hashtags.map(tag => (
+                  <span class="px-3 py-1 bg-gray-100 text-steel-gray rounded-full text-sm font-medium">
+                    #{tag.trim()}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Author Bio -->
+          <div class="mt-12 pt-8 border-t border-gray-200">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="flex items-start gap-4">
+                <div class="w-16 h-16 bg-construction-orange rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  GC
+                </div>
+                <div>
+                  <h3 class="font-poppins font-bold text-xl text-charcoal-black mb-2">
+                    {post.author || 'Gardner Concrete Team'}
+                  </h3>
+                  <p class="text-steel-gray font-lato mb-4">
+                    With over 75 years of experience, Gardner Concrete has been Minnesota's trusted foundation repair, waterproofing, and concrete experts. Our team of certified professionals provides reliable solutions for residential and commercial properties throughout the Twin Cities metro area.
+                  </p>
+                  <div class="flex gap-4">
+                    <Button href="/schedule" class="bg-construction-orange text-white">
+                      Schedule Consultation
+                    </Button>
+                    <Button href="/our-work" class="border border-steel-gray text-steel-gray">
+                      View Our Work
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Related Posts -->
+      {relatedPosts.length > 0 && (
+        <section class="py-16 bg-gray-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+              <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-charcoal-black mb-4">
+                Related <span class="text-construction-orange">Articles</span>
+              </h2>
+              <p class="text-xl text-steel-gray">
+                Continue reading more expert insights and tips
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedPosts.map((relatedPost) => (
+                <a href={`/blog/${relatedPost.slug}`} class="block h-full">
+                  <Card class="overflow-hidden h-full group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                      <img 
+                        src={relatedPost.media?.wixMedia?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80'} 
+                        alt={relatedPost.title}
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full text-sm font-poppins font-semibold bg-construction-orange text-white">
+                          Blog Post
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div class="p-6">
+                      <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm text-steel-gray font-medium">
+                          {relatedPost.firstPublishedDate ? new Date(relatedPost.firstPublishedDate).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          }) : 'Recent'}
+                        </span>
+                        <span class="text-sm text-steel-gray">
+                          {relatedPost.minutesToRead || Math.ceil((relatedPost.excerpt?.length || 500) / 200)} min read
+                        </span>
+                      </div>
+                      
+                      <h3 class="font-poppins font-bold text-lg text-charcoal-black mb-3 line-clamp-2">
+                        {relatedPost.title}
+                      </h3>
+                      
+                      <p class="text-steel-gray mb-4 font-lato line-clamp-2">
+                        {relatedPost.excerpt || 'Click to read this blog post...'}
+                      </p>
+                      
+                      <span class="inline-flex items-center text-construction-orange hover:text-construction-orange/80 font-poppins font-semibold text-sm transition-colors">
+                        Read More →
+                      </span>
+                    </div>
+                  </Card>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <!-- CTA Section -->
+      <section class="py-16 bg-charcoal-black text-concrete-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="font-montserrat font-bold text-3xl md:text-4xl mb-6">
+            Need Expert <span class="text-construction-orange">Concrete Services</span>?
+          </h2>
+          <p class="text-xl mb-8 opacity-90">
+            Don't let foundation problems get worse. Get a free consultation from Minnesota's concrete experts.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href="/schedule" class="bg-construction-orange text-white px-8 py-4 text-lg">
+              Schedule Free Consultation
+            </Button>
+            <Button href="/our-work" class="border border-white text-white px-8 py-4 text-lg">
+              View Our Projects
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .prose p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .prose h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-charcoal-black);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--color-charcoal-black);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose strong {
+    color: var(--color-charcoal-black);
+    font-weight: 600;
+  }
+</style> 

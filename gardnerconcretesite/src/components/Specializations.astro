@@ -1,0 +1,56 @@
+---
+import Card from './ui/Card.astro';
+import Button from './ui/Button.astro';
+---
+<section class="py-20 bg-concrete-white" id="specializations">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl text-charcoal-black tracking-tighter">
+        Specialized Capabilities
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-steel-gray font-lato">
+        From precision concrete pours to advanced moisture control, our team brings decades of mastery to every niche challenge.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        {
+          title: 'Suspended Garage Floors',
+          desc: 'Engineered structural slabs that create usable space below without sacrificing strength.'
+        },
+        {
+          title: 'Interior Drain Tile Systems',
+          desc: 'Discreet, under–slab channels that redirect water to sump systems before it reaches your living space.'
+        },
+        {
+          title: 'Corrective Exterior Grading',
+          desc: 'Re-shaping terrain around your foundation to ensure runoff flows away from your home.'
+        },
+        {
+          title: 'Decorative Patios & Concrete',
+          desc: 'Aesthetic finishes that blend beauty with the durability of reinforced concrete.'
+        },
+        {
+          title: 'Block Core-Filling',
+          desc: 'Injecting concrete grout into hollow block walls for formidable strength and stability.'
+        },
+        {
+          title: 'Egress Window Installation',
+          desc: 'Safe, code-compliant openings that add light, ventilation, and emergency exits to basements.'
+        }
+      ].map((spec) => (
+        <Card isGlass={false} class="flex flex-col">
+          <h3 class="font-poppins font-semibold text-xl text-charcoal-black mb-2 flex-1">{spec.title}</h3>
+          <p class="text-steel-gray text-sm">{spec.desc}</p>
+        </Card>
+      ))}
+    </div>
+
+    <div class="mt-12 flex justify-center">
+      <Button href="/schedule" variant="orangeBlack" size="lg">
+        Solve Your Problem Today
+      </Button>
+    </div>
+  </div>
+</section> 

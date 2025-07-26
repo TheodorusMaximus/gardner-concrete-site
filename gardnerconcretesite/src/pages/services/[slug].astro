@@ -1,0 +1,603 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import Button from "../../components/ui/Button.astro";
+import Card from "../../components/ui/Card.astro";
+import services from "../../utils/services-data";
+import { getBlogPosts, type BlogPost } from "../../utils/wix-client";
+
+export async function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const service = services.find((s) => s.slug === slug);
+if (!service) {
+  throw new Error(`Service not found: ${slug}`);
+}
+
+// Fetch related blog posts
+const relatedPosts: BlogPost[] = await getBlogPosts(service.blogTags, 3);
+
+// Get related services
+const relatedServices = services.filter(s => service.relatedServices.includes(s.slug));
+
+const pageTitle = service.seoTitle;
+const pageDescription = service.seoDescription;
+export const prerender = true;
+
+// Helper functions
+function getUrgencyColor(urgency: string) {
+  switch (urgency) {
+    case 'high': return 'border-red-500 bg-red-50';
+    case 'medium': return 'border-yellow-500 bg-yellow-50';
+    case 'low': return 'border-green-500 bg-green-50';
+    default: return 'border-gray-300 bg-gray-50';
+  }
+}
+
+function getCostColor(cost: string) {
+  switch (cost) {
+    case 'high': return 'text-red-600';
+    case 'medium': return 'text-yellow-600';
+    case 'low': return 'text-green-600';
+    default: return 'text-gray-600';
+  }
+}
+
+function getImportanceIcon(importance: string) {
+  switch (importance) {
+    case 'high': return '🔴';
+    case 'medium': return '🟡';
+    case 'low': return '🟢';
+    default: return '⚪';
+  }
+}
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Navbar />
+
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal-black text-concrete-white py-24 sm:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center opacity-25" style={`background-image:url('${service.imageUrl}')`}></div>
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      <div class="mb-4">
+        <span class="inline-block bg-construction-orange px-4 py-2 rounded-full text-sm font-semibold">
+          {service.name} Experts Since 1949
+        </span>
+      </div>
+      <h1 class="font-montserrat font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight mb-6">
+        {service.name} in Minneapolis
+      </h1>
+      <p class="text-lg sm:text-xl mb-10 max-w-2xl mx-auto text-gray-200">
+        {service.tagline}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="#consultation" variant="orangeBlack" size="lg">Get Free Consultation</Button>
+        <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg bg-white/10 hover:bg-white/20 border border-white/30 transition-colors">
+          📞 Call (612) 825-8779
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is X Section -->
+  <section class="py-20 bg-concrete-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-8">{service.whatIs.title}</h2>
+      <p class="text-steel-gray text-lg leading-relaxed mb-8">{service.whatIs.content}</p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        {service.whatIs.benefits.map((benefit) => (
+          <div class="flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-200">
+            <span class="text-construction-orange text-xl mt-1">✓</span>
+            <span class="font-medium text-charcoal-black">{benefit}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <Button href="#consultation" variant="orangeBlack">Learn More About Our Process</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Signs Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4 text-center">{service.problemSigns.title}</h2>
+      <p class="text-steel-gray text-lg text-center mb-12 max-w-3xl mx-auto">{service.problemSigns.description}</p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {service.problemSigns.signs.map((sign) => (
+          <Card class={`p-6 border-l-4 ${getUrgencyColor(sign.urgency)}`}>
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-semibold text-charcoal-black">{sign.sign}</h3>
+              <span class="text-xs px-2 py-1 rounded-full font-medium bg-white">
+                {sign.urgency.toUpperCase()}
+              </span>
+            </div>
+            <p class="text-steel-gray text-sm">{sign.description}</p>
+          </Card>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-lg text-steel-gray mb-6">Recognizing these signs early can save thousands in repair costs.</p>
+        <Button href="#consultation" variant="orangeBlack" size="lg">Schedule Free Assessment</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Causes Section -->
+  <section class="py-20 bg-concrete-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4">{service.causes.title}</h2>
+      <p class="text-steel-gray text-lg mb-12">{service.causes.description}</p>
+
+      <div class="space-y-6">
+        {service.causes.causes.map((cause, index) => (
+          <div class="flex gap-6 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="flex-shrink-0 w-8 h-8 bg-construction-orange text-white rounded-full flex items-center justify-center font-bold">
+              {index + 1}
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-semibold text-xl text-charcoal-black mb-2">{cause.cause}</h3>
+              <p class="text-steel-gray mb-3">{cause.description}</p>
+              {cause.prevention && (
+                <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+                  <span class="font-medium text-green-800">Prevention: </span>
+                  <span class="text-green-700">{cause.prevention}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Section -->
+  <section class="py-20 bg-charcoal-black text-concrete-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4 text-center">{service.solutions.title}</h2>
+      <p class="text-gray-300 text-lg text-center mb-12 max-w-3xl mx-auto">{service.solutions.description}</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        {service.solutions.approaches.map((approach) => (
+          <Card class="bg-white/5 backdrop-blur border border-white/10 p-6">
+            <div class="flex items-start justify-between mb-4">
+              <h3 class="font-semibold text-xl text-bright-yellow">{approach.name}</h3>
+              <div class="text-right">
+                <div class={`text-sm font-medium ${getCostColor(approach.cost)}`}>
+                  Cost: {approach.cost.toUpperCase()}
+                </div>
+                <div class="text-xs text-gray-400">{approach.duration}</div>
+              </div>
+            </div>
+            
+            <p class="text-gray-300 mb-4">{approach.description}</p>
+            
+            <div class="mb-4">
+              <h4 class="font-medium text-green-400 mb-2">Advantages:</h4>
+              <ul class="space-y-1">
+                {approach.pros.map((pro) => (
+                  <li class="text-sm text-gray-300 flex items-start gap-2">
+                    <span class="text-green-400 mt-1">•</span>
+                    {pro}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {approach.cons && approach.cons.length > 0 && (
+              <div class="mb-4">
+                <h4 class="font-medium text-red-400 mb-2">Considerations:</h4>
+                <ul class="space-y-1">
+                  {approach.cons.map((con) => (
+                    <li class="text-sm text-gray-300 flex items-start gap-2">
+                      <span class="text-red-400 mt-1">•</span>
+                      {con}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div class="bg-white/10 rounded-lg p-3">
+              <span class="font-medium text-bright-yellow">Best For: </span>
+              <span class="text-gray-300">{approach.bestFor}</span>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <Button href="#consultation" variant="orangeBlack" size="lg">Discuss Your Solution Options</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Is X Right for Me Section -->
+  <section class="py-20 bg-concrete-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4">{service.isRightForMe.title}</h2>
+      <p class="text-steel-gray text-lg mb-12">{service.isRightForMe.description}</p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Good Candidates -->
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 class="font-semibold text-lg text-green-800 mb-4 flex items-center gap-2">
+            ✅ Good Candidates
+          </h3>
+          <ul class="space-y-3">
+            {service.isRightForMe.goodCandidates.map((candidate) => (
+              <li class="text-green-700 text-sm">{candidate}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Not Ideal For -->
+        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+          <h3 class="font-semibold text-lg text-red-800 mb-4 flex items-center gap-2">
+            ❌ Not Ideal For
+          </h3>
+          <ul class="space-y-3">
+            {service.isRightForMe.notIdealFor.map((item) => (
+              <li class="text-red-700 text-sm">{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Considerations -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <h3 class="font-semibold text-lg text-blue-800 mb-4 flex items-center gap-2">
+            🤔 Consider These Factors
+          </h3>
+          <ul class="space-y-3">
+            {service.isRightForMe.considerations.map((consideration) => (
+              <li class="text-blue-700 text-sm">{consideration}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-lg text-steel-gray mb-6">Still not sure? Our experts can help you decide.</p>
+        <Button href="#consultation" variant="orangeBlack" size="lg">Get Professional Assessment</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why is X Needed Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4 text-center">{service.whyNeeded.title}</h2>
+      <p class="text-steel-gray text-lg text-center mb-12 max-w-3xl mx-auto">{service.whyNeeded.description}</p>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Consequences -->
+        <div>
+          <h3 class="font-semibold text-2xl text-red-600 mb-6">⚠️ Consequences of Delay</h3>
+          <div class="space-y-6">
+            {service.whyNeeded.consequences.map((consequence) => (
+              <div class="bg-white p-6 rounded-lg border border-red-200">
+                <h4 class="font-semibold text-lg text-charcoal-black mb-3">{consequence.issue}</h4>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <span class="font-medium text-orange-600">Short-term:</span>
+                    <p class="text-steel-gray text-sm mt-1">{consequence.shortTerm}</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-red-600">Long-term:</span>
+                    <p class="text-steel-gray text-sm mt-1">{consequence.longTerm}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div>
+          <h3 class="font-semibold text-2xl text-green-600 mb-6">✅ Benefits of Action</h3>
+          <div class="space-y-6">
+            {service.whyNeeded.benefits.map((benefit) => (
+              <div class="bg-white p-6 rounded-lg border border-green-200">
+                <h4 class="font-semibold text-lg text-charcoal-black mb-3">{benefit.benefit}</h4>
+                <p class="text-steel-gray">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips and Mistakes Section -->
+  <section class="py-20 bg-concrete-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-12 text-center">{service.tipsAndMistakes.title}</h2>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Tips -->
+        <div>
+          <h3 class="font-semibold text-2xl text-green-600 mb-6">💡 Expert Tips</h3>
+          <div class="space-y-4">
+            {service.tipsAndMistakes.tips.map((tip) => (
+              <div class="bg-white p-6 rounded-lg border border-green-200">
+                <div class="flex items-start gap-3">
+                  <span class="text-xl">{getImportanceIcon(tip.importance)}</span>
+                  <div>
+                    <h4 class="font-semibold text-charcoal-black mb-2">{tip.tip}</h4>
+                    <p class="text-steel-gray text-sm">{tip.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Common Mistakes -->
+        <div>
+          <h3 class="font-semibold text-2xl text-red-600 mb-6">🚫 Common Mistakes</h3>
+          <div class="space-y-4">
+            {service.tipsAndMistakes.mistakes.map((mistake) => (
+              <div class="bg-white p-6 rounded-lg border border-red-200">
+                <h4 class="font-semibold text-charcoal-black mb-2">{mistake.mistake}</h4>
+                <p class="text-steel-gray text-sm mb-2"><strong>Why to avoid:</strong> {mistake.why}</p>
+                <p class="text-red-600 text-sm"><strong>Consequence:</strong> {mistake.consequence}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location-Specific Section -->
+  <section class="py-20 bg-charcoal-black text-concrete-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4 text-center">{service.locationInfo.title}</h2>
+      <p class="text-gray-300 text-lg text-center mb-12 max-w-3xl mx-auto">{service.locationInfo.description}</p>
+
+      <!-- Top Areas -->
+      <div class="mb-12">
+        <h3 class="font-semibold text-2xl text-bright-yellow mb-6">🏘️ Top Service Areas</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {service.locationInfo.topAreas.map((area) => (
+            <Card class="bg-white/5 backdrop-blur border border-white/10 p-6">
+              <h4 class="font-semibold text-lg text-bright-yellow mb-3">{area.area}</h4>
+              <p class="text-gray-300 text-sm mb-4">{area.whyCommon}</p>
+              <div>
+                <span class="font-medium text-white">Specific Challenges:</span>
+                <ul class="mt-2 space-y-1">
+                  {area.specificChallenges.map((challenge) => (
+                    <li class="text-gray-400 text-sm flex items-start gap-2">
+                      <span class="text-construction-orange mt-1">•</span>
+                      {challenge}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      <!-- Climate & Soil Factors -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="font-semibold text-2xl text-bright-yellow mb-6">🌡️ Climate Factors</h3>
+          <ul class="space-y-3">
+            {service.locationInfo.climateFactors.map((factor) => (
+              <li class="text-gray-300 flex items-start gap-3">
+                <span class="text-construction-orange mt-1">•</span>
+                {factor}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {service.locationInfo.soilConditions && (
+          <div>
+            <h3 class="font-semibold text-2xl text-bright-yellow mb-6">🌍 Soil Conditions</h3>
+            <ul class="space-y-3">
+              {service.locationInfo.soilConditions.map((condition) => (
+                <li class="text-gray-300 flex items-start gap-3">
+                  <span class="text-construction-orange mt-1">•</span>
+                  {condition}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-concrete-white" id="faq">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-12 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {service.faqs.map((faq, index) => (
+          <details class="bg-white border border-steel-gray/20 rounded-lg p-6 group shadow-sm">
+            <summary class="font-semibold cursor-pointer flex items-center justify-between text-lg">
+              {faq.q}
+              <span class="text-construction-orange group-open:rotate-180 transition-transform text-2xl">▼</span>
+            </summary>
+            <p class="mt-4 text-steel-gray leading-relaxed">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Resources & Internal Links -->
+  {(relatedPosts.length > 0 || relatedServices.length > 0) && (
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-12 text-center">Related Resources</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-12">
+          <!-- Related Blog Posts -->
+          {relatedPosts.length > 0 && (
+            <div>
+              <h3 class="font-semibold text-2xl text-charcoal-black mb-6">📚 Helpful Articles</h3>
+              <div class="space-y-4">
+                {relatedPosts.map((post) => (
+                  <Card class="p-6 hover:shadow-lg transition-shadow">
+                    <h4 class="font-semibold text-lg text-charcoal-black mb-2">
+                      <a href={post.url} class="hover:text-construction-orange transition-colors">
+                        {post.title}
+                      </a>
+                    </h4>
+                    {post.excerpt && (
+                      <p class="text-steel-gray text-sm mb-3">{post.excerpt}</p>
+                    )}
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs text-steel-gray">
+                        {new Date(post.firstPublishedDate).toLocaleDateString()}
+                      </span>
+                      <a href={post.url} class="text-construction-orange font-medium text-sm hover:underline">
+                        Read More →
+                      </a>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Related Services -->
+          {relatedServices.length > 0 && (
+            <div>
+              <h3 class="font-semibold text-2xl text-charcoal-black mb-6">🔗 Related Services</h3>
+              <div class="space-y-4">
+                {relatedServices.map((relatedService) => (
+                  <Card class="p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start gap-4">
+                      <span class="text-3xl">{relatedService.emoji}</span>
+                      <div>
+                        <h4 class="font-semibold text-lg text-charcoal-black mb-2">
+                          <a href={`/services/${relatedService.slug}`} class="hover:text-construction-orange transition-colors">
+                            {relatedService.name}
+                          </a>
+                        </h4>
+                        <p class="text-steel-gray text-sm mb-3">{relatedService.tagline}</p>
+                        <a href={`/services/${relatedService.slug}`} class="text-construction-orange font-medium text-sm hover:underline">
+                          Learn More →
+                        </a>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-construction-orange text-white" id="consultation">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-6">
+        Ready to Get Started with {service.name}?
+      </h2>
+      <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+        Get your free, no-obligation consultation from Minneapolis's most trusted {service.name.toLowerCase()} experts.
+      </p>
+      
+      <!-- Trust Indicators -->
+      <div class="flex flex-wrap justify-center items-center gap-8 mb-10 text-sm opacity-90">
+        <div class="flex items-center gap-2">
+          <span>🏗️</span>
+          <span>75+ Years Experience</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>📜</span>
+          <span>Licensed & Insured</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>⭐</span>
+          <span>4.8 Star Rating</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span>💰</span>
+          <span>Free Estimates</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/schedule" class="bg-white text-construction-orange hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+          🛠️ Schedule Free Consultation
+        </Button>
+        <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-construction-orange transition-colors">
+          📞 Call (612) 825-8779
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced JSON-LD Schema -->
+  <script type="application/ld+json" is:inline>{JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    description: service.seoDescription,
+    serviceType: service.schema.serviceType,
+    areaServed: service.schema.areaServed.map(area => ({
+      '@type': 'City',
+      name: area
+    })),
+    aggregateRating: service.schema.aggregateRating ? {
+      '@type': 'AggregateRating',
+      ratingValue: service.schema.aggregateRating.ratingValue,
+      reviewCount: service.schema.aggregateRating.reviewCount
+    } : undefined,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'G. Gardner Concrete & Waterproofing, Inc.',
+      image: service.imageUrl,
+      url: 'https://gardnerconcretesite.com',
+      telephone: '+1-612-825-8779',
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1234 First Ave N',
+        addressLocality: 'Minneapolis',
+        addressRegion: 'MN',
+        postalCode: '55401',
+        addressCountry: 'US'
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 44.9778,
+        longitude: -93.2650
+      },
+      openingHours: 'Mo-Fr 08:00-17:00',
+      paymentAccepted: ['Cash', 'Credit Card', 'Check', 'Financing Available']
+    }
+  })}</script>
+
+  <script type="application/ld+json" is:inline>{JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a
+      }
+    }))
+  })}</script>
+
+  <Footer />
+</Layout> 

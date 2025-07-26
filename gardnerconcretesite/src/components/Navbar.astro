@@ -1,5 +1,6 @@
 ---
 import { BUSINESS_NAME } from '../utils/constants';
+import services from '../utils/services-data';
 ---
 
 <header class="fixed top-0 left-0 w-full bg-charcoal-black/90 backdrop-blur-md z-50 border-b border-steel-gray/20">
@@ -27,6 +28,26 @@ import { BUSINESS_NAME } from '../utils/constants';
         <a href="/" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
           >Home</a
         >
+        <a href="/our-work" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
+          >Our Work</a
+        >
+        <!-- Services dropdown (click-toggle) -->
+        <div class="relative">
+          <button id="services-toggle" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange flex items-center gap-1 transition-colors focus:outline-none">
+            Services
+            <svg class="w-4 h-4 transition-transform" id="services-caret" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+
+          <ul id="services-menu" class="hidden absolute left-0 mt-2 w-56 bg-charcoal-black/95 backdrop-blur-md border border-steel-gray/30 rounded-md shadow-lg">
+            {services.map((service) => (
+              <li>
+                <a href={`/services/${service.slug}`} class="block px-4 py-2 text-sm text-steel-gray hover:text-construction-orange transition-colors">
+                  {service.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
         <a
           href="/schedule"
           class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
@@ -35,7 +56,42 @@ import { BUSINESS_NAME } from '../utils/constants';
         <a href="/blog" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
           >Blog</a
         >
+
+        <!-- Primary CTA -->
+        <a href="/schedule" class="ml-2 inline-flex items-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-poppins font-semibold shadow-md hover:bg-orange-500 transition-colors">
+          Get a Quote
+        </a>
       </nav>
     </div>
   </div>
 </header>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('services-toggle');
+    const menu = document.getElementById('services-menu');
+    const caret = document.getElementById('services-caret');
+    if (!toggle || !menu) return;
+    function closeMenu() {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      caret?.classList.remove('rotate-180');
+    }
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains('hidden');
+      if (isOpen) {
+        closeMenu();
+      } else {
+        menu.classList.remove('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+        caret?.classList.add('rotate-180');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+  });
+</script>
