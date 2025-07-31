@@ -166,7 +166,7 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
           <div class="prose prose-lg max-w-none">
             {post.richContent ? (
               <!-- Rich Content Display -->
-              <div id="rich-content-container" class="text-steel-gray font-lato text-lg leading-relaxed">
+              <div id="rich-content-container" data-content={JSON.stringify(post.richContent)} class="text-steel-gray font-lato text-lg leading-relaxed">
                 <script type="module">
                   import RichContentViewer from '/src/components/RichContentViewer.tsx';
                   import { createRoot } from 'react-dom/client';
@@ -175,8 +175,10 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
                   const container = document.getElementById('rich-content-container');
                   if (container) {
                     const root = createRoot(container);
+                    // Parse serialized rich content from the data attribute
+                    const contentData = JSON.parse(container.dataset.content || '{}');
                     root.render(React.createElement(RichContentViewer, { 
-                      content: {post.richContent} 
+                      content: contentData
                     }));
                   }
                 </script>
