@@ -40,7 +40,8 @@ try {
 
   // Get the full post with rich content
   const postResponse = await wixClient.posts.getPostBySlug(slug, {
-    fieldsets: ['RICH_CONTENT']
+    // Request rich content as well as general post metadata.
+    fieldsets: ['RICH_CONTENT', 'SEO', 'TAGS']
   });
   
   console.log('Dynamic route: Post response:', !!postResponse.post);
