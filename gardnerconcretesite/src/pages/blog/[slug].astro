@@ -6,6 +6,7 @@ import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import { createClient, ApiKeyStrategy } from "@wix/sdk";
 import { posts } from "@wix/blog";
+import RichContentViewer from "../../components/RichContentViewer.tsx";
 import { members } from "@wix/members";
 import "../../styles/global.css";
 
@@ -165,26 +166,8 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
           <!-- Article Body -->
           <div class="prose prose-lg max-w-none">
             {post.richContent ? (
-              <!-- Rich Content Display -->
-              <div id="rich-content-container" data-content={JSON.stringify(post.richContent)} class="text-steel-gray font-lato text-lg leading-relaxed">
-                <script type="module">
-                  import RichContentViewer from '/src/components/RichContentViewer.tsx';
-                  import { createRoot } from 'react-dom/client';
-                  import React from 'react';
-                  
-                  const container = document.getElementById('rich-content-container');
-                  if (container) {
-                    const root = createRoot(container);
-                    // Parse serialized rich content from the data attribute
-                    const contentData = JSON.parse(container.dataset.content || '{}');
-                    root.render(React.createElement(RichContentViewer, { 
-                      content: contentData
-                    }));
-                  }
-                </script>
-              </div>
+              <RichContentViewer content={post.richContent} client:only="react" />
             ) : (
-              <!-- Plain Content Display -->
               <div class="text-steel-gray font-lato text-lg leading-relaxed">
                 {post.plainContent ? (
                   post.plainContent.split('\n').map(paragraph => (
