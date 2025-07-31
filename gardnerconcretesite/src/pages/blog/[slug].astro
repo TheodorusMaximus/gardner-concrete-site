@@ -6,6 +6,7 @@ import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import { createClient, ApiKeyStrategy } from "@wix/sdk";
 import { posts } from "@wix/blog";
+import { items } from "@wix/data";
 import RichContentViewer from "../../components/RichContentViewer.tsx";
 import { members } from "@wix/members";
 import "../../styles/global.css";
@@ -25,13 +26,15 @@ if (!slug || !API_KEY) {
 // Fetch the full blog post with rich content
 let post = null;
 let author = null;
-let relatedPosts = [];
+let relatedPosts: any[] = [];
+let sidebarWidgets: any[] = [];
 
 try {
   const wixClient = createClient({
     modules: { 
       posts,
-      members 
+      members,
+      items
     },
     auth: ApiKeyStrategy({ apiKey: API_KEY, siteId: SITE_ID }),
   });
@@ -68,6 +71,18 @@ try {
   });
   
   relatedPosts = relatedResult.posts?.filter(p => p.id !== post?.id).slice(0, 3) || [];
+
+  // Fetch sidebar widgets associated with this post
+  try {
+    const widgetsRes = await wixClient.items.queryDataItems({
+      collectionId: "sidebarWidgets",
+      filter: { field: "postSlug", operator: "eq", value: slug },
+      paging: { limit: 10 }
+    });
+    sidebarWidgets = widgetsRes.items || [];
+  } catch (e) {
+    console.log("Could not fetch sidebar widgets", e);
+  }
 
 } catch (error) {
   console.error("Error fetching blog post:", error);
@@ -152,7 +167,7 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
         </div>
       </section>
 
-      <!-- Article Content -->
+      <!-- Article Content & Sidebar -->
       <article class="py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <!-- Featured Image -->
@@ -165,21 +180,36 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
           </div>
 
           <!-- Article Body -->
-          <div class="prose prose-lg max-w-none">
-            {post.richContent ? (
-              <RichContentViewer content={post.richContent} client:only="react" />
-            ) : (
-              <div class="text-steel-gray font-lato text-lg leading-relaxed">
-                {post.plainContent ? (
-                  post.plainContent.split('\n').map(paragraph => (
-                    paragraph.trim() && <p class="mb-6">{paragraph}</p>
-                  ))
-                ) : post.excerpt ? (
-                  <p class="mb-6">{post.excerpt}</p>
-                ) : (
-                  <p class="mb-6">Content not available.</p>
-                )}
-              </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 prose prose-lg max-w-none">
+              {post.richContent ? (
+                <RichContentViewer content={post.richContent} client:only="react" />
+              ) : (
+                <div class="text-steel-gray font-lato text-lg leading-relaxed">
+                  {post.plainContent ? (
+                    post.plainContent.split('\n').map(paragraph => (
+                      paragraph.trim() && <p class="mb-6">{paragraph}</p>
+                    ))
+                  ) : post.excerpt ? (
+                    <p class="mb-6">{post.excerpt}</p>
+                  ) : (
+                    <p class="mb-6">Content not available.</p>
+                  )}
+                </div>
+              )}
+            </div>
+            <!-- Sidebar -->
+            {sidebarWidgets.length > 0 && (
+              <aside class="space-y-8">
+                {sidebarWidgets.map(widget => (
+                  <div class="p-6 bg-gray-100 rounded-lg shadow">
+                    {widget.title && <h3 class="font-poppins font-semibold text-lg mb-2">{widget.title}</h3>}
+                    {widget.image && <img src={widget.image} alt={widget.title} class="mb-4 w-full h-40 object-cover rounded" />}
+                    {widget.content && <div class="rich-text" innerHTML={widget.content}></div>}
+                    {widget.link && <a href={widget.link} class="inline-block mt-4 px-4 py-2 bg-construction-orange text-white rounded">Learn More</a>}
+                  </div>
+                ))}
+              </aside>
             )}
           </div>
 
