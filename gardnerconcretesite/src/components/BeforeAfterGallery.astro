@@ -1,122 +1,78 @@
 ---
 import Card from './ui/Card.astro';
 import Button from './ui/Button.astro';
+import { getProjects } from '../utils/wix-client.js';
 
-const transformationProjects = [
+// Fetch projects from Wix CMS (will fall back to static data if no CMS)
+let projectData = [];
+try {
+  projectData = await getProjects('transformations');
+} catch (error) {
+  console.log('Using static transformation data');
+}
+
+// Fallback to static data with placeholder images for now
+const transformationProjects = projectData.length > 0 ? projectData : [
   {
-    id: 1,
+    _id: "1",
     title: "Foundation Wall Stabilization",
     location: "Longfellow, Minneapolis",
-    category: "foundation-repair",
-    service: "Foundation Repair",
+    category: "Foundation Repair",
     beforeImage: "https://images.unsplash.com/photo-1573161103-e6fc8c2e1dbc?auto=format&fit=crop&w=800&q=80",
     afterImage: "https://images.unsplash.com/photo-1590224505923-372138a3b8bd?auto=format&fit=crop&w=800&q=80",
-    problem: "Severe foundation wall bowing due to clay soil expansion",
-    solution: "Steel I-beam reinforcement with drainage upgrade",
-    timeframe: "4 days",
-    yearCompleted: "2024",
-    challenge: "Historic 1920s home with limited basement access",
-    outcome: "Wall stabilized permanently, basement fully usable again",
+    description: "Severe foundation wall bowing due to clay soil expansion. Steel I-beam reinforcement with drainage upgrade restored structural integrity permanently.",
     customerQuote: "Gardner Concrete saved our home. The wall was bowing 3 inches - we thought we'd have to move. Now it's rock solid.",
     customerName: "Sarah & Mike Johnson",
-    badge: "Historic Home Specialist"
+    timeframe: "4 days",
+    year: "2024",
+    featured: true
   },
   {
-    id: 2,
+    _id: "2", 
     title: "Basement Waterproofing System",
-    location: "Highland Park, St. Paul", 
-    category: "waterproofing",
-    service: "Waterproofing",
+    location: "Highland Park, St. Paul",
+    category: "Waterproofing",
     beforeImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
-    afterImage: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80",
-    problem: "Chronic basement flooding during spring thaw",
-    solution: "Interior drain tile system with battery backup sump pump",
-    timeframe: "3 days",
-    yearCompleted: "2024",
-    challenge: "High water table and finished basement preservation",
-    outcome: "Completely dry basement through 2 spring thaw seasons",
+    afterImage: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80", 
+    description: "Chronic basement flooding during spring thaw. Interior drain tile system with battery backup sump pump provided complete waterproofing solution.",
     customerQuote: "Two years later and our basement is still bone dry. Even during that crazy May storm, we stayed completely dry while neighbors flooded.",
     customerName: "Jennifer Chen",
-    badge: "Finished Basement Expert"
+    timeframe: "3 days",
+    year: "2024",
+    featured: true
   },
   {
-    id: 3,
+    _id: "3",
     title: "Decorative Concrete Patio",
-    location: "Edina, MN",
-    category: "concrete-work", 
-    service: "Concrete Work",
+    location: "Edina, MN", 
+    category: "Concrete Work",
     beforeImage: "https://images.unsplash.com/photo-1574947318246-0b707d1b8f42?auto=format&fit=crop&w=800&q=80",
     afterImage: "https://images.unsplash.com/photo-1508898578281-774ac4893e2b?auto=format&fit=crop&w=800&q=80",
-    problem: "Cracked, settling patio unsafe for family gatherings",
-    solution: "Complete replacement with stamped concrete and proper drainage",
-    timeframe: "5 days",
-    yearCompleted: "2023",
-    challenge: "Matching existing hardscape design while improving functionality",
-    outcome: "Beautiful, durable entertaining space that increases home value",
+    description: "Cracked, settling patio unsafe for family gatherings. Complete replacement with stamped concrete and proper drainage created beautiful entertaining space.",
     customerQuote: "The new patio transformed our backyard into the neighborhood gathering spot. It's been two winters and looks perfect.",
-    customerName: "Tom & Lisa Rodriguez", 
-    badge: "Design Excellence"
+    customerName: "Tom & Lisa Rodriguez",
+    timeframe: "5 days", 
+    year: "2023",
+    featured: true
   },
   {
-    id: 4,
-    title: "Emergency Foundation Crack Repair",
-    location: "Northeast Minneapolis",
-    category: "foundation-repair",
-    service: "Foundation Repair", 
-    beforeImage: "https://images.unsplash.com/photo-1572889863939-8bdb14d2b0bc?auto=format&fit=crop&w=800&q=80",
-    afterImage: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=800&q=80",
-    problem: "Major foundation crack allowing water infiltration",
-    solution: "Professional crack injection with polyurethane sealing",
-    timeframe: "Same day",
-    yearCompleted: "2024",
-    challenge: "Emergency repair during active leak in February freeze",
-    outcome: "Immediate leak stoppage, permanent structural integrity restored",
-    customerQuote: "They came out in a February blizzard when water was pouring in. Fixed it that same day and it's held perfectly.",
-    customerName: "David Kim",
-    badge: "Emergency Response"
-  },
-  {
-    id: 5,
-    title: "Suspended Garage Floor Installation", 
+    _id: "4",
+    title: "Suspended Garage Floor Installation",
     location: "Plymouth, MN",
-    category: "concrete-work",
-    service: "Concrete Work",
+    category: "Concrete Work", 
     beforeImage: "https://images.unsplash.com/photo-1567438073125-66726bdcc1cd?auto=format&fit=crop&w=800&q=80",
     afterImage: "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=800&q=80",
-    problem: "Unusable garage space over walkout basement",
-    solution: "Engineered suspended slab with proper load calculations",
-    timeframe: "6 days",
-    yearCompleted: "2023",
-    challenge: "Supporting full vehicle loads while maintaining basement ceiling height",
-    outcome: "Full 2-car garage with usable basement space below",
+    description: "Unusable garage space over walkout basement. Engineered suspended slab with proper load calculations created full 2-car garage without losing basement space.",
     customerQuote: "Incredible engineering. We gained a 2-car garage without losing our basement rec room. It's been flawless for over a year.",
-    customerName: "Michelle & Greg Anderson",
-    badge: "Structural Engineering"
-  },
-  {
-    id: 6,
-    title: "Exterior Waterproofing & Landscaping",
-    location: "Mac-Groveland, St. Paul",
-    category: "waterproofing", 
-    service: "Waterproofing",
-    beforeImage: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80",
-    afterImage: "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&w=800&q=80",
-    problem: "Severe foundation moisture affecting historic stone foundation",
-    solution: "Complete exterior excavation with membrane and French drain system",
-    timeframe: "8 days",
-    yearCompleted: "2024",
-    challenge: "Preserving 100-year-old stone foundation while adding modern protection",
-    outcome: "Dry basement, protected foundation, enhanced landscaping",
-    customerQuote: "They treated our 1924 home with such care. The exterior looks better than ever and our basement is finally dry after decades of issues.",
-    customerName: "Robert & Ann Walsh",
-    badge: "Historic Preservation"
+    customerName: "Michelle & Greg Anderson", 
+    timeframe: "6 days",
+    year: "2023",
+    featured: true
   }
 ];
-
-let currentProject = 0;
 ---
 
-<section id="gallery" class="py-20 sm:py-32 bg-concrete-white">
+<section id="transformations" class="py-20 sm:py-32 bg-concrete-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header Section -->
     <div class="text-center mb-16">
@@ -129,149 +85,149 @@ let currentProject = 0;
         See the <span class="text-construction-orange">Transformation</span>
       </h2>
       <p class="max-w-3xl mx-auto text-lg sm:text-xl text-steel-gray font-lato leading-relaxed">
-        Real Minneapolis homes, real solutions, real results. Drag the slider to see how we transform challenging foundation, waterproofing, and concrete problems into lasting solutions.
+        Real Minneapolis homes, real solutions, real results. Browse through our recent project transformations to see how we solve challenging foundation, waterproofing, and concrete problems.
       </p>
     </div>
 
-    <!-- Main Before/After Slider -->
-    <div class="mb-20">
-      <div class="max-w-5xl mx-auto">
-        <!-- Project Navigation -->
-        <div class="flex flex-wrap justify-center gap-2 mb-8">
+    <!-- Transformation Carousel -->
+    <div class="max-w-6xl mx-auto mb-16">
+      <!-- Carousel Container -->
+      <div class="transformation-carousel relative">
+        <div class="carousel-track flex transition-transform duration-500 ease-in-out">
           {transformationProjects.map((project, index) => (
-            <button 
-              class={`nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all ${index === 0 ? 'bg-construction-orange text-white' : 'bg-white text-steel-gray hover:bg-gray-100'}`}
-              data-project={index}
-            >
-              {project.service}
-            </button>
-          ))}
-        </div>
-
-        <!-- Before/After Slider Container -->
-        <div class="project-container">
-          {transformationProjects.map((project, index) => (
-            <div class={`project-slide ${index === 0 ? 'active' : 'hidden'}`} data-project={index}>
-              <!-- Slider -->
-              <div class="relative before-after-slider rounded-lg overflow-hidden shadow-2xl mb-8" style="height: 500px;">
-                <!-- Before Image -->
-                <div class="absolute inset-0">
-                  <img
-                    src={project.beforeImage}
-                    alt={`Before: ${project.problem}`}
-                    class="w-full h-full object-cover"
-                  />
-                  <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    BEFORE
-                  </div>
-                </div>
-                
-                <!-- After Image -->
-                <div class="absolute inset-0 w-1/2 overflow-hidden after-section">
-                  <img
-                    src={project.afterImage}
-                    alt={`After: ${project.outcome}`}
-                    class="w-full h-full object-cover absolute top-0 left-0 max-w-none"
-                    style="width: 200%;"
-                  />
-                  <div class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    AFTER
-                  </div>
-                </div>
-                
-                <!-- Slider Control -->
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                  aria-label={`Before and after slider for ${project.title}`}
-                />
-                
-                <!-- Slider Handle -->
-                <div class="slider-handle absolute top-0 bottom-0 w-1 bg-construction-orange pointer-events-none z-20" style="left: 50%; transform: translateX(-50%);">
-                  <div class="absolute top-1/2 -translate-y-1/2 -left-4 bg-construction-orange text-white rounded-full h-8 w-8 flex items-center justify-center font-bold shadow-lg">
-                    ⟷
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project Details -->
-              <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project Info -->
-                <Card class="p-8">
-                  <div class="flex items-start justify-between mb-4">
-                    <div>
-                      <div class="flex items-center gap-3 mb-2">
-                        <span class="bg-construction-orange/10 text-construction-orange px-3 py-1 rounded-full text-sm font-semibold">
-                          {project.badge}
-                        </span>
-                        <span class="text-steel-gray text-sm">{project.yearCompleted}</span>
+            <div class="carousel-slide flex-shrink-0 w-full">
+              <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <!-- Before/After Image Section -->
+                <div class="relative">
+                  <Card class="overflow-hidden shadow-xl">
+                    <!-- Before/After Slider -->
+                    <div class="relative h-96 before-after-container">
+                      <!-- Before Image -->
+                      <div class="absolute inset-0">
+                        <img
+                          src={project.beforeImage}
+                          alt={`Before: ${project.title}`}
+                          class="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                          BEFORE
+                        </div>
                       </div>
-                      <h3 class="font-poppins font-bold text-2xl text-charcoal-black mb-2">
-                        {project.title}
-                      </h3>
-                      <p class="text-steel-gray font-medium">📍 {project.location}</p>
+                      
+                      <!-- After Image Overlay -->
+                      <div class="absolute inset-0 w-1/2 overflow-hidden after-overlay">
+                        <img
+                          src={project.afterImage}
+                          alt={`After: ${project.title}`}
+                          class="w-full h-full object-cover absolute top-0 left-0"
+                          style="width: 200%;"
+                          loading="lazy"
+                        />
+                        <div class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                          AFTER
+                        </div>
+                      </div>
+                      
+                      <!-- Slider Control -->
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="50"
+                        class="comparison-slider absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-10"
+                        aria-label={`Before and after comparison for ${project.title}`}
+                      />
+                      
+                      <!-- Divider Line -->
+                      <div class="slider-divider absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none z-20" style="left: 50%;">
+                        <div class="absolute top-1/2 -translate-y-1/2 -left-4 bg-white text-construction-orange rounded-full h-8 w-8 flex items-center justify-center font-bold shadow-lg">
+                          ⟷
+                        </div>
+                      </div>
                     </div>
+                  </Card>
+                </div>
+
+                <!-- Project Details -->
+                <div class="space-y-6">
+                  <!-- Project Header -->
+                  <div>
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="bg-construction-orange/10 text-construction-orange px-3 py-1 rounded-full text-sm font-semibold">
+                        {project.category}
+                      </span>
+                      <span class="text-steel-gray text-sm">{project.year}</span>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-2xl lg:text-3xl text-charcoal-black mb-2">
+                      {project.title}
+                    </h3>
+                    <p class="text-steel-gray font-medium flex items-center gap-2">
+                      <span class="text-construction-orange">📍</span>
+                      {project.location}
+                    </p>
                   </div>
 
-                  <div class="space-y-4">
-                    <div>
-                      <h4 class="font-semibold text-charcoal-black mb-2">The Challenge:</h4>
-                      <p class="text-steel-gray">{project.problem}</p>
-                    </div>
+                  <!-- Project Description -->
+                  <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                    <h4 class="font-semibold text-charcoal-black mb-3 flex items-center gap-2">
+                      <span class="text-blue-600">🔍</span>
+                      The Challenge & Solution
+                    </h4>
+                    <p class="text-steel-gray leading-relaxed">{project.description}</p>
                     
-                    <div>
-                      <h4 class="font-semibold text-charcoal-black mb-2">Our Solution:</h4>
-                      <p class="text-steel-gray">{project.solution}</p>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
-                      <div>
-                        <span class="text-sm text-steel-gray">Project Duration</span>
-                        <p class="font-semibold text-charcoal-black">{project.timeframe}</p>
-                      </div>
-                      <div>
-                        <span class="text-sm text-steel-gray">Unique Challenge</span>
-                        <p class="font-semibold text-charcoal-black text-sm">{project.challenge}</p>
-                      </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                      <span class="text-sm text-steel-gray">Project Duration: </span>
+                      <span class="font-semibold text-charcoal-black">{project.timeframe}</span>
                     </div>
                   </div>
-                </Card>
 
-                <!-- Customer Testimonial -->
-                <Card class="p-8 bg-gradient-to-br from-construction-orange/5 to-bright-yellow/5 border border-construction-orange/20">
-                  <div class="mb-6">
-                    <div class="text-4xl text-construction-orange/30 mb-4">"</div>
-                    <blockquote class="text-lg text-charcoal-black font-medium italic leading-relaxed">
-                      {project.customerQuote}
-                    </blockquote>
-                  </div>
-                  
-                  <footer>
-                    <div class="flex items-center justify-between">
+                  <!-- Customer Testimonial -->
+                  <Card class="bg-gradient-to-br from-construction-orange/5 to-bright-yellow/5 border border-construction-orange/20 p-6">
+                    <div class="mb-4">
+                      <div class="text-construction-orange text-2xl mb-3">★★★★★</div>
+                      <blockquote class="text-charcoal-black font-medium italic leading-relaxed">
+                        "{project.customerQuote}"
+                      </blockquote>
+                    </div>
+                    <footer class="flex items-center justify-between pt-4 border-t border-construction-orange/20">
                       <div>
                         <cite class="not-italic font-semibold text-charcoal-black">
                           {project.customerName}
                         </cite>
                         <p class="text-steel-gray text-sm">{project.location}</p>
                       </div>
-                      <div class="text-bright-yellow text-lg">
-                        ⭐⭐⭐⭐⭐
-                      </div>
-                    </div>
-                  </footer>
-                  
-                  <div class="mt-6 pt-6 border-t border-construction-orange/20">
-                    <h5 class="font-semibold text-charcoal-black mb-2">The Result:</h5>
-                    <p class="text-steel-gray">{project.outcome}</p>
-                  </div>
-                </Card>
+                    </footer>
+                  </Card>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        <!-- Navigation Dots -->
+        <div class="flex justify-center mt-8 space-x-2">
+          {transformationProjects.map((_, index) => (
+            <button
+              class={`carousel-dot w-3 h-3 rounded-full transition-all ${index === 0 ? 'bg-construction-orange' : 'bg-gray-300 hover:bg-gray-400'}`}
+              data-slide={index}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-charcoal-black rounded-full p-3 shadow-lg transition-all z-30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        
+        <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-charcoal-black rounded-full p-3 shadow-lg transition-all z-30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -306,41 +262,6 @@ let currentProject = 0;
       </div>
     </div>
 
-    <!-- Service Categories Grid -->
-    <div class="mb-16">
-      <h3 class="font-poppins font-bold text-2xl text-center text-charcoal-black mb-8">
-        Browse Transformations by Service
-      </h3>
-      <div class="grid md:grid-cols-3 gap-6">
-        <Card class="p-6 hover:shadow-xl transition-shadow cursor-pointer group" data-filter="foundation-repair">
-          <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🏗️</div>
-          <h4 class="font-semibold text-xl text-charcoal-black mb-2">Foundation Repair</h4>
-          <p class="text-steel-gray text-sm mb-4">Wall stabilization, crack repair, and structural solutions</p>
-          <div class="text-construction-orange font-medium text-sm">
-            View {transformationProjects.filter(p => p.category === 'foundation-repair').length} Projects →
-          </div>
-        </Card>
-        
-        <Card class="p-6 hover:shadow-xl transition-shadow cursor-pointer group" data-filter="waterproofing">
-          <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">💧</div>
-          <h4 class="font-semibold text-xl text-charcoal-black mb-2">Waterproofing</h4>
-          <p class="text-steel-gray text-sm mb-4">Basement moisture control and drainage systems</p>
-          <div class="text-construction-orange font-medium text-sm">
-            View {transformationProjects.filter(p => p.category === 'waterproofing').length} Projects →
-          </div>
-        </Card>
-        
-        <Card class="p-6 hover:shadow-xl transition-shadow cursor-pointer group" data-filter="concrete-work">
-          <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🚧</div>
-          <h4 class="font-semibold text-xl text-charcoal-black mb-2">Concrete Work</h4>
-          <p class="text-steel-gray text-sm mb-4">Patios, driveways, and decorative concrete</p>
-          <div class="text-construction-orange font-medium text-sm">
-            View {transformationProjects.filter(p => p.category === 'concrete-work').length} Projects →
-          </div>
-        </Card>
-      </div>
-    </div>
-
     <!-- Call to Action -->
     <div class="text-center bg-gradient-to-r from-construction-orange to-bright-yellow rounded-2xl p-12 text-white">
       <h3 class="font-montserrat font-bold text-3xl mb-4">
@@ -350,7 +271,7 @@ let currentProject = 0;
         Join thousands of Minneapolis homeowners who've transformed their properties with Gardner Concrete. Your before and after story starts with a free consultation.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/schedule" class="bg-white text-construction-orange hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+        <Button href="#concrete-booking-form" class="bg-white text-construction-orange hover:bg-gray-100 px-8 py-4 text-lg font-semibold scroll-to-form">
           🛠️ Get Your Free Assessment
         </Button>
         <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-construction-orange transition-colors">
@@ -361,113 +282,161 @@ let currentProject = 0;
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const projectSlides = document.querySelectorAll('.project-slide');
-    const sliderInputs = document.querySelectorAll('.slider-input');
-    const filterCards = document.querySelectorAll('[data-filter]');
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const carouselTrack = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const prevBtn = document.querySelector('.carousel-prev');
+  const nextBtn = document.querySelector('.carousel-next'); 
+  const comparisonSliders = document.querySelectorAll('.comparison-slider');
+  const scrollToFormBtn = document.querySelector('.scroll-to-form');
+  
+  let currentSlide = 0;
+  const totalSlides = slides.length;
 
-    // Handle project navigation
-    navButtons.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        // Update active nav button
-        navButtons.forEach(b => {
-          b.classList.remove('bg-construction-orange', 'text-white');
-          b.classList.add('bg-white', 'text-steel-gray');
-        });
-        btn.classList.add('bg-construction-orange', 'text-white');
-        btn.classList.remove('bg-white', 'text-steel-gray');
-
-        // Show corresponding project
-        projectSlides.forEach((slide, slideIndex) => {
-          if (slideIndex === index) {
-            slide.classList.remove('hidden');
-            slide.classList.add('active');
-          } else {
-            slide.classList.add('hidden');
-            slide.classList.remove('active');
-          }
-        });
-      });
+  // Initialize carousel
+  function updateCarousel() {
+    const translateX = -currentSlide * 100;
+    carouselTrack.style.transform = `translateX(${translateX}%)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('bg-construction-orange', index === currentSlide);
+      dot.classList.toggle('bg-gray-300', index !== currentSlide);
     });
+  }
 
-    // Handle before/after sliders
-    sliderInputs.forEach(slider => {
-      slider.addEventListener('input', function() {
-        const afterSection = this.parentElement.querySelector('.after-section');
-        const handle = this.parentElement.querySelector('.slider-handle');
-        const percentage = this.value;
-        
-        afterSection.style.width = percentage + '%';
-        handle.style.left = percentage + '%';
-      });
-    });
+  // Navigation functions
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }
 
-    // Handle service filter clicks
-    filterCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const filter = card.dataset.filter;
-        const targetBtn = Array.from(navButtons).find(btn => {
-          const projectData = document.querySelector(`[data-project="${btn.dataset.project}"]`);
-          return projectData && projectData.classList.contains(filter);
-        });
-        
-        if (targetBtn) {
-          targetBtn.click();
-        }
-      });
-    });
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
 
-    // Auto-advance functionality (optional)
-    let currentIndex = 0;
-    const autoAdvance = () => {
-      currentIndex = (currentIndex + 1) % navButtons.length;
-      navButtons[currentIndex].click();
-    };
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
 
-    // Uncomment to enable auto-advance every 10 seconds
-    // setInterval(autoAdvance, 10000);
+  // Event listeners
+  nextBtn?.addEventListener('click', nextSlide);
+  prevBtn?.addEventListener('click', prevSlide);
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => goToSlide(index));
   });
+
+  // Before/After slider functionality
+  comparisonSliders.forEach(slider => {
+    slider.addEventListener('input', function() {
+      const container = this.closest('.before-after-container');
+      const afterOverlay = container.querySelector('.after-overlay');
+      const divider = container.querySelector('.slider-divider');
+      const percentage = this.value;
+      
+      afterOverlay.style.width = percentage + '%';
+      divider.style.left = percentage + '%';
+    });
+  });
+
+  // Smooth scroll to form
+  scrollToFormBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const formElement = document.getElementById('concrete-booking-form');
+    if (formElement) {
+      formElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+  });
+
+  // Auto-advance carousel (optional)
+  let autoAdvanceInterval;
+  
+  function startAutoAdvance() {
+    autoAdvanceInterval = setInterval(nextSlide, 8000);
+  }
+  
+  function stopAutoAdvance() {
+    clearInterval(autoAdvanceInterval);
+  }
+
+  // Start auto-advance
+  startAutoAdvance();
+
+  // Pause auto-advance on hover
+  const carousel = document.querySelector('.transformation-carousel');
+  carousel?.addEventListener('mouseenter', stopAutoAdvance);
+  carousel?.addEventListener('mouseleave', startAutoAdvance);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+  });
+});
 </script>
 
 <style>
-  .before-after-slider {
+  .carousel-track {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .before-after-container {
     position: relative;
     overflow: hidden;
   }
 
-  .project-slide {
-    transition: opacity 0.3s ease-in-out;
+  .after-overlay {
+    transition: width 0.1s ease-out;
   }
 
-  .project-slide.hidden {
-    display: none;
+  .slider-divider {
+    transition: left 0.1s ease-out;
   }
 
-  .slider-input::-webkit-slider-thumb {
+  .comparison-slider::-webkit-slider-thumb {
     appearance: none;
     width: 0;
     height: 0;
   }
 
-  .slider-input::-moz-range-thumb {
+  .comparison-slider::-moz-range-thumb {
     width: 0;
     height: 0;
     border: none;
     background: transparent;
   }
 
-  .nav-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  .carousel-prev,
+  .carousel-next {
+    transition: all 0.2s ease;
   }
 
-  .after-section {
-    transition: width 0.1s ease-out;
+  .carousel-prev:hover,
+  .carousel-next:hover {
+    transform: translateY(-50%) scale(1.1);
   }
 
-  .slider-handle {
-    transition: left 0.1s ease-out;
+  .carousel-dot {
+    transition: all 0.2s ease;
+    cursor: pointer;
   }
-</style> 
+
+  .carousel-dot:hover {
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 768px) {
+    .carousel-prev,
+    .carousel-next {
+      display: none;
+    }
+  }
+</style>

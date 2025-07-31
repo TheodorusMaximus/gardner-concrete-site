@@ -1,13 +1,15 @@
 import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 import { posts } from '@wix/blog';
+import { submissions } from '@wix/forms';
 
 // Initialize Wix client for server-side operations
 export function createWixClient() {
   return createClient({
     modules: {
       items,
-      posts
+      posts,
+      submissions
     },
     auth: OAuthStrategy({
       clientId: process.env.WIX_CLIENT_ID || '',
@@ -115,69 +117,57 @@ function mapWixItemToProject(item: any): Project {
   };
 }
 
-// Blog post interface
-export interface BlogPost {
-  _id: string;
-  title: string;
-  excerpt?: string;
-  slug: string;
-  url: string;
-  firstPublishedDate: string;
-  lastPublishedDate: string;
-  tags?: string[];
-  categoryIds?: string[];
-  featured?: boolean;
+
+// Form Submission Interface
+export interface ConcreteJobSubmission {
+  name: string;
+  email: string;
+  phone: string;
+  projectType: string;
+  projectDescription: string;
+  propertyAddress: string;
+  timeframe: string;
+  budget: string;
+  preferredContact: 'phone' | 'email';
+  heardAboutUs?: string;
 }
 
-// Get blog posts related to a service
-export async function getBlogPosts(tags?: string[], limit: number = 5): Promise<BlogPost[]> {
+// Submit concrete job booking form to Wix
+export async function submitConcreteJobForm(formData: ConcreteJobSubmission) {
   const wixClient = createWixClient();
   
   try {
-    let query = wixClient.posts.queryPosts().limit(limit);
+    // For now, we'll use a generic form ID - this would need to be set up in Wix Dashboard
+    // In a real implementation, you'd get this from your Wix Forms app
+    const CONCRETE_FORM_ID = 'concrete-booking-form'; // This needs to be replaced with actual form ID from Wix
     
-    // Filter by tags if provided
-    if (tags && tags.length > 0) {
-      query = query.hasSome('hashtags', tags);
-    }
+    const submission = await wixClient.submissions.createSubmission({
+      formId: CONCRETE_FORM_ID,
+      status: 'PENDING',
+      submissions: {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        projectType: formData.projectType,
+        projectDescription: formData.projectDescription,
+        propertyAddress: formData.propertyAddress,
+        timeframe: formData.timeframe,
+        budget: formData.budget,
+        preferredContact: formData.preferredContact,
+        heardAboutUs: formData.heardAboutUs || ''
+      }
+    });
     
-    const results = await query.find();
-    return results.items.map(mapWixPostToBlogPost);
+    return {
+      success: true,
+      submissionId: submission._id,
+      message: 'Thank you! Your concrete project request has been submitted successfully. We\'ll contact you within 24 hours to discuss your project.'
+    };
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
-    return [];
+    console.error('Error submitting concrete job form:', error);
+    return {
+      success: false,
+      message: 'Sorry, there was an error submitting your request. Please try again or call us directly at [your phone number].'
+    };
   }
-}
-
-// Get featured blog posts
-export async function getFeaturedBlogPosts(limit: number = 3): Promise<BlogPost[]> {
-  const wixClient = createWixClient();
-  
-  try {
-    const results = await wixClient.posts.queryPosts()
-      .eq('featured', true)
-      .limit(limit)
-      .find();
-    
-    return results.items.map(mapWixPostToBlogPost);
-  } catch (error) {
-    console.error('Error fetching featured blog posts:', error);
-    return [];
-  }
-}
-
-// Map Wix blog post to BlogPost interface
-function mapWixPostToBlogPost(post: any): BlogPost {
-  return {
-    _id: post._id,
-    title: post.title || '',
-    excerpt: post.excerpt,
-    slug: post.slug || '',
-    url: `/blog/${post.slug}`,
-    firstPublishedDate: post.firstPublishedDate,
-    lastPublishedDate: post.lastPublishedDate,
-    tags: post.hashtags || [],
-    categoryIds: post.categoryIds || [],
-    featured: post.featured || false
-  };
 } 

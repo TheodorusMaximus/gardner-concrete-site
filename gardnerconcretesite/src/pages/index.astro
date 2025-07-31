@@ -7,6 +7,7 @@ import ThreeColumnServices from "../components/ThreeColumnServices.astro";
 import NeighborhoodTrust from "../components/NeighborhoodTrust.astro";
 import BeforeAfterGallery from "../components/BeforeAfterGallery.astro";
 import Specializations from "../components/Specializations.astro";
+import ConcreteBookingForm from "../components/ConcreteBookingForm.astro";
 import "../styles/global.css";
 ---
 
@@ -20,6 +21,13 @@ import "../styles/global.css";
       <Specializations />
       <NeighborhoodTrust />
       <BeforeAfterGallery />
+      
+      <!-- Concrete Booking Form Section -->
+      <section class="py-16 bg-gray-50" id="concrete-booking-form">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ConcreteBookingForm />
+        </div>
+      </section>
     </main>
 
     <Footer />

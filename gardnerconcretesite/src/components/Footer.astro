@@ -1,29 +1,100 @@
 ---
 import { BUSINESS_NAME } from '../utils/constants';
+import services from '../utils/services-data';
 
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-charcoal-black border-t border-steel-gray/20">
-  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
-    <div class="flex justify-center mb-4">
-      <svg
-        class="h-8 w-8 text-construction-orange"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm4-4h10V3H7v2z"></path>
-      </svg>
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <!-- Top Section with Logo and Navigation -->
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <!-- Logo and Company Info -->
+      <div class="md:col-span-1">
+        <div class="flex justify-center md:justify-start mb-4">
+          <img
+            src="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/logo-new-576w%20(1)%202.avif"
+            alt="Gardner Concrete Logo"
+            class="h-12 w-auto"
+          />
+        </div>
+        <p class="text-sm text-steel-gray/70 font-lato text-center md:text-left">
+          Foundational excellence since 1949. Your trusted Minneapolis concrete and waterproofing experts.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="text-center md:text-left">
+        <h3 class="text-concrete-white font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="/" class="text-steel-gray hover:text-construction-orange transition-colors">Home</a></li>
+          <li><a href="/our-work" class="text-steel-gray hover:text-construction-orange transition-colors">Our Work</a></li>
+          <li><a href="/about-us" class="text-steel-gray hover:text-construction-orange transition-colors">About Us</a></li>
+          <li><a href="/blog" class="text-steel-gray hover:text-construction-orange transition-colors">Resources</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="text-center md:text-left">
+        <h3 class="text-concrete-white font-semibold mb-4">Services</h3>
+        <ul class="space-y-2">
+          {services.slice(0, 6).map((service) => (
+            <li>
+              <a href={`/services/${service.slug}`} class="text-steel-gray hover:text-construction-orange transition-colors text-sm">
+                {service.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="text-center md:text-left">
+        <h3 class="text-concrete-white font-semibold mb-4">Contact</h3>
+        <div class="space-y-2 text-sm">
+          <p class="text-steel-gray">
+            <a href="tel:612-825-8779" class="hover:text-construction-orange transition-colors">
+              📞 (612) 825-8779
+            </a>
+          </p>
+          <p class="text-steel-gray">📍 Minneapolis, MN</p>
+          <p class="text-steel-gray">🕒 Mon-Fri 8AM-5PM</p>
+          <div class="mt-4">
+            <a href="#concrete-booking-form" class="inline-flex items-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-semibold text-sm hover:bg-orange-500 transition-colors scroll-to-form">
+              Get Free Quote
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="text-base text-steel-gray font-lato">
-      © {currentYear} {BUSINESS_NAME}. All rights reserved.
-    </p>
-    <p class="mt-2 text-sm text-steel-gray/70 font-lato">
-      Built with conviction by your neighbors in South Minneapolis.
-    </p>
+
+    <!-- Bottom Section -->
+    <div class="border-t border-steel-gray/20 pt-8 text-center">
+      <p class="text-base text-steel-gray font-lato">
+        © {currentYear} {BUSINESS_NAME}. All rights reserved.
+      </p>
+      <p class="mt-2 text-sm text-steel-gray/70 font-lato">
+        Built with conviction by your neighbors in South Minneapolis.
+      </p>
+    </div>
   </div>
 </footer>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll to form for footer button
+    const scrollToFormBtn = document.querySelector('footer .scroll-to-form');
+    if (scrollToFormBtn) {
+      scrollToFormBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const formElement = document.getElementById('concrete-booking-form');
+        if (formElement) {
+          formElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      });
+    }
+  });
+</script>

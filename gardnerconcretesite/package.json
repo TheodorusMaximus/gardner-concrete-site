@@ -21,6 +21,7 @@
     "@wix/data": "^1.0.267",
     "@wix/ecom": "^1.0.1044",
     "@wix/essentials": "^0.1.23",
+    "@wix/forms": "^1.0.275",
     "@wix/members": "^1.0.304",
     "@wix/redirects": "1.0.60",
     "@wix/ricos": "^10.138.1",

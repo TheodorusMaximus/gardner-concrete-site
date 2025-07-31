@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Navbar />
+  <main class="min-h-screen pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <h1 class="text-4xl font-bold text-charcoal-black mb-8">Contact Us</h1>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="prose prose-lg">
+          <p class="text-xl text-steel-gray mb-6">
+            Get in touch with Gardner Concrete for your next project.
+          </p>
+          
+          <h2>Contact Information</h2>
+          <div class="space-y-4">
+            <p><strong>Phone:</strong> [Your Phone Number]</p>
+            <p><strong>Email:</strong> [Your Email]</p>
+            <p><strong>Address:</strong> [Your Address]</p>
+          </div>
+          
+          <h2>Business Hours</h2>
+          <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
+          Saturday: 9:00 AM - 4:00 PM<br />
+          Sunday: Closed</p>
+        </div>
+        
+        <div class="bg-gray-50 p-8 rounded-lg">
+          <h2 class="text-2xl font-bold text-charcoal-black mb-6">Request a Quote</h2>
+          <form class="space-y-4">
+            <div>
+              <label for="name" class="block text-sm font-medium text-charcoal-black">Name</label>
+              <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-charcoal-black">Email</label>
+              <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-charcoal-black">Phone</label>
+              <input type="tel" id="phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-charcoal-black">Project Details</label>
+              <textarea id="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-construction-orange text-white py-2 px-4 rounded-md hover:bg-orange-600 transition-colors">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

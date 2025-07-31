@@ -1,0 +1,371 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+
+const testimonials = [
+  {
+    text: "We had our very old patio removed and a new one put in and are so excited and happy with how the new one turned out. Cole and the crew came and were so nice and did a great job. The price was also right. I feel so lucky and privileged to have found this company.",
+    author: "Jan Berg",
+    date: "6/12/24",
+    location: "Minneapolis"
+  },
+  {
+    text: "I hired G Gardner to parge my foundation and fix crumbling, cracking. Randy came out, answered all my questions, explained how the work would go, it was completed faster than estimated and it looks absolutely amazing! They are a great family run business and reasonable with prices. But most important, they do great work!",
+    author: "Suzy Rupp", 
+    date: "5/22/24",
+    location: "St. Paul"
+  }
+];
+
+const timeline = [
+  {
+    year: "1949",
+    title: "The Foundation is Laid",
+    description: "Gerald Gardner, Sr. returns from WWII and founds G. Gardner Concrete & Waterproofing, beginning a legacy of foundational excellence in Minneapolis.",
+    icon: "🏗️"
+  },
+  {
+    year: "1999", 
+    title: "Second Generation Leadership",
+    description: "Randy Gardner takes over operations, continuing the family commitment to quality service and expanding the company's reputation throughout the Twin Cities.",
+    icon: "👨‍💼"
+  },
+  {
+    year: "2022",
+    title: "Innovation Meets Tradition", 
+    description: "Gerald Gardner Sr.'s grandson joins leadership, bringing over a decade of concrete industry experience and integrating cutting-edge technologies with time-tested craftsmanship.",
+    icon: "🚀"
+  }
+];
+
+const specializations = [
+  {
+    tier: "Tier 1",
+    title: "Foundation & Structural Experts",
+    description: "Complex, high-stakes projects that protect your home's most valuable asset",
+    features: ["Bowed wall repair", "Foundation crack sealing", "Structural reinforcement", "Core-filling techniques"],
+    icon: "🏛️",
+    color: "red"
+  },
+  {
+    tier: "Tier 2", 
+    title: "Water Management Specialists",
+    description: "Comprehensive drainage solutions that solve problems at their source",
+    features: ["Drain tile systems", "Sump pump installation", "Waterproofing", "Moisture control"],
+    icon: "💧",
+    color: "blue"
+  },
+  {
+    tier: "Tier 3",
+    title: "Concrete & Hardscaping",
+    description: "Beautiful, durable concrete work that enhances your property value",
+    features: ["Driveways & sidewalks", "Patios & outdoor spaces", "Decorative concrete", "Repairs & restoration"],
+    icon: "🏗️", 
+    color: "green"
+  }
+];
+
+const teamValues = [
+  {
+    title: "Trust Equity",
+    description: "When clients allow us to perform demolition inside their homes, that's not hiring a commodity service—that's placing immense trust in our professionalism.",
+    icon: "🤝"
+  },
+  {
+    title: "Diagnostic Excellence", 
+    description: "Every small job is a paid discovery call. We don't just fix symptoms—we identify and solve underlying problems.",
+    icon: "🔍"
+  },
+  {
+    title: "Comprehensive Solutions",
+    description: "From micro-repairs to complex structural projects, we're your single source for all foundation and concrete needs.",
+    icon: "🎯"
+  }
+];
+---
+
+<Layout title="About Us - G. Gardner Concrete & Waterproofing | 75+ Years of Excellence" description="Learn about our 75+ year legacy of foundational excellence. From WWII veteran founder to 3rd generation leadership, discover why Minneapolis trusts Gardner for complex foundation and concrete solutions.">
+  <Navbar />
+
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal-black text-concrete-white py-24 sm:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-charcoal-black/90 to-charcoal-black/70"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="mb-6">
+            <span class="inline-block bg-construction-orange px-4 py-2 rounded-full text-sm font-semibold">
+              Foundational Excellence Since 1949
+            </span>
+          </div>
+          <h1 class="font-montserrat font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight mb-6">
+            Three Generations of <span class="text-construction-orange">Trust</span> & Expertise
+          </h1>
+          <p class="text-lg sm:text-xl mb-8 text-gray-200 leading-relaxed">
+            From a WWII veteran's vision to today's innovative leadership, G. Gardner Concrete & Waterproofing has been Minneapolis's trusted foundation and concrete specialists for over 75 years.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <Button href="#our-story" variant="orangeBlack" size="lg">Discover Our Story</Button>
+            <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-charcoal-black transition-colors">
+              📞 Call (612) 825-8779
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="bg-white/10 backdrop-blur rounded-xl p-8 border border-white/20">
+            <h3 class="font-bold text-2xl mb-6 text-center">By the Numbers</h3>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-construction-orange mb-2">75+</div>
+                <div class="text-sm text-gray-300">Years of Excellence</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-construction-orange mb-2">3</div>
+                <div class="text-sm text-gray-300">Generations of Leadership</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-construction-orange mb-2">1,000+</div>
+                <div class="text-sm text-gray-300">Projects Completed</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-construction-orange mb-2">4.8</div>
+                <div class="text-sm text-gray-300">Star Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Timeline -->
+  <section class="py-20 bg-concrete-white" id="our-story">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4">Our Legacy of Excellence</h2>
+        <p class="text-steel-gray text-lg max-w-2xl mx-auto">From humble beginnings to Minneapolis's most trusted foundation specialists, our story spans three generations of dedication to quality and innovation.</p>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-construction-orange hidden lg:block"></div>
+        
+        <div class="space-y-12">
+          {timeline.map((item, index) => (
+            <div class={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex-col lg:gap-16 gap-8`}>
+              <div class="flex-1">
+                <Card class="bg-white border border-gray-200 shadow-lg p-8 hover:shadow-xl transition-shadow">
+                  <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-construction-orange rounded-full flex items-center justify-center text-2xl">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div class="text-2xl font-bold text-construction-orange">{item.year}</div>
+                      <h3 class="font-bold text-xl text-charcoal-black">{item.title}</h3>
+                    </div>
+                  </div>
+                  <p class="text-steel-gray leading-relaxed">{item.description}</p>
+                </Card>
+              </div>
+              <div class="hidden lg:block w-8 h-8 bg-construction-orange rounded-full border-4 border-white shadow-lg z-10"></div>
+              <div class="flex-1 lg:block hidden"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes Us Different -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4">We're Not Your Average Contractor</h2>
+        <p class="text-steel-gray text-lg max-w-3xl mx-auto">Gardner isn't a general contractor—we're specialized foundation and water management experts. Our strategic approach focuses on solving problems at their source, not just treating symptoms.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 mb-16">
+        {specializations.map((spec) => (
+          <Card class="bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all p-8 text-center">
+            <div class={`w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center text-3xl ${
+              spec.color === 'red' ? 'bg-red-100' : 
+              spec.color === 'blue' ? 'bg-blue-100' : 'bg-green-100'
+            }`}>
+              {spec.icon}
+            </div>
+            <div class={`text-sm font-semibold mb-2 ${
+              spec.color === 'red' ? 'text-red-600' : 
+              spec.color === 'blue' ? 'text-blue-600' : 'text-green-600'
+            }`}>
+              {spec.tier}
+            </div>
+            <h3 class="font-bold text-xl text-charcoal-black mb-4">{spec.title}</h3>
+            <p class="text-steel-gray mb-6">{spec.description}</p>
+            <ul class="space-y-2">
+              {spec.features.map((feature) => (
+                <li class="text-sm text-charcoal-black flex items-center gap-2">
+                  <span class="text-construction-orange font-bold">•</span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+
+      <!-- Center of Excellence Callout -->
+      <Card class="bg-construction-orange text-white p-8 text-center">
+        <h3 class="font-bold text-2xl mb-4">Center of Excellence: Suspended Garage Floors</h3>
+        <p class="text-lg mb-4 opacity-90">
+          We're among the few contractors in Minneapolis with the engineering expertise to construct suspended garage floors—a highly specialized service that showcases our advanced structural capabilities.
+        </p>
+        <Button href="/services/concrete" class="bg-white text-construction-orange hover:bg-gray-100">
+          Learn About Our Advanced Services
+        </Button>
+      </Card>
+    </div>
+  </section>
+
+  <!-- Our Values & Philosophy -->
+  <section class="py-20 bg-concrete-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4">Why Minneapolis Trusts Gardner</h2>
+        <p class="text-steel-gray text-lg max-w-2xl mx-auto">Our approach is built on decades of experience and a deep understanding of what makes homeowners feel confident in their choice of contractor.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {teamValues.map((value) => (
+          <Card class="bg-white border border-gray-200 shadow-lg p-8 text-center hover:shadow-xl transition-shadow">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-2xl mx-auto mb-6">
+              {value.icon}
+            </div>
+            <h3 class="font-bold text-xl text-charcoal-black mb-4">{value.title}</h3>
+            <p class="text-steel-gray leading-relaxed">{value.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Success Stories -->
+  <section class="py-20 bg-charcoal-black text-concrete-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4">What Our Clients Say</h2>
+        <p class="text-gray-300 text-lg max-w-2xl mx-auto">Don't just take our word for it—hear from Minneapolis homeowners who've trusted us with their most important projects.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {testimonials.map((testimonial) => (
+          <Card class="bg-white/10 border border-white/20 backdrop-blur p-8">
+            <div class="mb-6">
+              <div class="text-construction-orange text-2xl mb-4">★★★★★</div>
+              <blockquote class="text-gray-200 text-lg leading-relaxed italic">
+                "{testimonial.text}"
+              </blockquote>
+            </div>
+            <div class="border-t border-white/20 pt-4">
+              <div class="font-semibold text-white">{testimonial.author}</div>
+              <div class="text-gray-300 text-sm">{testimonial.location} • {testimonial.date}</div>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <Button href="/our-work" class="bg-construction-orange text-white hover:bg-orange-500">
+          See More Success Stories
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials & Trust Indicators -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black mb-4">Licensed, Insured & Trusted</h2>
+        <p class="text-steel-gray text-lg max-w-2xl mx-auto">Your peace of mind is our priority. We maintain all necessary licenses, insurance, and certifications to protect you and your investment.</p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <Card class="bg-white border border-gray-200 shadow-sm p-6 text-center">
+          <div class="text-3xl mb-4">📜</div>
+          <h3 class="font-semibold text-charcoal-black mb-2">Licensed</h3>
+          <p class="text-steel-gray text-sm">Fully licensed in Minnesota for all concrete and foundation work</p>
+        </Card>
+        <Card class="bg-white border border-gray-200 shadow-sm p-6 text-center">
+          <div class="text-3xl mb-4">🛡️</div>
+          <h3 class="font-semibold text-charcoal-black mb-2">Insured</h3>
+          <p class="text-steel-gray text-sm">Comprehensive liability and workers' compensation coverage</p>
+        </Card>
+        <Card class="bg-white border border-gray-200 shadow-sm p-6 text-center">
+          <div class="text-3xl mb-4">⭐</div>
+          <h3 class="font-semibold text-charcoal-black mb-2">4.8 Star Rating</h3>
+          <p class="text-steel-gray text-sm">Consistently highly rated by Minneapolis homeowners</p>
+        </Card>
+        <Card class="bg-white border border-gray-200 shadow-sm p-6 text-center">
+          <div class="text-3xl mb-4">💰</div>
+          <h3 class="font-semibold text-charcoal-black mb-2">Free Estimates</h3>
+          <p class="text-steel-gray text-sm">No-obligation consultations and transparent pricing</p>
+        </Card>
+      </div>
+
+      <Card class="bg-blue-50 border border-blue-200 p-8 text-center">
+        <h3 class="font-bold text-2xl text-charcoal-black mb-4">Ready to Experience the Gardner Difference?</h3>
+        <p class="text-steel-gray text-lg mb-6 max-w-2xl mx-auto">
+          Join thousands of satisfied Minneapolis homeowners who've trusted us with their foundation and concrete needs. Get your free consultation today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="#concrete-booking-form" variant="orangeBlack" size="lg" class="scroll-to-form">
+            Get Free Consultation
+          </Button>
+          <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg border-2 border-construction-orange text-construction-orange hover:bg-construction-orange hover:text-white transition-colors">
+            📞 Call (612) 825-8779
+          </a>
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll for internal links
+    const scrollLinks = document.querySelectorAll('a[href^="#"]');
+    scrollLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      });
+    });
+
+    // Smooth scroll to form
+    const scrollToFormBtns = document.querySelectorAll('.scroll-to-form');
+    scrollToFormBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const formElement = document.getElementById('concrete-booking-form');
+        if (formElement) {
+          formElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      });
+    });
+  });
+</script>

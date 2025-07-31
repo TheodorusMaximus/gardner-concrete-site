@@ -1,0 +1,320 @@
+---
+// ConcreteBookingForm.astro - Customer-centric concrete job booking form
+---
+
+<div class="bg-white rounded-xl shadow-xl p-8 max-w-4xl mx-auto">
+  <!-- Header Section -->
+  <div class="text-center mb-8">
+    <div class="inline-flex items-center justify-center w-16 h-16 bg-construction-orange/10 rounded-full mb-4">
+      <svg class="w-8 h-8 text-construction-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+      </svg>
+    </div>
+    <h2 class="text-3xl font-bold text-charcoal-black mb-2">Let's Build Something Amazing Together</h2>
+    <p class="text-lg text-steel-gray">Tell us about your concrete project and we'll provide a free consultation and quote</p>
+  </div>
+
+  <!-- Success Message (Hidden by default) -->
+  <div id="success-message" class="hidden mb-8 p-6 bg-green-50 border border-green-200 rounded-lg">
+    <div class="flex items-start">
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-green-800">Request Submitted Successfully!</h3>
+        <p class="mt-1 text-sm text-green-700" id="success-text"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Message (Hidden by default) -->
+  <div id="error-message" class="hidden mb-8 p-6 bg-red-50 border border-red-200 rounded-lg">
+    <div class="flex items-start">
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-red-800">Submission Error</h3>
+        <p class="mt-1 text-sm text-red-700" id="error-text"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <form id="concrete-booking-form" class="space-y-8">
+    <!-- Personal Information Section -->
+    <div class="bg-gray-50 rounded-lg p-6">
+      <h3 class="text-xl font-semibold text-charcoal-black mb-4 flex items-center">
+        <svg class="w-5 h-5 text-construction-orange mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+        Your Contact Information
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-charcoal-black mb-2">Full Name *</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+            placeholder="Your full name"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-charcoal-black mb-2">Email Address *</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+            placeholder="your@email.com"
+          />
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium text-charcoal-black mb-2">Phone Number *</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            required 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+            placeholder="(555) 123-4567"
+          />
+        </div>
+        <div>
+          <label for="preferredContact" class="block text-sm font-medium text-charcoal-black mb-2">Preferred Contact Method *</label>
+          <select 
+            id="preferredContact" 
+            name="preferredContact" 
+            required 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+          >
+            <option value="">Select preference</option>
+            <option value="phone">Phone Call</option>
+            <option value="email">Email</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Information Section -->
+    <div class="bg-gray-50 rounded-lg p-6">
+      <h3 class="text-xl font-semibold text-charcoal-black mb-4 flex items-center">
+        <svg class="w-5 h-5 text-construction-orange mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        Project Details
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="projectType" class="block text-sm font-medium text-charcoal-black mb-2">Type of Concrete Work *</label>
+          <select 
+            id="projectType" 
+            name="projectType" 
+            required 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+          >
+            <option value="">Select project type</option>
+            <option value="driveway">Driveway Installation/Replacement</option>
+            <option value="patio">Patio & Outdoor Living Space</option>
+            <option value="sidewalk">Sidewalks & Walkways</option>
+            <option value="foundation">Foundation Work</option>
+            <option value="steps">Steps & Entryways</option> 
+            <option value="garage-floor">Garage Floor</option>
+            <option value="basement-floor">Basement Floor</option>
+            <option value="repair">Concrete Repair</option>
+            <option value="decorative">Decorative/Stamped Concrete</option>
+            <option value="other">Other (please describe)</option>
+          </select>
+        </div>
+        <div>
+          <label for="propertyAddress" class="block text-sm font-medium text-charcoal-black mb-2">Property Address *</label>
+          <input 
+            type="text" 
+            id="propertyAddress" 
+            name="propertyAddress" 
+            required 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+            placeholder="Street address, City, State, ZIP"
+          />
+        </div>
+        <div>
+          <label for="timeframe" class="block text-sm font-medium text-charcoal-black mb-2">When do you need this completed? *</label>
+          <select 
+            id="timeframe" 
+            name="timeframe" 
+            required 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+          >
+            <option value="">Select timeframe</option>
+            <option value="asap">As soon as possible</option>
+            <option value="1-2-weeks">Within 1-2 weeks</option>
+            <option value="1-month">Within 1 month</option>
+            <option value="2-3-months">Within 2-3 months</option>
+            <option value="planning">Just planning ahead</option>
+          </select>
+        </div>
+        <div>
+          <label for="budget" class="block text-sm font-medium text-charcoal-black mb-2">Estimated Budget Range</label>
+          <select 
+            id="budget" 
+            name="budget" 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+          >
+            <option value="">Select budget range (optional)</option>
+            <option value="under-5k">Under $5,000</option>
+            <option value="5k-10k">$5,000 - $10,000</option>
+            <option value="10k-20k">$10,000 - $20,000</option>
+            <option value="20k-50k">$20,000 - $50,000</option>
+            <option value="50k-plus">$50,000+</option>
+            <option value="not-sure">Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="mt-6">
+        <label for="projectDescription" class="block text-sm font-medium text-charcoal-black mb-2">Project Description *</label>
+        <textarea 
+          id="projectDescription" 
+          name="projectDescription" 
+          required 
+          rows="4" 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+          placeholder="Please describe your project in detail. Include dimensions, specific requirements, challenges, or any other important information that will help us provide an accurate quote."
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Additional Information Section -->
+    <div class="bg-gray-50 rounded-lg p-6">
+      <h3 class="text-xl font-semibold text-charcoal-black mb-4 flex items-center">
+        <svg class="w-5 h-5 text-construction-orange mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        Additional Information
+      </h3>
+      <div>
+        <label for="heardAboutUs" class="block text-sm font-medium text-charcoal-black mb-2">How did you hear about us?</label>
+        <select 
+          id="heardAboutUs" 
+          name="heardAboutUs" 
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-construction-orange focus:border-construction-orange transition-colors"
+        >
+          <option value="">Select an option (optional)</option>
+          <option value="google-search">Google Search</option>
+          <option value="social-media">Social Media</option>
+          <option value="referral">Friend/Family Referral</option>
+          <option value="neighbor">Saw work in neighborhood</option>
+          <option value="online-ad">Online Advertisement</option>
+          <option value="yellow-pages">Yellow Pages/Directory</option>
+          <option value="previous-customer">Previous Customer</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button 
+        type="submit" 
+        id="submit-btn"
+        class="inline-flex items-center px-8 py-4 bg-construction-orange text-white font-semibold rounded-lg shadow-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-construction-orange focus:ring-offset-2 transition-all duration-200 transform hover:scale-105"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+        </svg>
+        <span id="submit-text">Get My Free Quote</span>
+      </button>
+      <p class="mt-4 text-sm text-steel-gray">
+        We'll contact you within 24 hours with a detailed quote and consultation.
+        <br>No obligation • Free estimates • Licensed & insured
+      </p>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('concrete-booking-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const submitText = document.getElementById('submit-text');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    const successText = document.getElementById('success-text');
+    const errorText = document.getElementById('error-text');
+
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitText.textContent = 'Submitting...';
+        
+        // Hide previous messages
+        successMessage.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const submissionData = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          projectType: formData.get('projectType'),
+          projectDescription: formData.get('projectDescription'),
+          propertyAddress: formData.get('propertyAddress'),
+          timeframe: formData.get('timeframe'),
+          budget: formData.get('budget') || 'Not specified',
+          preferredContact: formData.get('preferredContact'),
+          heardAboutUs: formData.get('heardAboutUs') || 'Not specified'
+        };
+        
+        try {
+          // Submit to Wix backend
+          const response = await fetch('/api/submit-concrete-form', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(submissionData)
+          });
+          
+          const result = await response.json();
+          
+          if (result.success) {
+            // Show success message
+            successText.textContent = result.message;
+            successMessage.classList.remove('hidden');
+            
+            // Reset form
+            form.reset();
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            throw new Error(result.message);
+          }
+        } catch (error) {
+          // Show error message
+          errorText.textContent = error.message || 'An unexpected error occurred. Please try again.';
+          errorMessage.classList.remove('hidden');
+          
+          // Scroll to error message
+          errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } finally {
+          // Restore button state
+          submitBtn.disabled = false;
+          submitText.textContent = 'Get My Free Quote';
+        }
+      });
+    }
+  });
+</script>

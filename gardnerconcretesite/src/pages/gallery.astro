@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Navbar />
+  <main class="min-h-screen pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <h1 class="text-4xl font-bold text-charcoal-black mb-8">Gallery</h1>
+      <div class="prose prose-lg max-w-none mb-12">
+        <p class="text-xl text-steel-gray">
+          View our completed projects and see the quality of our workmanship.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Placeholder for project images -->
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center">
+          <p class="text-steel-gray">Project Photo 1</p>
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center">
+          <p class="text-steel-gray">Project Photo 2</p>
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center">
+          <p class="text-steel-gray">Project Photo 3</p>
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center">
+          <p class="text-steel-gray">Project Photo 4</p>
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center">
+          <p class="text-steel-gray">Project Photo 5</p>
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center">
+          <p class="text-steel-gray">Project Photo 6</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

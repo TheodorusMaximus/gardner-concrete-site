@@ -5,7 +5,7 @@ import Footer from "../../components/Footer.astro";
 import Button from "../../components/ui/Button.astro";
 import Card from "../../components/ui/Card.astro";
 import services from "../../utils/services-data";
-import { getBlogPosts, type BlogPost } from "../../utils/wix-client";
+import { getBlogPosts, type BlogPost } from "../../utils/wix-blog-client";
 
 export async function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.slug } }));
@@ -161,55 +161,61 @@ function getImportanceIcon(importance: string) {
   </section>
 
   <!-- Solutions Section -->
-  <section class="py-20 bg-charcoal-black text-concrete-white">
+  <section class="py-20 bg-gray-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4 text-center">{service.solutions.title}</h2>
-      <p class="text-gray-300 text-lg text-center mb-12 max-w-3xl mx-auto">{service.solutions.description}</p>
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4 text-center text-charcoal-black">{service.solutions.title}</h2>
+      <p class="text-steel-gray text-lg text-center mb-12 max-w-3xl mx-auto">{service.solutions.description}</p>
 
       <div class="grid lg:grid-cols-2 gap-8">
         {service.solutions.approaches.map((approach) => (
-          <Card class="bg-white/5 backdrop-blur border border-white/10 p-6">
-            <div class="flex items-start justify-between mb-4">
-              <h3 class="font-semibold text-xl text-bright-yellow">{approach.name}</h3>
-              <div class="text-right">
-                <div class={`text-sm font-medium ${getCostColor(approach.cost)}`}>
+          <Card class="bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow p-8">
+            <div class="flex items-start justify-between mb-6">
+              <h3 class="font-bold text-2xl text-charcoal-black">{approach.name}</h3>
+              <div class="text-right bg-gray-50 rounded-lg p-3">
+                <div class={`text-sm font-bold ${getCostColor(approach.cost)}`}>
                   Cost: {approach.cost.toUpperCase()}
                 </div>
-                <div class="text-xs text-gray-400">{approach.duration}</div>
+                <div class="text-sm text-charcoal-black font-medium">{approach.duration}</div>
               </div>
             </div>
             
-            <p class="text-gray-300 mb-4">{approach.description}</p>
+            <p class="text-charcoal-black text-base mb-6 leading-relaxed">{approach.description}</p>
             
-            <div class="mb-4">
-              <h4 class="font-medium text-green-400 mb-2">Advantages:</h4>
-              <ul class="space-y-1">
+            <div class="mb-6">
+              <h4 class="font-bold text-lg text-green-700 mb-3 flex items-center gap-2">
+                <span class="text-green-500">✓</span> Advantages:
+              </h4>
+              <ul class="space-y-2 bg-green-50 border border-green-200 rounded-lg p-4">
                 {approach.pros.map((pro) => (
-                  <li class="text-sm text-gray-300 flex items-start gap-2">
-                    <span class="text-green-400 mt-1">•</span>
-                    {pro}
+                  <li class="text-sm text-charcoal-black flex items-start gap-3">
+                    <span class="text-green-600 mt-1 font-bold">•</span>
+                    <span class="leading-relaxed">{pro}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {approach.cons && approach.cons.length > 0 && (
-              <div class="mb-4">
-                <h4 class="font-medium text-red-400 mb-2">Considerations:</h4>
-                <ul class="space-y-1">
+              <div class="mb-6">
+                <h4 class="font-bold text-lg text-red-700 mb-3 flex items-center gap-2">
+                  <span class="text-red-500">⚠</span> Considerations:
+                </h4>
+                <ul class="space-y-2 bg-red-50 border border-red-200 rounded-lg p-4">
                   {approach.cons.map((con) => (
-                    <li class="text-sm text-gray-300 flex items-start gap-2">
-                      <span class="text-red-400 mt-1">•</span>
-                      {con}
+                    <li class="text-sm text-charcoal-black flex items-start gap-3">
+                      <span class="text-red-600 mt-1 font-bold">•</span>
+                      <span class="leading-relaxed">{con}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
 
-            <div class="bg-white/10 rounded-lg p-3">
-              <span class="font-medium text-bright-yellow">Best For: </span>
-              <span class="text-gray-300">{approach.bestFor}</span>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2">
+                <span class="text-blue-600">🎯</span> Best For:
+              </h4>
+              <p class="text-charcoal-black font-medium">{approach.bestFor}</p>
             </div>
           </Card>
         ))}
@@ -359,29 +365,53 @@ function getImportanceIcon(importance: string) {
   </section>
 
   <!-- Location-Specific Section -->
-  <section class="py-20 bg-charcoal-black text-concrete-white">
+  <section class="py-20 bg-concrete-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4 text-center">{service.locationInfo.title}</h2>
-      <p class="text-gray-300 text-lg text-center mb-12 max-w-3xl mx-auto">{service.locationInfo.description}</p>
+      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4 text-center text-charcoal-black">{service.locationInfo.title}</h2>
+      <p class="text-steel-gray text-lg text-center mb-12 max-w-3xl mx-auto">{service.locationInfo.description}</p>
 
       <!-- Top Areas -->
-      <div class="mb-12">
-        <h3 class="font-semibold text-2xl text-bright-yellow mb-6">🏘️ Top Service Areas</h3>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="mb-16">
+        <div class="flex items-center justify-center mb-8">
+          <div class="bg-construction-orange text-white px-6 py-3 rounded-full">
+            <h3 class="font-bold text-xl flex items-center gap-2">
+              🏘️ Top Service Areas
+            </h3>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {service.locationInfo.topAreas.map((area) => (
-            <Card class="bg-white/5 backdrop-blur border border-white/10 p-6">
-              <h4 class="font-semibold text-lg text-bright-yellow mb-3">{area.area}</h4>
-              <p class="text-gray-300 text-sm mb-4">{area.whyCommon}</p>
+            <Card class="bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 p-6 rounded-xl">
+              <div class="border-b border-gray-100 pb-4 mb-4">
+                <h4 class="font-bold text-xl text-charcoal-black flex items-center gap-2">
+                  <span class="w-2 h-2 bg-construction-orange rounded-full"></span>
+                  {area.area}
+                </h4>
+              </div>
+              
+              <div class="mb-6">
+                <h5 class="font-semibold text-blue-700 mb-2 flex items-center gap-2">
+                  <span class="text-blue-500">ℹ️</span> Why This Area?
+                </h5>
+                <p class="text-charcoal-black text-sm leading-relaxed bg-blue-50 border border-blue-200 rounded-lg p-3">
+                  {area.whyCommon}
+                </p>
+              </div>
+
               <div>
-                <span class="font-medium text-white">Specific Challenges:</span>
-                <ul class="mt-2 space-y-1">
-                  {area.specificChallenges.map((challenge) => (
-                    <li class="text-gray-400 text-sm flex items-start gap-2">
-                      <span class="text-construction-orange mt-1">•</span>
-                      {challenge}
-                    </li>
-                  ))}
-                </ul>
+                <h5 class="font-semibold text-red-700 mb-3 flex items-center gap-2">
+                  <span class="text-red-500">⚠️</span> Specific Challenges:
+                </h5>
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <ul class="space-y-2">
+                    {area.specificChallenges.map((challenge) => (
+                      <li class="text-charcoal-black text-sm flex items-start gap-3">
+                        <span class="text-construction-orange mt-1 font-bold">•</span>
+                        <span class="leading-relaxed">{challenge}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </Card>
           ))}
@@ -389,27 +419,37 @@ function getImportanceIcon(importance: string) {
       </div>
 
       <!-- Climate & Soil Factors -->
-      <div class="grid md:grid-cols-2 gap-8">
-        <div>
-          <h3 class="font-semibold text-2xl text-bright-yellow mb-6">🌡️ Climate Factors</h3>
-          <ul class="space-y-3">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="bg-white border border-gray-200 shadow-lg rounded-xl p-8">
+          <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">🌡️</span>
+            </div>
+            <h3 class="font-bold text-2xl text-charcoal-black">Climate Factors</h3>
+          </div>
+          <ul class="space-y-4">
             {service.locationInfo.climateFactors.map((factor) => (
-              <li class="text-gray-300 flex items-start gap-3">
-                <span class="text-construction-orange mt-1">•</span>
-                {factor}
+              <li class="flex items-start gap-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <span class="text-construction-orange mt-1 font-bold text-lg">•</span>
+                <span class="text-charcoal-black font-medium leading-relaxed">{factor}</span>
               </li>
             ))}
           </ul>
         </div>
 
         {service.locationInfo.soilConditions && (
-          <div>
-            <h3 class="font-semibold text-2xl text-bright-yellow mb-6">🌍 Soil Conditions</h3>
-            <ul class="space-y-3">
+          <div class="bg-white border border-gray-200 shadow-lg rounded-xl p-8">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                <span class="text-2xl">🌍</span>
+              </div>
+              <h3 class="font-bold text-2xl text-charcoal-black">Soil Conditions</h3>
+            </div>
+            <ul class="space-y-4">
               {service.locationInfo.soilConditions.map((condition) => (
-                <li class="text-gray-300 flex items-start gap-3">
-                  <span class="text-construction-orange mt-1">•</span>
-                  {condition}
+                <li class="flex items-start gap-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <span class="text-construction-orange mt-1 font-bold text-lg">•</span>
+                  <span class="text-charcoal-black font-medium leading-relaxed">{condition}</span>
                 </li>
               ))}
             </ul>
@@ -515,22 +555,22 @@ function getImportanceIcon(importance: string) {
       </p>
       
       <!-- Trust Indicators -->
-      <div class="flex flex-wrap justify-center items-center gap-8 mb-10 text-sm opacity-90">
-        <div class="flex items-center gap-2">
+      <div class="flex flex-wrap justify-center items-center gap-4 mb-10">
+        <div class="bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
           <span>🏗️</span>
-          <span>75+ Years Experience</span>
+          <span class="text-charcoal-black font-semibold text-sm">75+ Years Experience</span>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
           <span>📜</span>
-          <span>Licensed & Insured</span>
+          <span class="text-charcoal-black font-semibold text-sm">Licensed & Insured</span>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
           <span>⭐</span>
-          <span>4.8 Star Rating</span>
+          <span class="text-charcoal-black font-semibold text-sm">4.8 Star Rating</span>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-sm">
           <span>💰</span>
-          <span>Free Estimates</span>
+          <span class="text-charcoal-black font-semibold text-sm">Free Estimates</span>
         </div>
       </div>
 

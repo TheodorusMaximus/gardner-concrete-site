@@ -3,62 +3,51 @@ import { BUSINESS_NAME } from '../utils/constants';
 import services from '../utils/services-data';
 ---
 
-<header class="fixed top-0 left-0 w-full bg-charcoal-black/90 backdrop-blur-md z-50 border-b border-steel-gray/20">
+<header class="fixed top-0 left-0 w-full bg-gray-300/95 backdrop-blur-md z-50 border-b border-gray-400/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
       <div class="flex items-center">
         <a href="/" class="flex items-center">
-          <svg
-            class="h-10 w-10 text-construction-orange"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm4-4h10V3H7v2z"></path>
-          </svg>
-          <span class="ml-3 text-2xl font-montserrat font-extrabold text-concrete-white tracking-wider"
-            >{BUSINESS_NAME}</span
-          >
+          <img
+            src="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/logo-new-576w%20(1)%202.avif"
+            alt="Gardner Concrete Logo"
+            class="h-12 w-auto"
+          />
         </a>
       </div>
       <nav class="hidden md:flex space-x-6">
-        <a href="/" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
+        <a href="/" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange transition-colors"
           >Home</a
         >
-        <a href="/our-work" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
+        <a href="/our-work" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange transition-colors"
           >Our Work</a
         >
         <!-- Services dropdown (click-toggle) -->
         <div class="relative">
-          <button id="services-toggle" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange flex items-center gap-1 transition-colors focus:outline-none">
+          <button id="services-toggle" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange flex items-center gap-1 transition-colors focus:outline-none">
             Services
             <svg class="w-4 h-4 transition-transform" id="services-caret" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
 
-          <ul id="services-menu" class="hidden absolute left-0 mt-2 w-56 bg-charcoal-black/95 backdrop-blur-md border border-steel-gray/30 rounded-md shadow-lg">
+          <ul id="services-menu" class="hidden absolute left-0 mt-2 w-56 bg-gray-200/95 backdrop-blur-md border border-gray-400/30 rounded-md shadow-lg">
             {services.map((service) => (
               <li>
-                <a href={`/services/${service.slug}`} class="block px-4 py-2 text-sm text-steel-gray hover:text-construction-orange transition-colors">
+                <a href={`/services/${service.slug}`} class="block px-4 py-2 text-sm text-black hover:text-construction-orange transition-colors">
                   {service.name}
                 </a>
               </li>
             ))}
           </ul>
         </div>
-        <a
-          href="/schedule"
-          class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
-          >Schedule</a
+        <a href="/about-us" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange transition-colors"
+          >About Us</a
         >
-        <a href="/blog" class="px-3 py-2 text-base font-poppins font-semibold text-steel-gray hover:text-construction-orange transition-colors"
-          >Blog</a
+        <a href="/blog" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange transition-colors"
+          >Resources</a
         >
 
         <!-- Primary CTA -->
-        <a href="/schedule" class="ml-2 inline-flex items-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-poppins font-semibold shadow-md hover:bg-orange-500 transition-colors">
+        <a href="#concrete-booking-form" class="ml-2 inline-flex items-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-poppins font-semibold shadow-md hover:bg-orange-500 transition-colors scroll-to-form">
           Get a Quote
         </a>
       </nav>
@@ -93,5 +82,20 @@ import services from '../utils/services-data';
         closeMenu();
       }
     });
+
+    // Smooth scroll to form
+    const scrollToFormBtn = document.querySelector('.scroll-to-form');
+    if (scrollToFormBtn) {
+      scrollToFormBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const formElement = document.getElementById('concrete-booking-form');
+        if (formElement) {
+          formElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      });
+    }
   });
 </script>
