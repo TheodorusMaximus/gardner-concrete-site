@@ -37,13 +37,24 @@ const baseClasses = 'font-inter font-bold uppercase tracking-wider rounded-md tr
 const disabledClasses = disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer';
 ---
 
-<button
-  id={id}
-  type={type}
-  class:list={[baseClasses, variants[variant], sizes[size], disabledClasses, className]}
-  disabled={disabled}
-  data-slot-index={slotIndex}
-  {...rest}
->
-  <slot />
-</button>
+{rest.href ? (
+  <a
+    href={rest.href}
+    id={id}
+    class:list={[baseClasses, variants[variant], sizes[size], disabledClasses, className]}
+    {...rest}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    id={id}
+    type={type}
+    class:list={[baseClasses, variants[variant], sizes[size], disabledClasses, className]}
+    disabled={disabled}
+    data-slot-index={slotIndex}
+    {...rest}
+  >
+    <slot />
+  </button>
+)}

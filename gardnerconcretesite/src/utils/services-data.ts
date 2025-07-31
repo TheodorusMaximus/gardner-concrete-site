@@ -121,7 +121,7 @@ export const services: Service[] = [
       "Cracked wall restoration",
       "Block core-filling & resurfacing"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1581091012184-1fef61c211f9?auto=format&fit=crop&w=800&q=60",
+    imageUrl: "https://images.unsplash.com/photo-1621905252472-e52b5485b3f9?auto=format&fit=crop&w=800&q=80",
     seoTitle: "Foundation Repair Minneapolis & St Paul | Bowed & Cracked Wall Experts",
     seoDescription: "Licensed foundation repair contractor serving Minneapolis–St Paul. We fix bowed, cracked, settling walls and restore structural integrity. Free inspection & 0 % financing.",
     faqs: [
@@ -401,7 +401,7 @@ export const services: Service[] = [
       "Garage & suspended slabs",
       "Driveways & basement floors"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1508898578281-774ac4893e2b?auto=format&fit=crop&w=800&q=60",
+    imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
     seoTitle: "Concrete Contractor Minneapolis | Patios, Driveways & Suspended Garage Floors",
     seoDescription: "Custom concrete patios, decorative walkways, garage slabs & steps in the Twin Cities. 75+ years of craftsmanship. Request your free quote today.",
     faqs: [
@@ -737,7 +737,7 @@ export const services: Service[] = [
       "Sump pump installation & repair", 
       "Foundation wall treatments"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=60",
+    imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
     seoTitle: "Basement Waterproofing Minneapolis | Drain-Tile & Sump Pump Pros",
     seoDescription: "Professional basement waterproofing services in Minneapolis. Interior drain tile, sump pumps, exterior systems. Licensed & insured since 1949.",
     faqs: [

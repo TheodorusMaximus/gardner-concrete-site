@@ -61,7 +61,7 @@ if (blogPosts.length === 0) {
       <!-- Hero Section -->
       <section class="relative bg-charcoal-black text-concrete-white py-20">
         <div class="absolute inset-0 bg-black/60 z-10"></div>
-        <div class="absolute inset-0 bg-cover bg-center opacity-20 z-5" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-20 z-5" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80')"></div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
           <div class="text-center">
@@ -115,7 +115,7 @@ if (blogPosts.length === 0) {
           <!-- Blog Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
                         {blogPosts.map((post, index) => (
-              <article class="blog-card animate-fade-up opacity-0" data-category="general" style={`animation-delay: ${index * 100}ms`}>
+              <article class="blog-card animate-fade-up opacity-0" data-category={post?.categories?.[0]?.title?.toLowerCase() ?? post?.tags?.[0]?.toLowerCase() ?? 'general'} style={`animation-delay: ${index * 100}ms`}>
                 <a href={`/blog/${post.slug}`} class="block h-full">
                   <Card class="overflow-hidden h-full group cursor-pointer hover:shadow-xl transition-all duration-300">
                     <div class="relative h-48 overflow-hidden">
@@ -177,7 +177,7 @@ if (blogPosts.length === 0) {
 
           <!-- Load More Button -->
           <div class="text-center mt-16">
-            <button class="px-8 py-3 bg-construction-orange text-white rounded-lg font-poppins font-semibold hover:bg-construction-orange/90 transition-colors">
+            <button id="load-more-button" class="px-8 py-3 bg-construction-orange text-white rounded-lg font-poppins font-semibold hover:bg-construction-orange/90 transition-colors">
               Load More Articles
             </button>
           </div>
@@ -199,7 +199,7 @@ if (blogPosts.length === 0) {
               placeholder="Enter your email address" 
               class="flex-1 px-4 py-3 rounded-lg text-charcoal-black font-lato"
             />
-            <button class="px-6 py-3 bg-construction-orange text-white rounded-lg font-poppins font-semibold hover:bg-construction-orange/90 transition-colors">
+            <button id="subscribe-button" class="px-6 py-3 bg-construction-orange text-white rounded-lg font-poppins font-semibold hover:bg-construction-orange/90 transition-colors">
               Subscribe
             </button>
           </div>
@@ -288,17 +288,34 @@ if (blogPosts.length === 0) {
       });
     });
 
-    // Newsletter subscription (placeholder functionality)
-    const subscribeButton = document.querySelector('button[class*="Subscribe"]');
+    // Load More Articles functionality
+    const loadMoreButton = document.getElementById('load-more-button');
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        // For now, show a message that directs users to contact for more articles
+        // In a real implementation, this would fetch more blog posts
+        alert('We\'re constantly adding new articles! For the latest updates on concrete maintenance and repair, contact us at (612) 825-8779 or visit our services pages for specific guidance.');
+      });
+    }
+
+    // Newsletter subscription functionality
+    const subscribeButton = document.getElementById('subscribe-button');
     if (subscribeButton) {
       subscribeButton.addEventListener('click', (e) => {
         e.preventDefault();
         const emailInput = document.querySelector('input[type="email"]');
         if (emailInput && emailInput.value) {
-          alert('Thank you for subscribing! We\'ll send you the latest concrete maintenance tips.');
-          emailInput.value = '';
+          // Simple email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (emailRegex.test(emailInput.value)) {
+            alert('Thank you for subscribing! We\'ll send you the latest concrete maintenance tips and expert advice.');
+            emailInput.value = '';
+          } else {
+            alert('Please enter a valid email address.');
+          }
         } else {
-          alert('Please enter a valid email address.');
+          alert('Please enter your email address to subscribe.');
         }
       });
     }

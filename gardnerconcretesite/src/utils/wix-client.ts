@@ -2,6 +2,7 @@ import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 import { posts } from '@wix/blog';
 import { submissions } from '@wix/forms';
+import { contacts } from '@wix/crm';
 
 // Initialize Wix client for server-side operations
 export function createWixClient() {
@@ -9,7 +10,8 @@ export function createWixClient() {
     modules: {
       items,
       posts,
-      submissions
+      submissions,
+      contacts
     },
     auth: OAuthStrategy({
       clientId: process.env.WIX_CLIENT_ID || '',
@@ -132,18 +134,17 @@ export interface ConcreteJobSubmission {
   heardAboutUs?: string;
 }
 
-// Submit concrete job booking form to Wix
+// Submit concrete job booking form to Wix Forms
 export async function submitConcreteJobForm(formData: ConcreteJobSubmission) {
   const wixClient = createWixClient();
   
   try {
-    // For now, we'll use a generic form ID - this would need to be set up in Wix Dashboard
-    // In a real implementation, you'd get this from your Wix Forms app
-    const CONCRETE_FORM_ID = 'concrete-booking-form'; // This needs to be replaced with actual form ID from Wix
+    // Submit to the "Job Inquiry" form using the correct form ID
+    const formId = '6a27ca40-701a-425b-8442-5990abe80c7c';
     
-    const submission = await wixClient.submissions.createSubmission({
-      formId: CONCRETE_FORM_ID,
-      status: 'PENDING',
+    // Prepare submission data in the correct format for Wix Forms API
+    const submissionPayload = {
+      formId: formId,
       submissions: {
         name: formData.name,
         email: formData.email,
@@ -155,19 +156,23 @@ export async function submitConcreteJobForm(formData: ConcreteJobSubmission) {
         budget: formData.budget,
         preferredContact: formData.preferredContact,
         heardAboutUs: formData.heardAboutUs || ''
-      }
-    });
+      },
+      status: 'CONFIRMED',
+      seen: false
+    };
+
+    const result = await wixClient.submissions.createSubmission(submissionPayload);
     
     return {
       success: true,
-      submissionId: submission._id,
+      submissionId: result.submission._id,
       message: 'Thank you! Your concrete project request has been submitted successfully. We\'ll contact you within 24 hours to discuss your project.'
     };
   } catch (error) {
     console.error('Error submitting concrete job form:', error);
     return {
       success: false,
-      message: 'Sorry, there was an error submitting your request. Please try again or call us directly at [your phone number].'
+      message: 'Sorry, there was an error submitting your request. Please try again or call us directly at (612) 825-8779.'
     };
   }
 } 

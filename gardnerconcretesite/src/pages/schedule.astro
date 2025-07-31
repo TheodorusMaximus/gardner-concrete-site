@@ -5,7 +5,8 @@ import Footer from "../components/Footer.astro";
 import DatePicker from "../components/DatePicker.astro";
 import TimeSlots from "../components/TimeSlots.astro";
 import BookingForm from "../components/BookingForm.astro";
-import SessionType from "../components/SessionType.astro";
+// SessionType removed
+import ConcreteBookingForm from "../components/ConcreteBookingForm.astro";
 import BackButton from "../components/ui/BackButton.astro";
 import "../styles/global.css";
 import { BUSINESS_NAME } from "../utils/constants";
@@ -52,21 +53,64 @@ import { BUSINESS_NAME } from "../utils/constants";
         </p>
       </div>
 
-      <div class="max-w-2xl mx-auto mb-8 animate-fade-up delay-100">
-        <SessionType />
+      <!-- Call Banner -->
+      <div class="mb-10 animate-fade-up delay-50">
+        <div class="flex flex-col sm:flex-row items-center justify-between bg-primary text-white rounded-lg p-6 shadow-lg gap-4">
+          <div>
+            <h2 class="text-2xl font-semibold mb-1">Need Answers Fast?</h2>
+            <p class="opacity-90">Call our specialists right now for immediate assistance.</p>
+          </div>
+          <a href="tel:612-825-8779" class="px-10 py-5 bg-white text-primary font-extrabold text-2xl rounded-lg shadow-lg hover:bg-gray-100 transition-colors whitespace-nowrap">
+            📞 (612) 825-8779
+          </a>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="animate-fade-up delay-200">
-          <DatePicker />
+      <!-- Two Booking Options -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Option 1: Request a Callback / Submit Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6 animate-fade-up delay-100">
+          <h3 class="text-xl font-semibold text-center mb-4">Request a Callback</h3>
+          <ConcreteBookingForm />
         </div>
 
-        <div class="animate-fade-up delay-300">
-          <TimeSlots />
+        <!-- Option 2: Book an Appointment -->
+        <div class="bg-white rounded-lg shadow-lg p-6 animate-fade-up delay-200">
+          <h3 class="text-xl font-semibold text-center mb-4">Pick a Date & Time</h3>
+          <p class="text-steel-gray text-sm mb-4 text-center">Our project manager will meet you on-site for a free 30-minute inspection and quote.</p>
+          <!-- What to expect checklist -->
+          <ul class="list-disc list-inside text-sm text-charcoal-black mb-6 space-y-1">
+            <li>Exterior & interior inspection</li>
+            <li>Moisture-meter & level checks</li>
+            <li>Photos & written quote on-site</li>
+            <li>Q&A with foundation expert</li>
+          </ul>
+          <div class="space-y-6">
+            <DatePicker />
+            <TimeSlots />
+            <div id="booking-form">
+              <BookingForm />
+            </div>
+          </div>
         </div>
 
-        <div id="booking-form" class="animate-fade-up delay-400">
-          <BookingForm />
+        <!-- Trust Strip -->
+        <div class="mt-16 animate-fade-up delay-300">
+          <div class="flex flex-wrap justify-center gap-6 bg-gray-50 border border-gray-200 rounded-lg p-6">
+            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>📜</span> Licensed MN #BC806990</div>
+            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>🛡️</span> Fully Insured</div>
+            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>⭐</span> BBB A+ Rating</div>
+            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>4.8★</span>  Google Reviews</div>
+          </div>
+        </div>
+
+        <!-- Service Area Map -->
+        <div class="mt-16 animate-fade-up delay-400">
+          <h2 class="text-center text-2xl font-bold mb-6">Proudly Serving the Twin Cities Metro</h2>
+          <div class="max-w-3xl mx-auto">
+            <img src="https://images.unsplash.com/photo-1569429594168-a4a3a693b8b9?auto=format&fit=crop&w=800&q=80" alt="Minneapolis Twin Cities service area" class="w-full rounded-lg shadow-md" />
+            <p class="text-center mt-4 text-steel-gray text-sm">Serving Minneapolis, St. Paul, and surrounding Twin Cities metro area</p>
+          </div>
         </div>
       </div>
     </div>

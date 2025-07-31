@@ -11,10 +11,30 @@ import services from '../utils/services-data';
           <img
             src="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/logo-new-576w%20(1)%202.avif"
             alt="Gardner Concrete Logo"
-            class="h-12 w-auto"
+            class="h-8 sm:h-10 md:h-12 w-auto"
           />
         </a>
       </div>
+      
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-toggle"
+        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-charcoal-black hover:text-construction-orange hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-construction-orange"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <!-- Hamburger icon -->
+        <svg id="hamburger-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <!-- Close icon -->
+        <svg id="close-icon" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Desktop navigation -->
       <nav class="hidden md:flex space-x-6">
         <a href="/" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange transition-colors"
           >Home</a
@@ -47,55 +67,145 @@ import services from '../utils/services-data';
         >
 
         <!-- Primary CTA -->
-        <a href="#concrete-booking-form" class="ml-2 inline-flex items-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-poppins font-semibold shadow-md hover:bg-orange-500 transition-colors scroll-to-form">
+        <a href="/#concrete-booking-form" class="ml-2 inline-flex items-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-poppins font-semibold shadow-md hover:bg-orange-500 transition-colors scroll-to-form">
           Get a Quote
         </a>
       </nav>
     </div>
   </div>
+  
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-300/95 backdrop-blur-md border-b border-gray-400/20">
+      <a href="/" class="block px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200">Home</a>
+      <a href="/our-work" class="block px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200">Our Work</a>
+      
+      <!-- Mobile Services Dropdown -->
+      <div class="relative">
+        <button id="mobile-services-toggle" class="w-full text-left px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200 flex items-center justify-between">
+          Services
+          <svg class="w-4 h-4 transition-transform" id="mobile-services-caret" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div id="mobile-services-menu" class="hidden pl-4">
+          {services.map((service) => (
+            <a href={`/services/${service.slug}`} class="block px-3 py-2 rounded-md text-sm text-black hover:text-construction-orange hover:bg-gray-200">
+              {service.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      
+      <a href="/about-us" class="block px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200">About Us</a>
+      <a href="/blog" class="block px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200">Resources</a>
+      
+      <!-- Mobile CTA -->
+      <div class="px-3 py-2">
+        <a href="/#concrete-booking-form" class="block w-full text-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-poppins font-semibold shadow-md hover:bg-orange-500 transition-colors mobile-scroll-to-form">
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </div>
 </header>
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
+    // Desktop services dropdown
     const toggle = document.getElementById('services-toggle');
     const menu = document.getElementById('services-menu');
     const caret = document.getElementById('services-caret');
-    if (!toggle || !menu) return;
-    function closeMenu() {
-      menu.classList.add('hidden');
-      toggle.setAttribute('aria-expanded', 'false');
-      caret?.classList.remove('rotate-180');
+    if (toggle && menu) {
+      function closeMenu() {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+        caret?.classList.remove('rotate-180');
+      }
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !menu.classList.contains('hidden');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          menu.classList.remove('hidden');
+          toggle.setAttribute('aria-expanded', 'true');
+          caret?.classList.add('rotate-180');
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+          closeMenu();
+        }
+      });
     }
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = !menu.classList.contains('hidden');
-      if (isOpen) {
-        closeMenu();
-      } else {
-        menu.classList.remove('hidden');
-        toggle.setAttribute('aria-expanded', 'true');
-        caret?.classList.add('rotate-180');
-      }
-    });
 
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-        closeMenu();
-      }
-    });
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+    
+    if (mobileMenuToggle && mobileMenu) {
+      mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        if (isOpen) {
+          // Close menu
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon?.classList.remove('hidden');
+          closeIcon?.classList.add('hidden');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        } else {
+          // Open menu
+          mobileMenu.classList.remove('hidden');
+          hamburgerIcon?.classList.add('hidden');
+          closeIcon?.classList.remove('hidden');
+          mobileMenuToggle.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    }
+    
+    // Mobile services dropdown
+    const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+    const mobileServicesMenu = document.getElementById('mobile-services-menu');
+    const mobileServicesCaret = document.getElementById('mobile-services-caret');
+    
+    if (mobileServicesToggle && mobileServicesMenu) {
+      mobileServicesToggle.addEventListener('click', () => {
+        const isOpen = !mobileServicesMenu.classList.contains('hidden');
+        if (isOpen) {
+          mobileServicesMenu.classList.add('hidden');
+          mobileServicesCaret?.classList.remove('rotate-180');
+        } else {
+          mobileServicesMenu.classList.remove('hidden');
+          mobileServicesCaret?.classList.add('rotate-180');
+        }
+      });
+    }
 
-    // Smooth scroll to form
-    const scrollToFormBtn = document.querySelector('.scroll-to-form');
-    if (scrollToFormBtn) {
-      scrollToFormBtn.addEventListener('click', (e) => {
+    // Smooth scroll to form (both desktop and mobile)
+    const scrollToFormBtns = document.querySelectorAll('.scroll-to-form, .mobile-scroll-to-form');
+    scrollToFormBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
         const formElement = document.getElementById('concrete-booking-form');
         if (formElement) {
+          // Close mobile menu if open
+          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon?.classList.remove('hidden');
+            closeIcon?.classList.add('hidden');
+            mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          }
           formElement.scrollIntoView({ 
             behavior: 'smooth', 
             block: 'start' 
           });
+        } else {
+          window.location.href = '/#concrete-booking-form';
         }
       });
-    }
+    });
   });
 </script>

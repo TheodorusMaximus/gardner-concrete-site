@@ -321,7 +321,7 @@ const teamValues = [
           Join thousands of satisfied Minneapolis homeowners who've trusted us with their foundation and concrete needs. Get your free consultation today.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="#concrete-booking-form" variant="orangeBlack" size="lg" class="scroll-to-form">
+          <Button href="/#concrete-booking-form" variant="orangeBlack" size="lg" class="scroll-to-form">
             Get Free Consultation
           </Button>
           <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg border-2 border-construction-orange text-construction-orange hover:bg-construction-orange hover:text-white transition-colors">
@@ -364,6 +364,8 @@ const teamValues = [
             behavior: 'smooth', 
             block: 'start' 
           });
+        } else {
+          window.location.href = '/#concrete-booking-form';
         }
       });
     });
