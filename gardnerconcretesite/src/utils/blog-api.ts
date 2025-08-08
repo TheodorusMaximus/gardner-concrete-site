@@ -72,8 +72,10 @@ export async function getBlogPosts(category?: string, featured?: boolean): Promi
     // Filter by category if provided
     let filteredPosts = transformedPosts;
     if (category && category !== 'all') {
+      const cat = category.toLowerCase();
+      const normalized = (cat === 'hardscapes' || cat === 'concrete work' || cat === 'concrete-work') ? 'concrete work' : category;
       filteredPosts = transformedPosts.filter(post => 
-        post.category.toLowerCase().includes(category.toLowerCase())
+        post.category.toLowerCase().includes(normalized.toLowerCase())
       );
     }
 
@@ -143,7 +145,7 @@ function getStaticBlogPosts(category?: string, featured?: boolean): BlogPost[] {
       excerpt: "Comparing stamped concrete and pavers for Minnesota driveways, patios, and walkways. Cost, durability, and maintenance considerations.",
       content: "Choosing between stamped concrete and pavers for your Minnesota outdoor project? Here's everything you need to know. Both stamped concrete and pavers can create beautiful outdoor spaces, but Minnesota's harsh winters and temperature swings require special consideration. Let's compare these options for driveways, patios, and walkways.",
       featuredImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
-      category: "Hardscapes",
+      category: "Concrete Work",
       tags: "stamped concrete, pavers, Minnesota, driveways, patios, hardscaping, concrete comparison",
       metaTitle: "Stamped Concrete vs Pavers Minnesota | G. Gardner Concrete & Waterproofing, Inc Comparison",
       metaDescription: "Compare stamped concrete vs pavers for Minnesota homes. Expert analysis of costs, durability, and maintenance. Get your free consultation with G. Gardner Concrete & Waterproofing, Inc.",
@@ -181,7 +183,7 @@ function getStaticBlogPosts(category?: string, featured?: boolean): BlogPost[] {
       excerpt: "Keep your concrete driveway looking great and lasting longer with these Minnesota-specific maintenance tips from the concrete experts.",
       content: "Proper maintenance can extend your concrete driveway's life from 20 years to 30+ years, even in Minnesota's harsh climate. Minnesota's freeze-thaw cycles, road salt, and temperature extremes are tough on concrete driveways. But with the right maintenance approach, you can protect your investment and keep your driveway looking great for decades.",
       featuredImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
-      category: "Hardscapes",
+      category: "Concrete Work",
       tags: "concrete driveway, maintenance, Minnesota, sealing, crack repair, winter protection",
       metaTitle: "Concrete Driveway Maintenance Minnesota | G. Gardner Concrete & Waterproofing, Inc Guide",
       metaDescription: "Complete concrete driveway maintenance guide for Minnesota homeowners. Expert tips for sealing, crack repair, and winter protection. Professional services available.",
@@ -200,8 +202,10 @@ function getStaticBlogPosts(category?: string, featured?: boolean): BlogPost[] {
 
   // Filter by category if provided
   if (category && category !== 'all') {
+    const cat = category.toLowerCase();
+    const normalized = (cat === 'hardscapes' || cat === 'concrete-work') ? 'concrete work' : category;
     filteredPosts = filteredPosts.filter(post => 
-      post.category.toLowerCase() === category.toLowerCase()
+      post.category.toLowerCase() === normalized.toLowerCase()
     );
   }
 
@@ -277,7 +281,7 @@ export function getCategoryBadgeColor(category: string): string {
       return 'bg-steel-gray text-white';
     case 'waterproofing':
       return 'bg-construction-orange text-white';
-    case 'hardscapes':
+    case 'concrete work':
       return 'bg-bright-yellow text-charcoal-black';
     default:
       return 'bg-steel-gray text-white';

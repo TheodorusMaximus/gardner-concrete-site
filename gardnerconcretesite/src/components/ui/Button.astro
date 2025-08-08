@@ -1,11 +1,12 @@
 ---
 interface Props {
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'orangeBlack';
   size?: 'sm' | 'md' | 'lg';
   class?: string;
   disabled?: boolean;
   id?: string;
   type?: 'button' | 'submit' | 'reset';
+  href?: string;
   'data-slot-index'?: string;
 }
 
@@ -16,30 +17,31 @@ const {
   disabled = false,
   id,
   type = 'button',
+  href,
   'data-slot-index': slotIndex,
   ...rest
-} = Astro.props;
+} = Astro.props as Props;
 
 const variants = {
   primary: 'bg-construction-orange text-concrete-white hover:bg-opacity-90',
   secondary: 'bg-steel-gray text-charcoal-black hover:bg-opacity-90',
   orangeBlack: 'bg-construction-orange text-charcoal-black hover:bg-opacity-90',
   ghost: 'bg-transparent hover:bg-steel-gray/20'
-};
+} as const;
 
 const sizes = {
   sm: 'text-xs py-2 px-3 min-h-[34px]',
   md: 'text-sm py-2.5 px-5 min-h-[40px]',
   lg: 'text-base py-3 px-6 min-h-[48px]'
-};
+} as const;
 
 const baseClasses = 'inline-flex items-center justify-center gap-2 leading-none font-inter font-bold uppercase tracking-wider rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-bright-yellow/80';
 const disabledClasses = disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer';
 ---
 
-{rest.href ? (
+{href ? (
   <a
-    href={rest.href}
+    href={href}
     id={id}
     class:list={[baseClasses, variants[variant], sizes[size], disabledClasses, className]}
     {...rest}

@@ -9,6 +9,13 @@ import "../styles/global.css";
 
 // Fetch projects from CMS
 const projects = await getProjects();
+
+// Normalize legacy category names from CMS
+const normalizeCategory = (category: string) => {
+  const c = (category || '').toLowerCase();
+  if (c === 'hardscapes' || c === 'concrete work' || c === 'concrete-work') return 'concrete';
+  return c;
+};
 ---
 
 <Layout>
@@ -27,7 +34,7 @@ const projects = await getProjects();
               Our <span class="text-construction-orange">Concrete</span> Results
             </h1>
             <p class="font-lato text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-8">
-              75+ years of protecting Minneapolis homes with waterproofing, foundation repair, and beautiful hardscapes that stand the test of time.
+              75+ years of protecting Minneapolis homes with waterproofing, foundation repair, and beautiful concrete work that stands the test of time.
             </p>
             
             <!-- Filter Tabs -->
@@ -41,8 +48,8 @@ const projects = await getProjects();
               <button class="filter-btn px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-filter="foundation">
                 Foundation Repair
               </button>
-              <button class="filter-btn px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-filter="hardscapes">
-                Hardscapes
+              <button class="filter-btn px-6 py-3 rounded-lg font-poppins font-semibold transition-all" data-filter="concrete">
+                Concrete Work
               </button>
             </div>
           </div>
@@ -57,7 +64,7 @@ const projects = await getProjects();
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
             
             {projects.map((project, index) => (
-              <div class="project-card animate-fade-up opacity-0" data-category={project.category} style={`animation-delay: ${index * 100}ms`}>
+              <div class="project-card animate-fade-up opacity-0" data-category={normalizeCategory(project.category)} style={`animation-delay: ${index * 100}ms`}>
                 <Card class="overflow-hidden h-full group cursor-pointer hover:shadow-xl transition-all duration-300">
                   <div class="relative h-64 overflow-hidden">
                     <img 
@@ -67,9 +74,9 @@ const projects = await getProjects();
                     />
                     <div class="absolute top-4 left-4">
                       <span class={`px-3 py-1 rounded-full text-sm font-poppins font-semibold ${getCategoryBadgeColor(project.category)}`}>
-                        {project.category === 'waterproofing' ? 'Waterproofing' : 
-                         project.category === 'foundation' ? 'Foundation Repair' : 
-                         project.category === 'hardscapes' ? 'Hardscapes' : project.category}
+                        {normalizeCategory(project.category) === 'waterproofing' ? 'Waterproofing' : 
+                         normalizeCategory(project.category) === 'foundation' ? 'Foundation Repair' : 
+                         normalizeCategory(project.category) === 'concrete' ? 'Concrete Work' : project.category}
                       </span>
                     </div>
                   </div>
@@ -84,9 +91,9 @@ const projects = await getProjects();
                     {project.testimonialText && project.customerName && (
                       <!-- Testimonial Integration -->
                       <div class={`bg-gray-50 p-4 rounded-lg border-l-4 mb-4 ${
-                        project.category === 'waterproofing' ? 'border-construction-orange' :
-                        project.category === 'foundation' ? 'border-steel-gray' :
-                        project.category === 'hardscapes' ? 'border-bright-yellow' : 'border-steel-gray'
+                        normalizeCategory(project.category) === 'waterproofing' ? 'border-construction-orange' :
+                        normalizeCategory(project.category) === 'foundation' ? 'border-steel-gray' :
+                        normalizeCategory(project.category) === 'concrete' ? 'border-bright-yellow' : 'border-steel-gray'
                       }`}>
                         <div class="flex items-center mb-2">
                           <div class="text-yellow-400 text-sm">{renderStarRating(project.rating)}</div>
@@ -111,12 +118,7 @@ const projects = await getProjects();
 
           </div>
 
-          <!-- Load More Button -->
-          <div class="text-center mt-12">
-            <Button class="px-8 py-3 text-lg">
-              View More Projects
-            </Button>
-          </div>
+
         </div>
       </section>
 
@@ -138,7 +140,7 @@ const projects = await getProjects();
               <div class="text-lg font-poppins">Years of Service</div>
             </div>
             <div class="animate-fade-up opacity-0 delay-100">
-              <div class="text-4xl font-montserrat font-bold text-construction-orange mb-2">2000+</div>
+              <div class="text-4xl font-montserrat font-bold text-construction-orange mb-2">300+</div>
               <div class="text-lg font-poppins">Projects Completed</div>
             </div>
             <div class="animate-fade-up opacity-0 delay-200">
@@ -160,7 +162,7 @@ const projects = await getProjects();
             Ready to Protect Your Home?
           </h2>
           <p class="text-xl mb-8 opacity-90">
-            Get your free inspection and discover how we can strengthen your foundation, waterproof your basement, or create beautiful hardscapes.
+            Get your free inspection and discover how we can strengthen your foundation, waterproof your basement, or create beautiful concrete work.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/schedule" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg bg-white text-construction-orange hover:bg-gray-100 transition-colors shadow-lg">
@@ -229,8 +231,10 @@ const projects = await getProjects();
         // Filter projects
         const filterValue = button.getAttribute('data-filter');
         
-        projectCards.forEach(card => {
-          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+        projectCards.forEach(cardEl => {
+          const card = cardEl as HTMLElement;
+          const category = card.getAttribute('data-category');
+          if (filterValue === 'all' || category === filterValue) {
             card.classList.remove('hidden');
             card.style.display = 'block';
           } else {

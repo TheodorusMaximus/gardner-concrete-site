@@ -2,10 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import DatePicker from "../components/DatePicker.astro";
-import TimeSlots from "../components/TimeSlots.astro";
-import BookingForm from "../components/BookingForm.astro";
-// SessionType removed
+// Removed DatePicker/TimeSlots/BookingForm
 import ConcreteBookingForm from "../components/ConcreteBookingForm.astro";
 import BackButton from "../components/ui/BackButton.astro";
 import "../styles/global.css";
@@ -13,108 +10,116 @@ import { BUSINESS_NAME } from "../utils/constants";
 ---
 
 <Layout>
-  <div class="min-h-screen bg-linear-to-b from-white to-secondary/10">
-    <Navbar />
-
-    <div class="max-w-7xl mx-auto pt-32 pb-16 px-4">
-      <div class="mb-6">
-        <BackButton href="/" text="Back to Home" />
-      </div>
-
-      <div class="text-center mb-8 animate-fade-up">
-        <div class="mx-auto mb-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-12 w-12 mx-auto text-primary"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-        </div>
-        <h1
-          class="text-3xl md:text-4xl font-bold mb-2 bg-linear-to-r from-primary to-accent bg-clip-text text-transparent"
-        >
-          Schedule Your Appointment
-        </h1>
-      </div>
-
-      <div class="text-center animate-fade-up delay-100">
-        <p class="text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Select a date and time that works for you, and fill in your details to
-          complete the booking with {BUSINESS_NAME}.
-        </p>
-      </div>
-
-      <!-- Call Banner -->
-      <div class="mb-10 animate-fade-up delay-50">
-        <div class="flex flex-col sm:flex-row items-center justify-between bg-primary text-white rounded-lg p-6 shadow-lg gap-4">
-          <div>
-            <h2 class="text-2xl font-semibold mb-1">Need Answers Fast?</h2>
-            <p class="opacity-90">Call our specialists right now for immediate assistance.</p>
-          </div>
-          <a href="tel:612-825-8779" class="px-10 py-5 bg-white text-primary font-extrabold text-2xl rounded-lg shadow-lg hover:bg-gray-100 transition-colors whitespace-nowrap">
-            📞 (612) 825-8779
-          </a>
-        </div>
-      </div>
-
-      <!-- Two Booking Options -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Option 1: Request a Callback / Submit Form -->
-        <div class="bg-white rounded-lg shadow-lg p-6 animate-fade-up delay-100">
-          <h3 class="text-xl font-semibold text-center mb-4">Request a Callback</h3>
-          <ConcreteBookingForm />
-        </div>
-
-        <!-- Option 2: Book an Appointment -->
-        <div class="bg-white rounded-lg shadow-lg p-6 animate-fade-up delay-200">
-          <h3 class="text-xl font-semibold text-center mb-4">Pick a Date & Time</h3>
-          <p class="text-steel-gray text-sm mb-4 text-center">Our project manager will meet you on-site for a free 30-minute inspection and quote.</p>
-          <!-- What to expect checklist -->
-          <ul class="list-disc list-inside text-sm text-charcoal-black mb-6 space-y-1">
-            <li>Exterior & interior inspection</li>
-            <li>Moisture-meter & level checks</li>
-            <li>Photos & written quote on-site</li>
-            <li>Q&A with foundation expert</li>
-          </ul>
-          <div class="space-y-6">
-            <DatePicker />
-            <TimeSlots />
-            <div id="booking-form">
-              <BookingForm />
-            </div>
-          </div>
-        </div>
-
-        <!-- Trust Strip -->
-        <div class="mt-16 animate-fade-up delay-300">
-          <div class="flex flex-wrap justify-center gap-6 bg-gray-50 border border-gray-200 rounded-lg p-6">
-            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>📜</span> Licensed MN #BC806990</div>
-            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>🛡️</span> Fully Insured</div>
-            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>⭐</span> BBB A+ Rating</div>
-            <div class="flex items-center gap-2 text-charcoal-black text-sm font-semibold"><span>4.8★</span>  Google Reviews</div>
-          </div>
-        </div>
-
-        <!-- Service Area Map -->
-        <div class="mt-16 animate-fade-up delay-400">
-          <h2 class="text-center text-2xl font-bold mb-6">Proudly Serving the Twin Cities Metro</h2>
-          <div class="max-w-3xl mx-auto">
-            <img src="https://images.unsplash.com/photo-1569429594168-a4a3a693b8b9?auto=format&fit=crop&w=800&q=80" alt="Minneapolis Twin Cities service area" class="w-full rounded-lg shadow-md" />
-            <p class="text-center mt-4 text-steel-gray text-sm">Serving Minneapolis, St. Paul, and surrounding Twin Cities metro area</p>
-          </div>
-        </div>
-      </div>
+  <!-- Hero-style background wrapper -->
+  <section class="relative bg-charcoal-black text-concrete-white min-h-[520px] flex">
+    <div class="absolute inset-0 -z-10 pointer-events-none">
+      <div class="absolute inset-0 bg-black/0"></div>
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/darkconcSM.jpg'); opacity:0.25;"></div>
+      <div class="absolute inset-0 bg-cover bg-center opacity-10 concrete-texture"></div>
+      <div class="absolute inset-0 opacity-10 blueprint-grid"></div>
     </div>
 
-    <Footer />
-  </div>
+    <div class="relative w-full z-20">
+      <Navbar />
+
+      <div class="max-w-7xl mx-auto pt-24 pb-8 px-4">
+        <div class="mb-4">
+          <BackButton href="/" text="Back to Home" />
+        </div>
+
+        <div class="text-center mb-6 animate-fade-up">
+          <div class="mx-auto mb-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-10 w-10 mx-auto text-primary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-bold mb-2">Request a Callback</h1>
+          <p class="text-gray-200 max-w-2xl mx-auto">A {BUSINESS_NAME} specialist will call you within 1 business day. No obligation.</p>
+        </div>
+
+        <!-- Call Banner (bright orange, two-column) -->
+        <div class="mb-10 animate-fade-up">
+          <div class="flex flex-col sm:flex-row items-center justify-between bg-primary text-white rounded-lg p-6 shadow-lg gap-4">
+            <div>
+              <h2 class="text-2xl font-semibold mb-1">Need Answers Fast?</h2>
+              <p class="opacity-90">Call our specialists right now for immediate assistance.</p>
+            </div>
+            <a href="tel:612-825-8779" class="px-10 py-5 bg-white text-primary font-extrabold text-2xl rounded-lg shadow-lg hover:bg-gray-100 transition-colors whitespace-nowrap">
+              📞 (612) 825-8779
+            </a>
+          </div>
+        </div>
+
+        <!-- Two-column content: left form, right trust/info -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <!-- Left: Callback Request Form -->
+          <div class="animate-fade-up">
+            <ConcreteBookingForm />
+          </div>
+
+          <!-- Right: Trust and Information -->
+          <aside class="space-y-6 animate-fade-up">
+            <div class="rounded-xl p-6 bg-orange-50 border border-orange-200 ring-1 ring-orange-100 shadow-sm">
+              <h2 class="text-xl font-semibold mb-4 text-primary">Why homeowners trust us</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-charcoal-black">
+                <div class="flex items-center gap-2 text-sm font-semibold"><span>📜</span> Licensed MN #BC806990</div>
+                <div class="flex items-center gap-2 text-sm font-semibold"><span>🛡️</span> Fully insured</div>
+                <div class="flex items-center gap-2 text-sm font-semibold"><span>⭐</span> BBB A+ rating</div>
+                <div class="flex items-center gap-2 text-sm font-semibold"><span>4.8★</span> Google reviews</div>
+              </div>
+            </div>
+
+            <div class="rounded-xl p-6 bg-orange-50 border border-orange-200 ring-1 ring-orange-100 shadow-sm">
+              <h3 class="text-lg font-semibold text-primary mb-3">What happens next</h3>
+              <ul class="list-disc list-inside text-sm text-charcoal-black/90 space-y-1">
+                <li>We review your details and call within 1 business day</li>
+                <li>Free, no-obligation consultation and quote</li>
+                <li>On-site assessment scheduled at your convenience</li>
+              </ul>
+            </div>
+
+            <!-- Service Areas (moved into right column) -->
+            <div class="rounded-xl bg-orange-50 border border-orange-200 ring-1 ring-orange-100 shadow-sm overflow-hidden">
+              <h3 class="text-lg font-semibold text-primary p-4 pb-0">Proudly Serving the Twin Cities Metro</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-0 items-center">
+                <div class="p-4 sm:pr-0 flex justify-center">
+                  <img src="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/3408138C-7B09-4C44-A840-4FE0AF80EAF7_4_5005_c.jpeg" alt="Twin Cities service coverage" class="max-w-[260px] w-full h-auto rounded-md" loading="lazy" />
+                </div>
+                <div class="p-4">
+                  <p class="text-sm text-charcoal-black/80">Serving Minneapolis, St. Paul, and surrounding Twin Cities metro area.</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+        
+      </div>
+
+      <Footer />
+    </div>
+  </section>
+
+  <style>
+    .concrete-texture {
+      background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');
+      background-repeat: repeat;
+    }
+    .blueprint-grid {
+      background-image: linear-gradient(to right, rgba(100, 149, 237, 0.15) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(100, 149, 237, 0.15) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+  </style>
 </Layout>

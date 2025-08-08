@@ -1,0 +1,65 @@
+---
+import Card from './ui/Card.astro';
+import Button from './ui/Button.astro';
+
+interface Props {
+  imageUrl: string;
+  emoji: string;
+  title: string;
+  tagline: string;
+  highlights: string[];
+  href: string;
+  class?: string;
+}
+
+const {
+  imageUrl,
+  emoji,
+  title,
+  tagline,
+  highlights,
+  href,
+  class: className = ''
+} = Astro.props as Props;
+---
+
+<Card
+  isGlass={true}
+  class={`group relative flex h-full flex-col overflow-hidden rounded-2xl p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${className}`}
+>
+  <div class="relative">
+    <img
+      src={imageUrl}
+      alt={title}
+      loading="lazy"
+      class="h-44 w-full object-cover"
+    />
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-black/0"></div>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-3 p-6">
+    <div class="flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-construction-orange/15 text-2xl">
+        {emoji}
+      </div>
+      <h3 class="font-poppins text-2xl font-semibold text-charcoal-black">
+        {title}
+      </h3>
+    </div>
+
+    <p class="text-steel-gray">{tagline}</p>
+
+    <ul class="mt-1 list-disc list-inside space-y-1 text-sm text-steel-gray">
+      {highlights.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+
+    <div class="mt-auto pt-4">
+      <Button href={href} variant="orangeBlack" size="sm" class="group/button">
+        Learn More
+        <span class="transition-transform group-hover/button:translate-x-0.5">→</span>
+      </Button>
+    </div>
+  </div>
+</Card> 

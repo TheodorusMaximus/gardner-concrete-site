@@ -58,7 +58,7 @@ export async function getProjects(category?: string): Promise<Project[]> {
       _id: "97e02fac-774f-4edc-8731-afa8e9f0f9a2",
       title: "Decorative Concrete Steps & Patio",
       description: "Custom concrete steps and patio installation with decorative finishes that have lasted over 20 years in Plymouth.",
-      category: "hardscapes",
+      category: "concrete",
       image: "https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/IMG_6380.jpg",
       testimonialText: "They did our steps and they have lasted over 20 years, good quality!",
       customerName: "Elaine R.",
@@ -106,7 +106,7 @@ export async function getProjects(category?: string): Promise<Project[]> {
       _id: "c814460e-2e25-45e1-82bc-aa8ecabd7a7b",
       title: "Stamped Concrete Driveway",
       description: "Beautiful stamped concrete driveway with decorative border and integral color in Minnetonka home.",
-      category: "hardscapes",
+      category: "concrete",
       image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
       testimonialText: "The driveway looks amazing and has held up perfectly through multiple harsh winters!",
       customerName: "David K.",
@@ -122,7 +122,8 @@ export async function getProjects(category?: string): Promise<Project[]> {
 
   // Filter by category if provided
   if (category && category !== 'all') {
-    return projects.filter(project => project.category === category);
+    const normalized = category === 'hardscapes' ? 'concrete' : category; // backward-compat for callers
+    return projects.filter(project => project.category === normalized);
   }
 
   return projects;
@@ -145,6 +146,7 @@ export function getCategoryBadgeColor(category: string): string {
       return 'bg-construction-orange text-white';
     case 'foundation':
       return 'bg-steel-gray text-white';
+    case 'concrete':
     case 'hardscapes':
       return 'bg-bright-yellow text-charcoal-black';
     default:

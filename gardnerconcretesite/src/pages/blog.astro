@@ -11,8 +11,8 @@ import { posts } from "@wix/blog";
 const API_KEY = import.meta.env.WIX_API_KEY;
 const SITE_ID = "f34d08e6-ac9c-4e3c-b006-b77d3bf798e6";
 
-let blogPosts = [];
-let categories = ['Foundation Repair', 'Waterproofing', 'Hardscapes'];
+let blogPosts: any[] = [];
+let categories = ['Foundation Repair', 'Waterproofing', 'Concrete Work'];
 
 if (API_KEY) {
   try {
@@ -276,7 +276,8 @@ if (blogPosts.length === 0) {
         // Filter blog posts
         const filterValue = button.getAttribute('data-category');
         
-        blogCards.forEach(card => {
+        blogCards.forEach(cardEl => {
+          const card = cardEl as HTMLElement;
           if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
             card.classList.remove('hidden');
             card.style.display = 'block';
@@ -304,13 +305,13 @@ if (blogPosts.length === 0) {
     if (subscribeButton) {
       subscribeButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const emailInput = document.querySelector('input[type="email"]');
-        if (emailInput && emailInput.value) {
+        const emailEl = document.querySelector('input[type="email"]') as HTMLInputElement | null;
+        if (emailEl && emailEl.value) {
           // Simple email validation
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (emailRegex.test(emailInput.value)) {
+          if (emailRegex.test(emailEl.value)) {
             alert('Thank you for subscribing! We\'ll send you the latest concrete maintenance tips and expert advice.');
-            emailInput.value = '';
+            emailEl.value = '';
           } else {
             alert('Please enter a valid email address.');
           }

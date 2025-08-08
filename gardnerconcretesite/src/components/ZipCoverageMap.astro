@@ -18,8 +18,8 @@ const zipJson = JSON.stringify(zipCodes);
 <script is:inline>
   (function(){
     const API_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
-    const mapEl = document.getElementById("{mapId}");
-    const loadingEl = document.getElementById("{mapId}-loading");
+    const mapEl = document.getElementById('${mapId}');
+    const loadingEl = document.getElementById('${mapId}-loading');
     const zips = JSON.parse(decodeURIComponent(mapEl?.dataset?.zips || '[]'));
 
     if (!API_KEY) {

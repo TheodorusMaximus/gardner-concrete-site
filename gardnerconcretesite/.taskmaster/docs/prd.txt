@@ -1,0 +1,16 @@
+Project: Schedule Page UX Refresh
+
+Goals:
+- Make the schedule page a callback-first expert scheduling experience
+- Improve visual hierarchy: compact hero, form-first, trust grounded
+- Accessibility and mobile ergonomics improvements
+
+Key Tasks:
+1. Compact hero section; demote call banner to secondary CTA; fix z-index
+2. Reframe the form: grouped fields, radios for contact, helper/error text
+3. Success state: replace form with confirmation and direct call/our work links
+4. Ground trust section as a titled solid card below the form
+5. Add small FAQ (3–4) below trust; link to /faq
+6. Mobile sticky primary action; reduce top padding
+7. Copy refinements (titles, button labels, subcopy)
+8. Analytics hooks for form view/submit/errors
