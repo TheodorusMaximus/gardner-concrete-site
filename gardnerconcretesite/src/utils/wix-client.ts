@@ -2,7 +2,6 @@ import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 import { posts } from '@wix/blog';
 import { submissions } from '@wix/forms';
-import { contacts } from '@wix/crm';
 
 // Initialize Wix client for server-side operations
 export function createWixClient() {
@@ -10,8 +9,7 @@ export function createWixClient() {
     modules: {
       items,
       posts,
-      submissions,
-      contacts
+      submissions
     },
     auth: OAuthStrategy({
       clientId: process.env.WIX_CLIENT_ID || '',
@@ -128,8 +126,6 @@ export interface ConcreteJobSubmission {
   projectType: string;
   projectDescription: string;
   propertyAddress: string;
-  timeframe: string;
-  budget: string;
   preferredContact: 'phone' | 'email';
   heardAboutUs?: string;
 }
@@ -152,8 +148,6 @@ export async function submitConcreteJobForm(formData: ConcreteJobSubmission) {
         projectType: formData.projectType,
         projectDescription: formData.projectDescription,
         propertyAddress: formData.propertyAddress,
-        timeframe: formData.timeframe,
-        budget: formData.budget,
         preferredContact: formData.preferredContact,
         heardAboutUs: formData.heardAboutUs || ''
       },

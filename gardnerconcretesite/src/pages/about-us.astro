@@ -261,16 +261,16 @@ const teamValues = [
 
       <div class="grid md:grid-cols-2 gap-8">
         {testimonials.map((testimonial) => (
-          <Card class="bg-white/10 border border-white/20 backdrop-blur p-8">
+          <Card class="bg-white border border-gray-200 shadow-lg p-8 hover:shadow-xl transition-shadow">
             <div class="mb-6">
               <div class="text-construction-orange text-2xl mb-4">★★★★★</div>
-              <blockquote class="text-gray-200 text-lg leading-relaxed italic">
+              <blockquote class="text-charcoal-black text-lg leading-relaxed">
                 "{testimonial.text}"
               </blockquote>
             </div>
-            <div class="border-t border-white/20 pt-4">
-              <div class="font-semibold text-white">{testimonial.author}</div>
-              <div class="text-gray-300 text-sm">{testimonial.location} • {testimonial.date}</div>
+            <div class="border-t border-gray-200 pt-4">
+              <div class="font-semibold text-charcoal-black">{testimonial.author}</div>
+              <div class="text-steel-gray text-sm">{testimonial.location} • {testimonial.date}</div>
             </div>
           </Card>
         ))}

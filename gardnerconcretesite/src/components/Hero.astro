@@ -27,7 +27,7 @@ const featuredProjects = await getFeaturedProjects();
           Protecting your home's<br/> <strong class="text-primary">safety, value, and beauty.</strong>
         </h1>
         <p class="font-montserrat text-lg md:text-xl mb-16 max-w-2xl text-gray-200 leading-relaxed">
-          Dry basements, strong foundations, and beautiful hardscapes built to last and protect your home for generations.
+          Dry basements, strong foundations, and beautiful concrete work built to last and protect your home for generations.
         </p>
 
         <!-- Call-to-actions -->
@@ -70,9 +70,9 @@ const featuredProjects = await getFeaturedProjects();
                   <div class="bg-black/50 p-4 rounded-lg backdrop-blur-sm">
                     <div class="flex items-center mb-2">
                       <span class="text-primary text-sm font-bold uppercase tracking-wider">
-                        {project.category === 'waterproofing' ? 'Waterproofing' : 
+                                                 {project.category === 'waterproofing' ? 'Waterproofing' : 
                          project.category === 'foundation' ? 'Foundation Repair' : 
-                         project.category === 'hardscapes' ? 'Hardscapes' : project.category}
+                         project.category === 'hardscapes' ? 'Concrete Work' : project.category}
                       </span>
                       <div class="ml-auto text-yellow-400 text-xs">{'⭐'.repeat(project.rating || 5)}</div>
                     </div>

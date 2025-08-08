@@ -10,7 +10,7 @@ import services from '../utils/services-data';
         <a href="/" class="flex items-center">
           <img
             src="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/logo-new-576w%20(1)%202.avif"
-            alt="Gardner Concrete Logo"
+            alt="G. Gardner Concrete & Waterproofing, Inc Logo"
             class="h-8 sm:h-10 md:h-12 w-auto"
           />
         </a>
@@ -57,14 +57,31 @@ import services from '../utils/services-data';
                 </a>
               </li>
             ))}
+            <li>
+              <a href="/service-areas" class="block px-4 py-2 text-sm font-semibold text-black hover:text-construction-orange transition-colors">
+                Areas We Serve
+              </a>
+            </li>
           </ul>
         </div>
         <a href="/about-us" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange transition-colors"
           >About Us</a
         >
-        <a href="/blog" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange transition-colors"
-          >Resources</a
-        >
+        <!-- Resources dropdown (Blog, FAQ) -->
+        <div class="relative">
+          <button id="resources-toggle" aria-haspopup="true" aria-expanded="false" class="px-3 py-2 text-base font-poppins font-semibold text-black hover:text-construction-orange flex items-center gap-1 transition-colors focus:outline-none">
+            Resources
+            <svg class="w-4 h-4 transition-transform" id="resources-caret" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul id="resources-menu" class="hidden absolute left-0 mt-2 w-56 bg-gray-200/95 backdrop-blur-md border border-gray-400/30 rounded-md shadow-lg">
+            <li>
+              <a href="/blog" class="block px-4 py-2 text-sm text-black hover:text-construction-orange transition-colors">Blog</a>
+            </li>
+            <li>
+              <a href="/faq" class="block px-4 py-2 text-sm text-black hover:text-construction-orange transition-colors">FAQ</a>
+            </li>
+          </ul>
+        </div>
 
         <!-- Primary CTA -->
         <a href="/#concrete-booking-form" class="ml-2 inline-flex items-center px-4 py-2 rounded-md bg-construction-orange text-concrete-white font-poppins font-semibold shadow-md hover:bg-orange-500 transition-colors scroll-to-form">
@@ -92,11 +109,24 @@ import services from '../utils/services-data';
               {service.name}
             </a>
           ))}
+          <a href="/service-areas" class="block px-3 py-2 rounded-md text-sm font-semibold text-black hover:text-construction-orange hover:bg-gray-200">
+            Areas We Serve
+          </a>
         </div>
       </div>
       
       <a href="/about-us" class="block px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200">About Us</a>
-      <a href="/blog" class="block px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200">Resources</a>
+      <!-- Mobile Resources Dropdown -->
+      <div class="relative">
+        <button id="mobile-resources-toggle" class="w-full text-left px-3 py-2 rounded-md text-base font-poppins font-semibold text-black hover:text-construction-orange hover:bg-gray-200 flex items-center justify-between">
+          Resources
+          <svg class="w-4 h-4 transition-transform" id="mobile-resources-caret" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div id="mobile-resources-menu" class="hidden pl-4">
+          <a href="/blog" class="block px-3 py-2 rounded-md text-sm text-black hover:text-construction-orange hover:bg-gray-200">Blog</a>
+          <a href="/faq" class="block px-3 py-2 rounded-md text-sm text-black hover:text-construction-orange hover:bg-gray-200">FAQ</a>
+        </div>
+      </div>
       
       <!-- Mobile CTA -->
       <div class="px-3 py-2">
@@ -134,6 +164,34 @@ import services from '../utils/services-data';
       document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && !toggle.contains(e.target)) {
           closeMenu();
+        }
+      });
+    }
+
+    // Desktop resources dropdown
+    const resourcesToggle = document.getElementById('resources-toggle');
+    const resourcesMenu = document.getElementById('resources-menu');
+    const resourcesCaret = document.getElementById('resources-caret');
+    if (resourcesToggle && resourcesMenu) {
+      function closeResources() {
+        resourcesMenu.classList.add('hidden');
+        resourcesToggle.setAttribute('aria-expanded', 'false');
+        resourcesCaret?.classList.remove('rotate-180');
+      }
+      resourcesToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !resourcesMenu.classList.contains('hidden');
+        if (isOpen) {
+          closeResources();
+        } else {
+          resourcesMenu.classList.remove('hidden');
+          resourcesToggle.setAttribute('aria-expanded', 'true');
+          resourcesCaret?.classList.add('rotate-180');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        if (!resourcesMenu.contains(e.target) && !resourcesToggle.contains(e.target)) {
+          closeResources();
         }
       });
     }
@@ -179,6 +237,23 @@ import services from '../utils/services-data';
         } else {
           mobileServicesMenu.classList.remove('hidden');
           mobileServicesCaret?.classList.add('rotate-180');
+        }
+      });
+    }
+
+    // Mobile resources dropdown
+    const mobileResourcesToggle = document.getElementById('mobile-resources-toggle');
+    const mobileResourcesMenu = document.getElementById('mobile-resources-menu');
+    const mobileResourcesCaret = document.getElementById('mobile-resources-caret');
+    if (mobileResourcesToggle && mobileResourcesMenu) {
+      mobileResourcesToggle.addEventListener('click', () => {
+        const isOpen = !mobileResourcesMenu.classList.contains('hidden');
+        if (isOpen) {
+          mobileResourcesMenu.classList.add('hidden');
+          mobileResourcesCaret?.classList.remove('rotate-180');
+        } else {
+          mobileResourcesMenu.classList.remove('hidden');
+          mobileResourcesCaret?.classList.add('rotate-180');
         }
       });
     }

@@ -1,0 +1,123 @@
+---
+interface Props {
+  zipCodes: string[];
+  height?: string; // e.g., '480px'
+}
+
+const { zipCodes = [], height = '480px' } = Astro.props as Props;
+const mapId = `zip-coverage-map-${Math.random().toString(36).slice(2)}`;
+const zipJson = JSON.stringify(zipCodes);
+---
+
+<div id={mapId} data-zips={encodeURIComponent(zipJson)} style={`width:100%; height:${height}; border-radius: 16px; overflow: hidden; position: relative;`} class="ring-1 ring-white/10 glass-panel-dark">
+  <div class="absolute inset-0 flex items-center justify-center text-gray-300 text-sm" id={`${mapId}-loading`}>
+    Loading coverage map…
+  </div>
+</div>
+
+<script is:inline>
+  (function(){
+    const API_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+    const mapEl = document.getElementById("{mapId}");
+    const loadingEl = document.getElementById("{mapId}-loading");
+    const zips = JSON.parse(decodeURIComponent(mapEl?.dataset?.zips || '[]'));
+
+    if (!API_KEY) {
+      if (loadingEl) loadingEl.textContent = 'Map unavailable: missing PUBLIC_GOOGLE_MAPS_API_KEY';
+      return;
+    }
+
+    loadGoogleMaps(API_KEY)
+      .then(initMap)
+      .catch(() => {
+        if (loadingEl) loadingEl.textContent = 'Unable to load Google Maps';
+      });
+
+    function loadGoogleMaps(key) {
+      const w = window;
+      if (w.__gmapsPromise) return w.__gmapsPromise;
+      w.__gmapsPromise = new Promise((resolve, reject) => {
+        if (w.google && w.google.maps) return resolve(w.google);
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${key}`;
+        script.async = true;
+        script.defer = true;
+        script.onload = () => resolve(w.google);
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+      return w.__gmapsPromise;
+    }
+
+    async function initMap(){
+      const google = window.google;
+      if (!mapEl) return;
+      const map = new google.maps.Map(mapEl, {
+        center: { lat: 44.9778, lng: -93.2650 },
+        zoom: 10,
+        styles: [
+          { elementType: 'geometry', stylers: [{ color: '#1d1d1d' }] },
+          { elementType: 'labels.text.fill', stylers: [{ color: '#eaeaea' }] },
+          { elementType: 'labels.text.stroke', stylers: [{ color: '#1d1d1d' }] },
+          { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+          { featureType: 'road', stylers: [{ color: '#2a2a2a' }] },
+          { featureType: 'water', stylers: [{ color: '#111' }] }
+        ],
+        disableDefaultUI: true,
+        zoomControl: true,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: true,
+      });
+
+      const bounds = new google.maps.LatLngBounds();
+      try {
+        const geos = await geocodeZipList(zips);
+        geos.forEach(({ lat, lng }) => {
+          const pos = { lat, lng };
+          bounds.extend(pos);
+          new google.maps.Circle({
+            strokeColor: '#f97316',
+            strokeOpacity: 0.7,
+            strokeWeight: 1,
+            fillColor: '#f97316',
+            fillOpacity: 0.25,
+            map,
+            center: pos,
+            radius: 3500,
+          });
+        });
+      } finally {
+        if (loadingEl) loadingEl.remove();
+      }
+
+      if (!bounds.isEmpty()) {
+        map.fitBounds(bounds, 40);
+      }
+    }
+
+    async function geocodeZipList(zipList){
+      const cacheKey = 'zipGeocodeCacheV1';
+      const cached = JSON.parse(localStorage.getItem(cacheKey) || '{}');
+      const results = [];
+      for (const zip of zipList) {
+        if (cached[zip]) { results.push(cached[zip]); continue; }
+        try {
+          const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(zip)}&components=country:US&key=${API_KEY}`;
+          const res = await fetch(url);
+          const data = await res.json();
+          const loc = data?.results?.[0]?.geometry?.location;
+          if (loc) {
+            cached[zip] = { lat: loc.lat, lng: loc.lng };
+            results.push(cached[zip]);
+            await sleep(100);
+          }
+        } catch {}
+      }
+      localStorage.setItem(cacheKey, JSON.stringify(cached));
+      return results;
+    }
+
+    function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+  })();
+</script> 

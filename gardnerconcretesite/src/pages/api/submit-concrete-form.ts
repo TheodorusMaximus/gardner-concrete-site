@@ -7,7 +7,7 @@ export const POST: APIRoute = async ({ request }) => {
     const formData: ConcreteJobSubmission = await request.json();
     
     // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.projectType || !formData.projectDescription || !formData.propertyAddress || !formData.timeframe || !formData.preferredContact) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.projectType || !formData.projectDescription || !formData.propertyAddress || !formData.preferredContact) {
       return new Response(JSON.stringify({
         success: false,
         message: 'Please fill in all required fields.'

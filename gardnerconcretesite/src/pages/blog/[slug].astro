@@ -90,7 +90,7 @@ try {
 }
 
 // Set up variables for the template
-const authorName = author?.profile?.nickname || author?.loginEmail || 'Gardner Concrete Team';
+const authorName = author?.profile?.nickname || author?.loginEmail || 'G. Gardner Concrete & Waterproofing, Inc Team';
 const coverImageUrl = post.media?.wixMedia?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80';
 const publishDate = post.firstPublishedDate ? new Date(post.firstPublishedDate).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -227,32 +227,7 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
             </div>
           )}
 
-          <!-- Author Bio -->
-          <div class="mt-12 pt-8 border-t border-gray-200">
-            <div class="bg-gray-50 p-6 rounded-lg">
-              <div class="flex items-start gap-4">
-                <div class="w-16 h-16 bg-construction-orange rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  GC
-                </div>
-                <div>
-                  <h3 class="font-poppins font-bold text-xl text-charcoal-black mb-2">
-                    {post.author || 'Gardner Concrete Team'}
-                  </h3>
-                  <p class="text-steel-gray font-lato mb-4">
-                    With over 75 years of experience, Gardner Concrete has been Minnesota's trusted foundation repair, waterproofing, and concrete experts. Our team of certified professionals provides reliable solutions for residential and commercial properties throughout the Twin Cities metro area.
-                  </p>
-                  <div class="flex gap-4">
-                    <Button href="/schedule" class="bg-construction-orange text-white">
-                      Schedule Consultation
-                    </Button>
-                    <Button href="/our-work" class="border border-steel-gray text-steel-gray">
-                      View Our Work
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </article>
 
@@ -321,7 +296,7 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
       )}
 
       <!-- CTA Section -->
-      <section class="py-16 bg-charcoal-black text-concrete-white">
+      <section class="py-16 bg-[#1f1f1f] text-concrete-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="font-montserrat font-bold text-3xl md:text-4xl mb-6">
             Need Expert <span class="text-construction-orange">Concrete Services</span>?

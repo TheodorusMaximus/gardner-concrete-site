@@ -1,7 +1,6 @@
 ---
 import Card from './ui/Card.astro';
-import Button from './ui/Button.astro';
-import { getProjects } from '../utils/wix-client.js';
+import { getProjects } from '../utils/wix-client';
 
 // Fetch projects from Wix CMS (will fall back to static data if no CMS)
 let projectData = [];
@@ -21,7 +20,7 @@ const transformationProjects = projectData.length > 0 ? projectData : [
     beforeImage: "https://images.unsplash.com/photo-1573161103-e6fc8c2e1dbc?auto=format&fit=crop&w=800&q=80",
     afterImage: "https://images.unsplash.com/photo-1590224505923-372138a3b8bd?auto=format&fit=crop&w=800&q=80",
     description: "Severe foundation wall bowing due to clay soil expansion. Steel I-beam reinforcement with drainage upgrade restored structural integrity permanently.",
-    customerQuote: "Gardner Concrete saved our home. The wall was bowing 3 inches - we thought we'd have to move. Now it's rock solid.",
+    customerQuote: "G. Gardner Concrete & Waterproofing, Inc saved our home. The wall was bowing 3 inches - we thought we'd have to move. Now it's rock solid.",
     customerName: "Sarah & Mike Johnson",
     timeframe: "4 days",
     year: "2024",
@@ -72,165 +71,50 @@ const transformationProjects = projectData.length > 0 ? projectData : [
 ];
 ---
 
-<section id="transformations" class="py-16 sm:py-20 lg:py-24 bg-concrete-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header Section -->
-    <div class="text-center mb-12 lg:mb-16">
-      <div class="mb-4">
-        <span class="inline-block bg-construction-orange px-4 py-2 rounded-full text-sm font-semibold text-white">
-          75+ Years of Proven Results
-        </span>
-      </div>
-      <h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl text-charcoal-black mb-6">
+<section id="transformations" class="relative py-20 bg-charcoal-black text-concrete-white overflow-hidden">
+  <!-- Subtle textured background -->
+  <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png'); background-size: 512px;"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40 pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-10 text-center">
+      <span class="inline-block bg-construction-orange px-3 py-1 rounded-full text-xs font-semibold text-white shadow">75+ Years of Proven Results</span>
+      <h2 class="mt-4 font-montserrat font-extrabold text-3xl sm:text-4xl tracking-tight">
         See the <span class="text-construction-orange">Transformation</span>
       </h2>
-      <p class="max-w-3xl mx-auto text-lg sm:text-xl text-steel-gray font-lato leading-relaxed">
-        Real Minneapolis homes, real solutions, real results. Browse through our recent project transformations.
+      <p class="text-sm sm:text-base text-gray-300 font-lato mt-2 max-w-3xl mx-auto">
+        Real projects from Minneapolis homes. Tap any to view details.
       </p>
+
     </div>
 
-    <!-- Project Grid -->
-    <div class="grid gap-8 lg:gap-12 mb-16">
-      {transformationProjects.map((project, index) => (
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-0">
-            <!-- Before/After Images -->
-            <div class="relative">
-              <!-- Simple Before/After Side by Side -->
-              <div class="grid grid-cols-2 h-64 sm:h-80 lg:h-96">
-                <!-- Before Image -->
-                <div class="relative overflow-hidden">
-                  <img
-                    src={project.beforeImage}
-                    alt={`Before: ${project.title}`}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    BEFORE
-                  </div>
-                </div>
-                
-                <!-- After Image -->
-                <div class="relative overflow-hidden">
-                  <img
-                    src={project.afterImage}
-                    alt={`After: ${project.title}`}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div class="absolute top-3 right-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    AFTER
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Divider Line -->
-              <div class="absolute top-0 bottom-0 left-1/2 w-1 bg-white shadow-lg transform -translate-x-1/2 z-10"></div>
+    <!-- Two-column Before/After cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {transformationProjects.slice(0, 2).map((project) => (
+        <a href="/our-work" class="group relative block overflow-hidden rounded-2xl glass-panel-dark ring-1 ring-white/10 hover:ring-construction-orange/40 transition">
+          <div class="grid grid-cols-2 h-60 sm:h-72 lg:h-80">
+            <div class="relative overflow-hidden">
+              <img src={project.beforeImage} alt={`Before: ${project.title}`} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 bg-red-600 text-white px-2 py-0.5 rounded-full text-[10px] font-semibold shadow">BEFORE</div>
             </div>
-
-            <!-- Project Details -->
-            <div class="p-6 lg:p-8 flex flex-col justify-center">
-              <!-- Project Header -->
-              <div class="mb-6">
-                <div class="flex items-center gap-3 mb-3">
-                  <span class="bg-construction-orange/10 text-construction-orange px-3 py-1 rounded-full text-sm font-semibold">
-                    {project.category}
-                  </span>
-                  <span class="text-steel-gray text-sm">{project.year}</span>
-                </div>
-                <h3 class="font-montserrat font-bold text-2xl lg:text-3xl text-charcoal-black mb-3">
-                  {project.title}
-                </h3>
-                <p class="text-steel-gray font-medium flex items-center gap-2">
-                  <svg class="w-4 h-4 text-construction-orange" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                  </svg>
-                  {project.location}
-                </p>
-              </div>
-
-              <!-- Project Description -->
-              <div class="mb-6">
-                <p class="text-steel-gray leading-relaxed mb-4">{project.description}</p>
-                <div class="flex items-center text-sm text-steel-gray">
-                  <span class="font-medium">Completed in:</span>
-                  <span class="ml-2 font-semibold text-charcoal-black">{project.timeframe}</span>
-                </div>
-              </div>
-
-              <!-- Customer Testimonial -->
-              <div class="bg-gradient-to-br from-construction-orange/5 to-bright-yellow/5 border border-construction-orange/20 rounded-xl p-6">
-                <div class="flex items-center gap-1 mb-3">
-                  {[...Array(5)].map(() => (
-                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                  ))}
-                </div>
-                <blockquote class="text-charcoal-black font-medium italic leading-relaxed mb-4">
-                  "{project.customerQuote}"
-                </blockquote>
-                <footer>
-                  <cite class="not-italic font-semibold text-charcoal-black">
-                    {project.customerName}
-                  </cite>
-                  <p class="text-steel-gray text-sm">{project.location}</p>
-                </footer>
-              </div>
+            <div class="relative overflow-hidden">
+              <img src={project.afterImage} alt={`After: ${project.title}`} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 right-3 bg-green-600 text-white px-2 py-0.5 rounded-full text-[10px] font-semibold shadow">AFTER</div>
             </div>
           </div>
-        </div>
+          <div class="absolute top-0 bottom-0 left-1/2 w-px bg-white/40 opacity-70 pointer-events-none"></div>
+          <div class="absolute left-4 right-4 bottom-4 text-white">
+            <div class="font-montserrat text-base sm:text-lg font-semibold drop-shadow">{project.title}</div>
+            <div class="text-[11px] text-gray-200/90">{project.category}</div>
+          </div>
+        </a>
       ))}
     </div>
 
-    <!-- Stats Section -->
-    <div class="bg-charcoal-black text-white rounded-2xl p-8 sm:p-12 mb-16">
-      <div class="text-center mb-8 sm:mb-12">
-        <h3 class="font-montserrat font-bold text-2xl sm:text-3xl mb-4">
-          Transform Your Home with <span class="text-construction-orange">Confidence</span>
-        </h3>
-        <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
-          Every project shown represents real Minneapolis families who trusted us with their most important investment.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
-        <div class="transform transition-transform hover:scale-105">
-          <div class="text-3xl sm:text-4xl font-bold text-construction-orange mb-2">2000+</div>
-          <div class="text-gray-300 text-sm sm:text-base">Transformations Completed</div>
-        </div>
-        <div class="transform transition-transform hover:scale-105">
-          <div class="text-3xl sm:text-4xl font-bold text-construction-orange mb-2">75+</div>
-          <div class="text-gray-300 text-sm sm:text-base">Years of Excellence</div>
-        </div>
-        <div class="transform transition-transform hover:scale-105">
-          <div class="text-3xl sm:text-4xl font-bold text-construction-orange mb-2">4.8★</div>
-          <div class="text-gray-300 text-sm sm:text-base">Customer Rating</div>
-        </div>
-        <div class="transform transition-transform hover:scale-105">
-          <div class="text-3xl sm:text-4xl font-bold text-construction-orange mb-2">100%</div>
-          <div class="text-gray-300 text-sm sm:text-base">Licensed & Insured</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Call to Action -->
-    <div class="text-center bg-gradient-to-r from-construction-orange to-bright-yellow rounded-2xl p-8 sm:p-12 text-white">
-      <h3 class="font-montserrat font-bold text-2xl sm:text-3xl mb-4">
-        Ready for Your Transformation?
-      </h3>
-      <p class="text-lg sm:text-xl mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
-        Join thousands of Minneapolis homeowners who've transformed their properties with Gardner Concrete. Your before and after story starts with a free consultation.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/#concrete-booking-form" class="bg-white text-construction-orange hover:bg-gray-100 px-8 py-4 text-lg font-semibold scroll-to-form">
-          Get Your Free Assessment
-        </Button>
-        <a href="tel:612-825-8779" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-construction-orange transition-colors">
-          Call (612) 825-8779
-        </a>
-      </div>
+    <!-- CTA below cards -->
+    <div class="text-center mt-10">
+      <a href="/our-work" class="inline-block px-6 py-3 rounded-md bg-construction-orange text-white font-semibold shadow-md hover:bg-orange-500 transition-colors">View Our Work →</a>
     </div>
   </div>
 </section>

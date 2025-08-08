@@ -1,5 +1,5 @@
 // Business constants that can be reused across the application
-export const BUSINESS_NAME = "Gardner Construction";
+export const BUSINESS_NAME = "G. Gardner Concrete & Waterproofing, Inc";
 export const BUSINESS_EMAIL = "contact@gardnerconstruction.com";
 export const BUSINESS_PHONE = "555-555-5555";
 

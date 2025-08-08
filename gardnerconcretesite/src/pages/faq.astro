@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ConcreteBookingForm from '../components/ConcreteBookingForm.astro';
+---
+
+<Layout>
+  <div class="min-h-screen flex flex-col bg-concrete-white">
+    <Navbar />
+
+    <main class="flex-grow pt-20">
+      <!-- Hero -->
+      <section class="py-14 sm:py-16 bg-gray-100 border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 class="font-montserrat font-extrabold text-3xl sm:text-4xl text-charcoal-black">Frequently Asked Questions</h1>
+          <p class="mt-3 text-steel-gray max-w-3xl mx-auto">
+            Straight answers about concrete work, waterproofing, and foundation repair in the Twin Cities. If you don’t see your question here, reach out—we’re happy to help.
+          </p>
+        </div>
+      </section>
+
+      <!-- FAQ Accordions -->
+      <section class="py-12 sm:py-14">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="space-y-10">
+            <!-- Concrete Work -->
+            <div>
+              <h2 class="font-montserrat font-bold text-2xl text-charcoal-black mb-4">Concrete Work</h2>
+              <div class="divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white overflow-hidden">
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    How long does new concrete take to cure before I can drive or park on it?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Light foot traffic is okay after 24–48 hours. Wait 7 days before parking passenger vehicles, and 28 days for full design strength. Cold weather may extend these timelines.
+                  </div>
+                </details>
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    Do you recommend sealing exterior concrete in Minnesota?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Yes—freeze/thaw cycles and de-icing salts are harsh on concrete. A breathable penetrating sealer helps repel moisture and chlorides without trapping vapor.
+                  </div>
+                </details>
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    Will decorative (stamped/colored) concrete be slippery?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    It can be if over-sealed. We add anti-slip additives and tune sealer choice/coverage for walkability while preserving appearance.
+                  </div>
+                </details>
+              </div>
+            </div>
+
+            <!-- Waterproofing -->
+            <div>
+              <h2 class="font-montserrat font-bold text-2xl text-charcoal-black mb-4">Basement Waterproofing</h2>
+              <div class="divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white overflow-hidden">
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    Interior drain tile vs. exterior waterproofing—what’s better?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Both work; choice depends on access, site constraints, and symptoms. Interior drain tile with sump reliably relieves hydrostatic pressure. Exterior membranes excel where soils and access allow full perimeter treatment.
+                  </div>
+                </details>
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    Do I always need a sump pump with drain tile?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Yes—drain tile routes water to a collection basin; the pump discharges it away from the foundation. We recommend a check valve, dedicated circuit, and battery backup.
+                  </div>
+                </details>
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    Can waterproofing help with basement humidity and musty odor?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Yes—controlling liquid water ingress reduces vapor and humidity loads. We pair drainage with air sealing and, if needed, dehumidification for best results.
+                  </div>
+                </details>
+              </div>
+            </div>
+
+            <!-- Foundation & Structural -->
+            <div>
+              <h2 class="font-montserrat font-bold text-2xl text-charcoal-black mb-4">Foundation & Structural</h2>
+              <div class="divide-y divide-gray-200 rounded-xl border border-gray-200 bg-white overflow-hidden">
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    What are early warning signs of foundation movement?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Diagonal drywall cracks at doors/windows, sticking doors, floor slope, exterior step cracks, gaps at trim, or chimney separation. If you see these, schedule an evaluation.
+                  </div>
+                </details>
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    Do repairs damage landscaping and hardscapes?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Piering and exterior work require localized excavation. We minimize impact and restore soils; some plantings may be affected depending on proximity to the foundation.
+                  </div>
+                </details>
+                <details class="group p-5">
+                  <summary class="flex cursor-pointer items-center justify-between font-semibold text-charcoal-black">
+                    Will insurance cover foundation repairs?
+                    <span class="ml-4 transition-transform group-open:rotate-180">⌄</span>
+                  </summary>
+                  <div class="mt-3 text-steel-gray">
+                    Policies vary. Water damage from a covered peril (e.g., sudden plumbing leak) may be eligible; general settlement typically isn’t. We can document findings for your insurer.
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="py-16 bg-gray-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h3 class="font-montserrat font-bold text-2xl text-charcoal-black mb-3">Still have questions?</h3>
+          <p class="text-steel-gray mb-8">Tell us about your project and get expert guidance. No pressure—just clarity.</p>
+          <a href="/#concrete-booking-form" class="inline-flex items-center px-6 py-3 rounded-md bg-construction-orange text-white font-semibold shadow-md hover:bg-orange-500 transition-colors">Get a Free Consultation</a>
+        </div>
+      </section>
+
+      <!-- Global form reuse -->
+      <section class="py-20 bg-white" id="concrete-booking-form">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <slot name="booking-form">
+            <div class="max-w-5xl mx-auto">
+              <h4 class="sr-only">Request a Quote</h4>
+              <ConcreteBookingForm />
+            </div>
+          </slot>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+
+  <!-- FAQPage schema for SEO -->
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"How long does new concrete take to cure before I can drive or park on it?","acceptedAnswer":{"@type":"Answer","text":"Light foot traffic after 24–48 hours. Wait 7 days before parking passenger vehicles, and 28 days for full design strength. Cold weather may extend timelines."}},
+      {"@type":"Question","name":"Do you recommend sealing exterior concrete in Minnesota?","acceptedAnswer":{"@type":"Answer","text":"Yes—freeze/thaw cycles and de-icing salts are harsh. A breathable penetrating sealer repels moisture and chlorides without trapping vapor."}},
+      {"@type":"Question","name":"Interior drain tile vs. exterior waterproofing—what’s better?","acceptedAnswer":{"@type":"Answer","text":"Both work; choice depends on access and symptoms. Interior drain tile with sump relieves hydrostatic pressure; exterior membranes excel with full perimeter access."}},
+      {"@type":"Question","name":"Do I always need a sump pump with drain tile?","acceptedAnswer":{"@type":"Answer","text":"Yes—tile routes water to a basin; the pump discharges it away from the foundation. Include check valve, dedicated circuit, and battery backup."}},
+      {"@type":"Question","name":"What are early warning signs of foundation movement?","acceptedAnswer":{"@type":"Answer","text":"Diagonal drywall cracks, sticking doors, floor slope, exterior step cracks, trim gaps, chimney separation."}}
+    ]}
+  </script>
+</Layout> 

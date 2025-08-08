@@ -1,5 +1,45 @@
+# Development artifacts
 node_modules/**
 .wix/**
 dist/**
 .astro/**
 .vite/**
+
+# Build and cache directories
+.cache/**
+.temp/**
+.tmp/**
+
+# Development files
+*.log
+*.tmp
+*.temp
+
+# IDE and editor files
+.vscode/**
+.idea/**
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Git files
+.git/**
+
+# Documentation and context files
+*.md
+*.pdf
+GardnerContext/**
+
+# Task management files
+.taskmaster/**
+.cursor/**
+.claude/**
+
+# Environment and config files
+.env
+.env.production
+.env.local
+.env.example
