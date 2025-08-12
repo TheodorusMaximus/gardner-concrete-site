@@ -1,5 +1,35 @@
 ---
 import "../styles/global.css";
+import { generateLocalBusinessSchema, generateWebsiteSchema, safeJsonLd } from "../utils/structured-data";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  includeBusinessSchema?: boolean;
+  includeWebsiteSchema?: boolean;
+}
+const { 
+  title, 
+  description, 
+  canonical, 
+  image, 
+  includeBusinessSchema = false,
+  includeWebsiteSchema = false 
+} = Astro.props as Props;
+
+const computedTitle = title ?? 'G. Gardner Concrete & Waterproofing, Inc | Foundational Excellence';
+const computedDescription = description ?? undefined;
+const computedImage = image ?? 'https://gardnerconcrete.com/og-default.jpg';
+
+// Get base URL for structured data
+const url = new URL(Astro.request.url);
+const baseUrl = `${url.protocol}//${url.host}`;
+
+// Generate structured data schemas
+const localBusinessSchema = includeBusinessSchema ? generateLocalBusinessSchema(baseUrl) : null;
+const websiteSchema = includeWebsiteSchema ? generateWebsiteSchema(baseUrl) : null;
 ---
 
 <!doctype html>
@@ -9,13 +39,39 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/logo-new-576w_edited.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>G. Gardner Concrete & Waterproofing, Inc | Foundational Excellence</title>
+    <title>{computedTitle}</title>
+    {computedDescription && <meta name="description" content={computedDescription} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={computedTitle} />
+    {computedDescription && <meta property="og:description" content={computedDescription} />}
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {computedImage && <meta property="og:image" content={computedImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={computedTitle} />
+    {computedDescription && <meta name="twitter:description" content={computedDescription} />}
+    {computedImage && <meta name="twitter:image" content={computedImage} />}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Lato:wght@400&family=Montserrat:wght@800&family=Poppins:wght@600&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Structured Data -->
+    {localBusinessSchema && (
+      <script type="application/ld+json" set:html={safeJsonLd(localBusinessSchema)}></script>
+    )}
+    {websiteSchema && (
+      <script type="application/ld+json" set:html={safeJsonLd(websiteSchema)}></script>
+    )}
+    
+    <slot name="head" />
   </head>
   <body>
     <slot />

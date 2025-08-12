@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import Button from "../../components/ui/Button.astro";
 import Card from "../../components/ui/Card.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import services from "../../utils/services-data";
 import { getBlogPosts, type BlogPost } from "../../utils/wix-blog-client";
 
@@ -26,6 +27,13 @@ const relatedServices = services.filter(s => service.relatedServices.includes(s.
 const pageTitle = service.seoTitle;
 const pageDescription = service.seoDescription;
 export const prerender = false;
+
+// Setup breadcrumbs for this service page
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services' },
+  { name: service.name, url: `/services/${service.slug}` }
+];
 
 // Helper functions
 function getUrgencyColor(urgency: string) {
@@ -76,6 +84,10 @@ function getAreaBg(index: number) {
     <div class="absolute inset-0 bg-cover bg-center opacity-25" style={`background-image:url('${service.imageUrl}')`}></div>
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+      <!-- Breadcrumbs -->
+      <div class="text-left mb-6">
+        <Breadcrumbs breadcrumbs={breadcrumbs} class="text-gray-300" />
+      </div>
       <div class="mb-4">
         <span class="inline-block bg-construction-orange px-4 py-2 rounded-full text-sm font-semibold">
           {service.name} Experts Since 1949

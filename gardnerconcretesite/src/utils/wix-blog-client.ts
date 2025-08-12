@@ -1,21 +1,15 @@
-import { createClient, OAuthStrategy } from '@wix/sdk';
+import { createClient, ApiKeyStrategy } from '@wix/sdk';
 import { posts } from '@wix/blog';
 
 // Initialize Wix client for blog operations only
 export function createWixBlogClient() {
+  const API_KEY = import.meta.env.WIX_API_KEY || process.env.WIX_API_KEY || '';
+  const SITE_ID = import.meta.env.WIX_SITE_ID || process.env.WIX_SITE_ID || 'f34d08e6-ac9c-4e3c-b006-b77d3bf798e6';
   return createClient({
     modules: {
       posts
     },
-    auth: OAuthStrategy({
-      clientId: process.env.WIX_CLIENT_ID || '',
-      tokens: {
-        accessToken: {
-          value: process.env.WIX_ACCESS_TOKEN || '',
-          expiresAt: Date.now() + 3600000 // 1 hour from now
-        }
-      }
-    })
+    auth: ApiKeyStrategy({ apiKey: API_KEY, siteId: SITE_ID })
   });
 }
 

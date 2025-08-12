@@ -1,25 +1,19 @@
-import { createClient, OAuthStrategy } from '@wix/sdk';
+import { createClient, ApiKeyStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 import { posts } from '@wix/blog';
 import { submissions } from '@wix/forms';
 
 // Initialize Wix client for server-side operations
 export function createWixClient() {
+  const API_KEY = import.meta.env.WIX_API_KEY || process.env.WIX_API_KEY || '';
+  const SITE_ID = import.meta.env.WIX_SITE_ID || process.env.WIX_SITE_ID || 'f34d08e6-ac9c-4e3c-b006-b77d3bf798e6';
   return createClient({
     modules: {
       items,
       posts,
       submissions
     },
-    auth: OAuthStrategy({
-      clientId: process.env.WIX_CLIENT_ID || '',
-      tokens: {
-        accessToken: {
-          value: process.env.WIX_ACCESS_TOKEN || '',
-          expiresAt: Date.now() + 3600000 // 1 hour from now
-        }
-      }
-    })
+    auth: ApiKeyStrategy({ apiKey: API_KEY, siteId: SITE_ID })
   });
 }
 
@@ -150,16 +144,14 @@ export async function submitConcreteJobForm(formData: ConcreteJobSubmission) {
         propertyAddress: formData.propertyAddress,
         preferredContact: formData.preferredContact,
         heardAboutUs: formData.heardAboutUs || ''
-      },
-      status: 'CONFIRMED',
-      seen: false
+      }
     };
 
-    const result = await wixClient.submissions.createSubmission(submissionPayload);
+    const result = await wixClient.submissions.createSubmission(submissionPayload as any);
     
     return {
       success: true,
-      submissionId: result.submission._id,
+      submissionId: (result as any)._id || '',
       message: 'Thank you! Your concrete project request has been submitted successfully. We\'ll contact you within 24 hours to discuss your project.'
     };
   } catch (error) {

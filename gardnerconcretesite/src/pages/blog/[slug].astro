@@ -11,8 +11,8 @@ import RichContentViewer from "../../components/RichContentViewer.tsx";
 import { members } from "@wix/members";
 import "../../styles/global.css";
 
-const API_KEY = import.meta.env.WIX_API_KEY;
-const SITE_ID = "f34d08e6-ac9c-4e3c-b006-b77d3bf798e6";
+const API_KEY = import.meta.env.WIX_API_KEY || process.env.WIX_API_KEY;
+const SITE_ID = import.meta.env.WIX_SITE_ID || process.env.WIX_SITE_ID || "f34d08e6-ac9c-4e3c-b006-b77d3bf798e6";
 
 const { slug } = Astro.params;
 
@@ -24,8 +24,8 @@ if (!slug || !API_KEY) {
 }
 
 // Fetch the full blog post with rich content
-let post = null;
-let author = null;
+let post: any = null;
+let author: any = null;
 let relatedPosts: any[] = [];
 let sidebarWidgets: any[] = [];
 
@@ -44,7 +44,7 @@ try {
   // Get the full post with rich content
   const postResponse = await wixClient.posts.getPostBySlug(slug, {
     // Request rich content as well as general post metadata.
-    fieldsets: ['RICH_CONTENT', 'SEO', 'TAGS']
+    fieldsets: ['RICH_CONTENT', 'SEO']
   });
   
   console.log('Dynamic route: Post response:', !!postResponse.post);
@@ -59,7 +59,7 @@ try {
   if (post?.memberId) {
     try {
       const authorResponse = await wixClient.members.getMember(post.memberId);
-      author = authorResponse.member;
+      author = authorResponse;
     } catch (authorError) {
       console.log('Could not fetch author information:', authorError);
     }
@@ -70,15 +70,14 @@ try {
     paging: { limit: 4 }
   });
   
-  relatedPosts = relatedResult.posts?.filter(p => p.id !== post?.id).slice(0, 3) || [];
+  relatedPosts = (relatedResult.posts || []).filter((p: any) => p.id !== post?.id).slice(0, 3);
 
   // Fetch sidebar widgets associated with this post
   try {
-    const widgetsRes = await wixClient.items.queryDataItems({
-      collectionId: "sidebarWidgets",
-      filter: { field: "postSlug", operator: "eq", value: slug },
-      paging: { limit: 10 }
-    });
+    const widgetsRes = await wixClient.items.query('sidebarWidgets')
+      .eq('postSlug', slug)
+      .limit(10)
+      .find();
     sidebarWidgets = widgetsRes.items || [];
   } catch (e) {
     console.log("Could not fetch sidebar widgets", e);
@@ -100,7 +99,24 @@ const publishDate = post.firstPublishedDate ? new Date(post.firstPublishedDate).
 const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) / 200);
 ---
 
-<Layout title={post.seoData?.tags?.find(tag => tag.type === 'title')?.children || post.title} description={post.seoData?.tags?.find(tag => tag.type === 'meta' && tag.props?.name === 'description')?.props?.content || post.excerpt}>
+<Layout title={post.seoData?.tags?.find((tag: any) => tag.type === 'title')?.children || post.title} description={post.seoData?.tags?.find((tag: any) => tag.type === 'meta' && tag.props?.name === 'description')?.props?.content || post.excerpt} canonical={`https://gardnerconcrete.com/blog/${post.slug}`} image={post.media?.wixMedia?.image}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.excerpt || undefined,
+      datePublished: post.firstPublishedDate || undefined,
+      dateModified: post.firstPublishedDate || undefined,
+      image: post.media?.wixMedia?.image ? [post.media.wixMedia.image] : undefined,
+      author: author ? { '@type': 'Person', name: author.profile?.nickname || author.loginEmail || 'G. Gardner Team' } : { '@type': 'Organization', name: 'G. Gardner Concrete & Waterproofing, Inc' },
+      publisher: { '@type': 'Organization', name: 'G. Gardner Concrete & Waterproofing, Inc' },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://gardnerconcrete.com/blog/${post.slug}`
+      }
+    })}></script>
+  </Fragment>
   <div class="min-h-screen flex flex-col bg-concrete-white">
     <Navbar />
 
@@ -175,6 +191,8 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
             <img 
               src={coverImageUrl} 
               alt={post.title}
+              width="1200" height="500"
+              loading="eager" decoding="async"
               class="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
             />
           </div>
@@ -183,14 +201,13 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 prose prose-lg max-w-none">
               {post.richContent ? (
-                <RichContentViewer content={post.richContent} client:only="react" />
+                <div class="prose prose-lg max-w-none" set:html={await (async () => {
+                  const mod = await import('../../utils/rich-content');
+                  return mod.richContentToHtml(post.richContent);
+                })()}></div>
               ) : (
                 <div class="text-steel-gray font-lato text-lg leading-relaxed">
-                  {post.plainContent ? (
-                    post.plainContent.split('\n').map(paragraph => (
-                      paragraph.trim() && <p class="mb-6">{paragraph}</p>
-                    ))
-                  ) : post.excerpt ? (
+                  {post.excerpt ? (
                     <p class="mb-6">{post.excerpt}</p>
                   ) : (
                     <p class="mb-6">Content not available.</p>
@@ -205,7 +222,7 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
                   <div class="p-6 bg-gray-100 rounded-lg shadow">
                     {widget.title && <h3 class="font-poppins font-semibold text-lg mb-2">{widget.title}</h3>}
                     {widget.image && <img src={widget.image} alt={widget.title} class="mb-4 w-full h-40 object-cover rounded" />}
-                    {widget.content && <div class="rich-text" innerHTML={widget.content}></div>}
+                    {widget.content && <div class="rich-text" set:html={widget.content}></div>}
                     {widget.link && <a href={widget.link} class="inline-block mt-4 px-4 py-2 bg-construction-orange text-white rounded">Learn More</a>}
                   </div>
                 ))}
@@ -218,7 +235,7 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
             <div class="mt-12 pt-8 border-t border-gray-200">
               <h3 class="font-poppins font-semibold text-lg mb-4 text-charcoal-black">Tags:</h3>
               <div class="flex flex-wrap gap-2">
-                {post.hashtags.map(tag => (
+                {post.hashtags.map((tag: string) => (
                   <span class="px-3 py-1 bg-gray-100 text-steel-gray rounded-full text-sm font-medium">
                     #{tag.trim()}
                   </span>
@@ -252,6 +269,8 @@ const readTime = post.minutesToRead || Math.ceil((post.excerpt?.length || 500) /
                       <img 
                         src={relatedPost.media?.wixMedia?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80'} 
                         alt={relatedPost.title}
+                        width="800" height="400"
+                        loading="lazy" decoding="async"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div class="absolute top-4 left-4">

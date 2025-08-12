@@ -91,7 +91,8 @@ export async function getAvailableSlots(
       { timezone: "UTC" }
     );
 
-    return availability.availabilityEntries.map((item) => ({
+    const entries = availability.availabilityEntries ?? [];
+    return entries.map((item) => ({
       time: item.slot?.startDate!,
       display: Intl.DateTimeFormat("en-US", TIME_FORMAT).format(
         new Date(item.slot?.startDate!)

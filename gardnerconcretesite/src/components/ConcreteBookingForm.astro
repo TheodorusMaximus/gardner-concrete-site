@@ -216,28 +216,28 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('concrete-booking-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const submitText = document.getElementById('submit-text');
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
-    const successText = document.getElementById('success-text');
-    const errorText = document.getElementById('error-text');
+    const form = document.getElementById('concrete-booking-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const submitText = document.getElementById('submit-text') as HTMLSpanElement | null;
+    const successMessage = document.getElementById('success-message') as HTMLElement | null;
+    const errorMessage = document.getElementById('error-message') as HTMLElement | null;
+    const successText = document.getElementById('success-text') as HTMLElement | null;
+    const errorText = document.getElementById('error-text') as HTMLElement | null;
 
     if (form) {
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         // Show loading state
-        submitBtn.disabled = true;
-        submitText.textContent = 'Submitting...';
+        if (submitBtn) submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Submitting...';
         
         // Hide previous messages
-        successMessage.classList.add('hidden');
-        errorMessage.classList.add('hidden');
+        if (successMessage) successMessage.classList.add('hidden');
+        if (errorMessage) errorMessage.classList.add('hidden');
         
         // Collect form data
-        const formData = new FormData(form);
+        const formData = new FormData(form as HTMLFormElement);
         const submissionData = {
           name: formData.get('name'),
           email: formData.get('email'),
@@ -264,28 +264,28 @@
           
           if (result.success) {
             // Show success message
-            successText.textContent = result.message;
-            successMessage.classList.remove('hidden');
+            if (successText) successText.textContent = result.message;
+            if (successMessage) successMessage.classList.remove('hidden');
             
             // Reset form
-            form.reset();
+            (form as HTMLFormElement).reset();
             
             // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (successMessage) successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
           } else {
             throw new Error(result.message);
           }
         } catch (error) {
           // Show error message
-          errorText.textContent = error.message || 'An unexpected error occurred. Please try again.';
-          errorMessage.classList.remove('hidden');
+          if (errorText) errorText.textContent = (error instanceof Error ? error.message : String(error)) || 'An unexpected error occurred. Please try again.';
+          if (errorMessage) errorMessage.classList.remove('hidden');
           
           // Scroll to error message
-          errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (errorMessage) errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } finally {
           // Restore button state
-          submitBtn.disabled = false;
-          submitText.textContent = 'Request my callback';
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'Request my callback';
         }
       });
     }

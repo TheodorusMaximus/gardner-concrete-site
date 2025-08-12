@@ -161,8 +161,8 @@ const featuredProjects = await getFeaturedProjects();
 <script>
   // Simple carousel functionality
   document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.carousel-item');
-    const dots = document.querySelectorAll('.carousel-dot');
+    const items = document.querySelectorAll<HTMLElement>('.carousel-item');
+    const dots = document.querySelectorAll<HTMLElement>('.carousel-dot');
     let currentIndex = 0;
     
     // Auto-rotate every 7 seconds
@@ -181,13 +181,13 @@ const featuredProjects = await getFeaturedProjects();
     
     function updateCarousel() {
       // Update items visibility
-      items.forEach((item, index) => {
-        item.style.opacity = index === currentIndex ? '1' : '0';
+      items.forEach((el, index) => {
+        (el as HTMLElement).style.opacity = index === currentIndex ? '1' : '0';
       });
       
       // Update dots
-      dots.forEach((dot, index) => {
-        dot.style.backgroundColor = index === currentIndex ? 'white' : 'rgba(255, 255, 255, 0.5)';
+      dots.forEach((el, index) => {
+        (el as HTMLElement).style.backgroundColor = index === currentIndex ? 'white' : 'rgba(255, 255, 255, 0.5)';
       });
     }
   });

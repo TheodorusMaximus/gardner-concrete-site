@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+const sample = {
+  nodes: [
+    { type: 'HEADING', headingData: { level: 2 }, nodes: [ { type: 'TEXT', textData: { text: 'SSR Test Heading' } } ] },
+    { type: 'PARAGRAPH', nodes: [ { type: 'TEXT', textData: { text: 'This is a paragraph rendered on the server.' } } ] },
+    { type: 'BULLETED_LIST', nodes: [
+      { type: 'LIST_ITEM', nodes: [ { type: 'TEXT', textData: { text: 'Item A' } } ] },
+      { type: 'LIST_ITEM', nodes: [ { type: 'TEXT', textData: { text: 'Item B' } } ] }
+    ]}
+  ]
+};
+
+const html = await (async () => {
+  const mod = await import('../../utils/rich-content');
+  return mod.richContentToHtml(sample as any);
+})();
+---
+
+<Layout title="SSR Test" description="SSR verification for blog rendering">
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold mb-6">SSR Verification</h1>
+    <div class="prose" set:html={html}></div>
+  </main>
+  <Footer />
+</Layout> 

@@ -1,0 +1,48 @@
+---
+import { generateBreadcrumbSchema, safeJsonLd } from '../utils/structured-data';
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  breadcrumbs: BreadcrumbItem[];
+  class?: string;
+}
+
+const { breadcrumbs, class: className = '' } = Astro.props;
+
+// Get the base URL for structured data
+const url = new URL(Astro.request.url);
+const baseUrl = `${url.protocol}//${url.host}`;
+
+// Generate structured data
+const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, baseUrl);
+---
+
+<!-- Breadcrumb Navigation -->
+<nav aria-label="Breadcrumb" class={`${className}`}>
+  <ol class="flex items-center space-x-2 text-sm">
+    {breadcrumbs.map((breadcrumb, index) => (
+      <li class="flex items-center">
+        {index > 0 && <span class="mx-2 text-gray-400">/</span>}
+        {index === breadcrumbs.length - 1 ? (
+          <span class="text-gray-600 font-medium" aria-current="page">
+            {breadcrumb.name}
+          </span>
+        ) : (
+          <a 
+            href={breadcrumb.url} 
+            class="text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            {breadcrumb.name}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<!-- BreadcrumbList JSON-LD Schema -->
+<script type="application/ld+json" set:html={safeJsonLd(breadcrumbSchema)}></script>

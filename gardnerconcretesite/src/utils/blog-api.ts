@@ -39,7 +39,7 @@ export async function getBlogPosts(category?: string, featured?: boolean): Promi
     });
 
     const { posts } = await wixClient.blog.posts.listPosts({ 
-      fieldsets: ["URL"],
+      fieldsets: ['RICH_CONTENT', 'SEO', 'URL'],
       paging: { limit: 50 }
     });
 
@@ -49,24 +49,24 @@ export async function getBlogPosts(category?: string, featured?: boolean): Promi
     }
 
     // Transform Wix blog posts to our BlogPost interface
-    const transformedPosts: BlogPost[] = posts.map(post => ({
+    const transformedPosts: BlogPost[] = posts.map((post: any) => ({
       _id: post.id || '',
       title: post.title || '',
       slug: post.slug || '',
       excerpt: post.excerpt || '',
-      content: post.plainContent || post.excerpt || '',
-      featuredImage: post.coverMedia?.image?.url || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
-      category: post.categoryIds?.[0] || 'General',
+      content: post.excerpt || '',
+      featuredImage: post.media?.wixMedia?.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+      category: (post.categoryIds && post.categoryIds[0]) || 'General',
       tags: post.hashtags?.join(', ') || '',
-      metaTitle: post.seoData?.tags?.find(tag => tag.type === 'title')?.children || post.title,
-      metaDescription: post.seoData?.tags?.find(tag => tag.type === 'meta' && tag.props?.name === 'description')?.props?.content || post.excerpt,
+      metaTitle: post.seoData?.tags?.find((tag: any) => tag.type === 'title')?.children || post.title,
+      metaDescription: post.seoData?.tags?.find((tag: any) => tag.type === 'meta' && tag.props?.name === 'description')?.props?.content || post.excerpt,
       author: 'G. Gardner Concrete & Waterproofing, Inc Team',
-      readTime: Math.ceil((post.plainContent?.length || 500) / 200), // Estimate reading time
+      readTime: Math.ceil(((post.excerpt?.length || 500)) / 200),
       published: true,
       featured: post.featured || false,
-      publishDate: post.firstPublishedDate || post._createdDate || new Date().toISOString(),
-      _createdDate: post._createdDate || new Date().toISOString(),
-      _updatedDate: post._updatedDate || new Date().toISOString()
+      publishDate: post.firstPublishedDate || new Date().toISOString(),
+      _createdDate: post.firstPublishedDate || new Date().toISOString(),
+      _updatedDate: post.firstPublishedDate || new Date().toISOString()
     }));
 
     // Filter by category if provided

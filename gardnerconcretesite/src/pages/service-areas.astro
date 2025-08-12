@@ -14,13 +14,20 @@ import ConcreteBookingForm from '../components/ConcreteBookingForm.astro';
       <!-- NeighborhoodTrust: hero/story -->
       <NeighborhoodTrust />
 
-      <!-- Static coverage image directly after hero -->
+      <!-- Static coverage image integrated with content above (two-column on desktop) -->
       <section class="py-12 bg-charcoal-black text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-center font-montserrat font-extrabold text-3xl sm:text-4xl mb-6">Our Service Areas</h1>
-          <p class="text-center text-gray-300 mb-6">Explore our coverage across the Twin Cities metro. See the map below and the full ZIP code list that follows.</p>
-          <div class="rounded-xl overflow-hidden shadow-xl ring-1 ring-white/10">
-            <img src="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/3408138C-7B09-4C44-A840-4FE0AF80EAF7_4_5005_c.jpeg" alt="Twin Cities service coverage" class="w-full h-auto object-cover" loading="lazy" />
+          <div class="grid gap-8 lg:grid-cols-2 items-center">
+            <div>
+              <h1 class="font-montserrat font-extrabold text-3xl sm:text-4xl mb-4">Our Service Areas</h1>
+              <p class="text-gray-300 mb-6">Explore our coverage across the Twin Cities metro. Browse the neighborhoods and ZIPs above, and see the visual coverage map here.</p>
+              <p class="text-gray-300">Questions about your location? <a href="/schedule" class="text-bright-yellow underline underline-offset-4 hover:no-underline">Schedule a free assessment</a> and we’ll confirm coverage.</p>
+            </div>
+            <div class="justify-self-center w-full">
+              <div class="rounded-xl overflow-hidden shadow-xl ring-1 ring-white/10 max-w-xl w-full mx-auto">
+                <img src="https://pub-023c3e677cc749cd89ec726c78c6178e.r2.dev/3408138C-7B09-4C44-A840-4FE0AF80EAF7_4_5005_c.jpeg" alt="Twin Cities service coverage" class="w-full h-auto object-cover" loading="lazy" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

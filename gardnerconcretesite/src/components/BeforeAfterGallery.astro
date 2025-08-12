@@ -3,7 +3,7 @@ import Card from './ui/Card.astro';
 import { getProjects } from '../utils/wix-client';
 
 // Fetch projects from Wix CMS (will fall back to static data if no CMS)
-let projectData = [];
+let projectData: any[] = [];
 try {
   projectData = await getProjects('transformations');
 } catch (error) {
@@ -11,7 +11,7 @@ try {
 }
 
 // Fallback to static data with placeholder images for now
-const transformationProjects = projectData.length > 0 ? projectData : [
+const transformationProjects: any[] = Array.isArray(projectData) && projectData.length > 0 ? projectData : [
   {
     _id: "1",
     title: "Foundation Wall Stabilization",
